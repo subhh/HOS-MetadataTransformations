@@ -1,0 +1,4345 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column record - metadata - oai_dc:dc - xsi:schemaLocation",
+    "columnName": "record - metadata - oai_dc:dc - xsi:schemaLocation"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:subject to dc:subject",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:subject",
+    "newColumnName": "dc:subject"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:creator to dc:creator",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:creator",
+    "newColumnName": "dc:creator"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:type to dc:type",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:type",
+    "newColumnName": "dc:type"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:identifier to dc:identifier",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:identifier",
+    "newColumnName": "dc:identifier"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:publisher to dc:publisher",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:publisher",
+    "newColumnName": "dc:publisher"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:title to dc:title",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:title",
+    "newColumnName": "dc:title"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:description to dc:description",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:description",
+    "newColumnName": "dc:description"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:date to dc:date",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:date",
+    "newColumnName": "dc:date"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:rights to dc:rights",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:rights",
+    "newColumnName": "dc:rights"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:format to dc:format",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:format",
+    "newColumnName": "dc:format"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - header - setSpec to dc:subjectNumber",
+    "oldColumnName": "record - header - setSpec",
+    "newColumnName": "dc:subjectNumber"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:source to dc:source",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:source",
+    "newColumnName": "dc:source"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - metadata - oai_dc:dc - dc:language to dc:language",
+    "oldColumnName": "record - metadata - oai_dc:dc - dc:language",
+    "newColumnName": "dc:language"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:date to dc:publicationYear",
+    "oldColumnName": "dc:date",
+    "newColumnName": "dc:publicationYear"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column record - header - datestamp to dc:date",
+    "oldColumnName": "record - header - datestamp",
+    "newColumnName": "dc:date"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column record - metadata",
+    "columnName": "record - metadata"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column record - metadata - oai_dc:dc",
+    "columnName": "record - metadata - oai_dc:dc"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:identifier to position 0",
+    "columnName": "dc:identifier",
+    "index": 0
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column dc:url at index 1 based on column dc:identifier using expression grel:if (startsWith(value,\"http\"),value,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "dc:url",
+    "columnInsertIndex": 1,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:if (startsWith(value,\"http\"),value,\"\")",
+    "onError": "keep-original"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column dc:identifier using expression grel:if(startsWith(value, \"http\"),\"\",value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:identifier",
+    "expression": "grel:if(startsWith(value, \"http\"),\"\",value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column identifierType at index 1 based on column dc:identifier using expression grel:if(startsWith(value,\"urn\"),\"URN\",\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "identifierType",
+    "columnInsertIndex": 1,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:if(startsWith(value,\"urn\"),\"URN\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:creator to position 0",
+    "columnName": "dc:creator",
+    "index": 0
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:creator to position 1",
+    "columnName": "dc:creator",
+    "index": 1
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:creator to position 2",
+    "columnName": "dc:creator",
+    "index": 2
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:creator to position 3",
+    "columnName": "dc:creator",
+    "index": 3
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:url to position 3",
+    "columnName": "dc:url",
+    "index": 3
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:creator to creatorName",
+    "oldColumnName": "dc:creator",
+    "newColumnName": "creatorName"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": true,
+          "name": "dc:identifier",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "dc:identifier"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column dc:url",
+    "columnName": "dc:url",
+    "keyColumnName": "dc:identifier",
+    "separator": ""
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Biologie. Biologie"
+        ],
+        "to": "Biologie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Betriebswirtschaft. Betriebswirtschaft"
+        ],
+        "to": "Betriebswirtschaft"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subject",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:subject",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Alzheimer's Disease",
+          "Alzheimer's disease",
+          "Alzheimer\\'s disease",
+          "Alzheimers Disease"
+        ],
+        "to": "Alzheimer's Disease"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subject",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:subject",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Lentivirus",
+          "Lenti-Virus",
+          "Lenti-virus",
+          "lentivirus"
+        ],
+        "to": "Lentivirus"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subject",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:subject",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Internet",
+          "internet",
+          " Internet",
+          "internet "
+        ],
+        "to": "Internet"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subject",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:subject",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Koronare Herzerkrankung",
+          "koronare Herzerkrankung"
+        ],
+        "to": "Koronare Herzerkrankung"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          " ADC",
+          "ADC"
+        ],
+        "to": "ADC"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Methyltransferase",
+          "methyltransferase"
+        ],
+        "to": "Methyltransferase"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "EGFR",
+          "egfr"
+        ],
+        "to": "EGFR"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Metaanalyse",
+          "Metaanalyse "
+        ],
+        "to": "Metaanalyse"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Irritation",
+          "irritation"
+        ],
+        "to": "Irritation"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column creatorName",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "creatorName",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Müller, Peter",
+          "Peter Müller"
+        ],
+        "to": "Müller, Peter"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column creatorName",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "creatorName",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Schmidt, Tobias",
+          "Schmidt, Tobias "
+        ],
+        "to": "Schmidt, Tobias"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ger"
+        ],
+        "to": "de-DE"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Asien-Afrika-Institut. Asien-Afrika-Institut"
+        ],
+        "to": "Asien-Afrika-Institut"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Chemie. Chemie"
+        ],
+        "to": "Chemie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Erziehungswissenschaft. Erziehungswissenschaft"
+        ],
+        "to": "Erziehungswissenschaft"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "eng"
+        ],
+        "to": "en-EN"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "de-DE"
+        ],
+        "to": "de"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "en-EN"
+        ],
+        "to": "en"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "fre"
+        ],
+        "to": "fr"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "rus"
+        ],
+        "to": "ru"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "mis",
+                "l": "mis"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "dc:language",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "dc:language"
+        }
+      ]
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Kulturgeschichte und Kulturkunde. Kulturgeschichte und Kulturkunde"
+        ],
+        "to": "Kulturgeschichte und Kulturkunde"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "mis",
+                "l": "mis"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "dc:language",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "dc:language"
+        }
+      ]
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Philosophie und Geschichtswissenschaft. Philosophie und Geschichtswissenschaft"
+        ],
+        "to": "Philosophie und Geschichtswissenschaft"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "mis",
+                "l": "mis"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "dc:language",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "dc:language"
+        }
+      ]
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sprach-, Literatur- und Medienwissenschaften. Sprach-, Literatur- und Medienwissenschaften"
+        ],
+        "to": "Sprach-, Literatur- und Medienwissenschaften"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Philosophie und Geschichtswissenschaft. Philosophie und Geschichtswissenschaft"
+        ],
+        "to": "Philosophie und Geschichtswissenschaft"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Rechtswissenschaft. Rechtswissenschaft"
+        ],
+        "to": "Rechtswissenschaft"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sozialwissenschaften. Sozialwissenschaften"
+        ],
+        "to": "Sozialwissenschaften"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sportwissenschaft. Sportwissenschaft"
+        ],
+        "to": "Sportwissenschaft"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sprach-, Literatur- und Medienwissenschaften. Sprach-, Literatur- und Medienwissenschaften"
+        ],
+        "to": "Sprach-, Literatur- und Medienwissenschaften"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Wirtschaftswissenschaften. Wirtschaftswissenschaften"
+        ],
+        "to": "Wirtschaftswissenschaften"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Kulturgeschichte und Kulturkunde. Kulturgeschichte und Kulturkunde"
+        ],
+        "to": "Kulturgeschichte und Kulturkunde"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Informatik. Informatik"
+        ],
+        "to": "Informatik"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Mathematik. Mathematik"
+        ],
+        "to": "Mathematik"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Psychologie. Psychologie"
+        ],
+        "to": "Psychologie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Physik. Physik"
+        ],
+        "to": "Physik"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Medizin. Medizin"
+        ],
+        "to": "Medizin"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Geowissenschaften. Geowissenschaften"
+        ],
+        "to": "Geowissenschaften"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Evangelische Theologie. Evangelische Theologie"
+        ],
+        "to": "Evangelische Theologie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "European Doctorate in Law & Economics (EDLE). European Doctorate in Law & Economics (EDLE)"
+        ],
+        "to": "European Doctorate in Law & Economics (EDLE)"
+      }
+    ]
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column dc:institute at index 6 based on column dc:publisher using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Universität Hamburg",
+                "l": "Universität Hamburg"
+              }
+            },
+            {
+              "v": {
+                "v": "Hochschule für Musik und Theater Hamburg",
+                "l": "Hochschule für Musik und Theater Hamburg"
+              }
+            },
+            {
+              "v": {
+                "v": "Hochschule für Bildende Künste Hamburg",
+                "l": "Hochschule für Bildende Künste Hamburg"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": true,
+          "name": "dc:publisher",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "dc:publisher"
+        }
+      ]
+    },
+    "newColumnName": "dc:institute",
+    "columnInsertIndex": 6,
+    "baseColumnName": "dc:publisher",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Asien-Afrika-Institut"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Betriebswirtschaft"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Biologie"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Chemie"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Erziehungswissenschaft"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "European Doctorate in Law & Economics (EDLE)"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Evangelische Theologie"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Geowissenschaften"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Informatik"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Mathematik"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Medizin"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Philosophie und Geschichtswissenschaft"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Physik"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Psychologie"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Rechtswissenschaft"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Kulturgeschichte und Kulturkunde"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sozialwissenschaften"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sportwissenschaft"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sprach-, Literatur- und Medienwissenschaften"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:publisher",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Wirtschaftswissenschaften"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column dc:institute",
+    "columnName": "dc:institute",
+    "keyColumnName": "dc:identifier",
+    "separator": ""
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subject",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:subject",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "X-ray",
+          "x-ray",
+          "X-Ray",
+          "Xray"
+        ],
+        "to": "X-ray"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Engineered Heart Tissue",
+          "engineered heart tissue",
+          "Engineered Heart Tissue ",
+          "engineered heart tissue "
+        ],
+        "to": "Engineered heart tissue"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Western-Blot",
+          "WesternBlot",
+          "Westernblot",
+          "western-Blot"
+        ],
+        "to": "Western-Blot"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "climate change",
+          "Climate change",
+          "Climate Change",
+          "Climate Change "
+        ],
+        "to": "Climate change"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "zirkulierende Tumorzellen",
+          "Zirkulierende Tumorzellen",
+          " zirkulierende Tumorzellen"
+        ],
+        "to": "Zirkulierende Tumorzellen"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "comorbidity",
+          "Co-Morbidity",
+          "Comorbidity"
+        ],
+        "to": "Comorbidity"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Drug design",
+          "Drug Design",
+          "drug design"
+        ],
+        "to": "Drug design"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Psychische Störung",
+          "psychische Störung",
+          "psychische Störung   "
+        ],
+        "to": "Psychische Störung"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Expression",
+          "expression",
+          "Expression "
+        ],
+        "to": "Expression"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "quality of life",
+          "Quality of life",
+          "Quality of Life"
+        ],
+        "to": "Quality of life"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "postmortal",
+          "post-mortal",
+          "postmortal "
+        ],
+        "to": "postmortal"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "tissue microarray",
+          "Tissue Microarray",
+          " Tissue Microarray"
+        ],
+        "to": "Tissue microarray"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ablation",
+          "Ablation",
+          "Ablation, "
+        ],
+        "to": "Ablation"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "data assimilation",
+          "Data Assimilation",
+          "Data assimilation"
+        ],
+        "to": "Data assimilation"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "prostate cancer",
+          "Prostate Cancer",
+          "Prostate cancer"
+        ],
+        "to": "Prostate cancer"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Prodrug",
+          "prodrug",
+          "pro-drug"
+        ],
+        "to": "Prodrug"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subject",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:subject",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "semiconductor",
+          " semiconductor",
+          "Semiconductor"
+        ],
+        "to": "Semiconductor"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "T cells",
+          " T cells",
+          "t cells"
+        ],
+        "to": "T cells"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Autoimmune Hepatitis",
+          "autoimmune Hepatitis",
+          "autoimmune hepatitis"
+        ],
+        "to": "Autoimmune Hepatitis"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "resistance",
+          "Resistance",
+          "Résistance"
+        ],
+        "to": "Resistance"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "mass spectrometry",
+          "Mass Spectrometry",
+          "Mass spectrometry"
+        ],
+        "to": "Mass spectrometry"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Free-electron laser",
+          "Free-Electron laser",
+          "free-electron laser"
+        ],
+        "to": "Free-electron laser"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "breast cancer",
+          "Breast Cancer",
+          "Breast cancer"
+        ],
+        "to": "Breast cancer"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Adaptation",
+          "adaptation",
+          "adaptation "
+        ],
+        "to": "Adaptation"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Serotonin",
+          "Serotonin ",
+          "serotonin"
+        ],
+        "to": "Serotonin"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "magnetism",
+          "Magnetism",
+          " Magnetism"
+        ],
+        "to": "Magnetism"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Vegetation",
+          " Vegetation",
+          "vegetation"
+        ],
+        "to": "Vegetation"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Akute myeloische Leukämie",
+          "Akute Myeloische Leukämie",
+          "akute myeloische Leukämie"
+        ],
+        "to": "Akute myeloische Leukämie"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Quantum Dots",
+          "quantum dots",
+          "Quantum dots"
+        ],
+        "to": "Quantum dots"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Beta-Amyloid",
+          "beta-Amyloid",
+          "beta-amyloid"
+        ],
+        "to": "Beta-Amyloid"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Domestic Violence",
+          "Domestic violence",
+          "domestic violence"
+        ],
+        "to": "Domestic violence"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Software engineering",
+          "Software Engineering",
+          "software engineering"
+        ],
+        "to": "Software engineering"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "stem cells",
+          "Stem cells",
+          "stem cells "
+        ],
+        "to": "Stem cells"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Allergen",
+          "Allergen-",
+          "allergen"
+        ],
+        "to": "Allergen"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Prion Protein",
+          "Prion protein",
+          "prion protein"
+        ],
+        "to": "Prion protein"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subject",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:subject",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Wind tunnel",
+          "wind tunnel"
+        ],
+        "to": "Wind tunnel"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Feedback",
+          "feedback"
+        ],
+        "to": "Feedback"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sedimentation",
+          "sedimentation"
+        ],
+        "to": "Sedimentation"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Convection",
+          "convection"
+        ],
+        "to": "Convection"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "dynamical mean-field theory",
+          "dynamical meanfield theory"
+        ],
+        "to": "dynamical mean-field theory"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "E-Science",
+          "eScience"
+        ],
+        "to": "E-Science"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Urotensin-II",
+          "urotensin-II"
+        ],
+        "to": "Urotensin-II"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Endothel",
+          "endothel"
+        ],
+        "to": "Endothel"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Radiologie",
+          "Radiologie "
+        ],
+        "to": "Radiologie"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Globalization",
+          "globalization"
+        ],
+        "to": "Globalization"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Cluster",
+          "cluster"
+        ],
+        "to": "Cluster"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Anti-Angiogenese",
+          "Antiangiogenese"
+        ],
+        "to": "Anti-Angiogenese"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Onychophora",
+          "Onychophora "
+        ],
+        "to": "Onychophora"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Myeloperoxidase",
+          "myeloperoxidase"
+        ],
+        "to": "Myeloperoxidase"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Osteoblast",
+          "osteoblast"
+        ],
+        "to": "Osteoblast"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Suicidology",
+          "suicidology"
+        ],
+        "to": "Suicidology"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subject",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:subject",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "risk assessment",
+          "Risk assessment"
+        ],
+        "to": "Risk assessment"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Naturwissenschaften",
+          "Naturwissenschaften "
+        ],
+        "to": "Naturwissenschaften"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Psychoanalyse",
+          " Psychoanalyse"
+        ],
+        "to": "Psychoanalyse"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Calcium Signalling",
+          "calcium signalling"
+        ],
+        "to": "Calcium signalling"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Astronomy",
+          "astronomy"
+        ],
+        "to": "Astronomy"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "In vivo",
+          "in vivo"
+        ],
+        "to": "In vivo"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Inhibition",
+          "inhibition"
+        ],
+        "to": "Inhibition"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Migration",
+          "migration"
+        ],
+        "to": "Migration"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Glycomimetics",
+          "glycomimetics"
+        ],
+        "to": "Glycomimetics"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subject",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:subject",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Burnout",
+          "burnout"
+        ],
+        "to": "Burnout"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Synthesis",
+          "synthesis"
+        ],
+        "to": "Synthesis"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Sediment",
+          "sediment"
+        ],
+        "to": "Sediment"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "photography",
+          "Photography"
+        ],
+        "to": "Photography"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Psychotherapeutischer Prozess",
+          "Psychotherapeutischer Prozess "
+        ],
+        "to": "Psychotherapeutischer Prozess"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "T-Zellen",
+          "T-Zellen "
+        ],
+        "to": "T-Zellen"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Stammzelle",
+          "Stammzelle "
+        ],
+        "to": "Stammzelle"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Claudin",
+          "claudin"
+        ],
+        "to": "Claudin"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "General circulation model",
+          "general circulation model"
+        ],
+        "to": "General circulation model"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Artificial Intelligence",
+          "artificial intelligence"
+        ],
+        "to": "Artificial Intelligence"
+      },
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Proteins",
+          "proteins"
+        ],
+        "to": "Proteins"
+      }
+    ]
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column ResourceTypeGeneral at index 11 based on column dc:type using expression grel:if(startsWith(value,\"Thesis\"),\"Text\",\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "ResourceTypeGeneral",
+    "columnInsertIndex": 11,
+    "baseColumnName": "dc:type",
+    "expression": "grel:if(startsWith(value,\"Thesis\"),\"Text\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:type",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:type",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Thesis.Doctoral"
+        ],
+        "to": "Dissertation"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:type",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dc:type",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Thesis.Habilitation"
+        ],
+        "to": "Habilitation"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subjectNumber",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:subjectNumber",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "pub-type:24"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subjectNumber",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:subjectNumber",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "pub-type:8"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subjectNumber",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:subjectNumber",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "has-source-swb:false"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:subjectNumber",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:subjectNumber",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ddc:no"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:title to position 6",
+    "columnName": "dc:title",
+    "index": 6
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:title to position 5",
+    "columnName": "dc:title",
+    "index": 5
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:title to position 4",
+    "columnName": "dc:title",
+    "index": 4
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:title to position 3",
+    "columnName": "dc:title",
+    "index": 3
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column title lang at index 14 based on column dc:language using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "title lang",
+    "columnInsertIndex": 14,
+    "baseColumnName": "dc:language",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column title lang to position 0",
+    "columnName": "title lang",
+    "index": 0
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column title lang to position 1",
+    "columnName": "title lang",
+    "index": 1
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column title lang to position 2",
+    "columnName": "title lang",
+    "index": 2
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column title lang to position 3",
+    "columnName": "title lang",
+    "index": 3
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column title lang to position 4",
+    "columnName": "title lang",
+    "index": 4
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:publisher to position 6",
+    "columnName": "dc:publisher",
+    "index": 6
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:publisher to position 5",
+    "columnName": "dc:publisher",
+    "index": 5
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:publicationYear to position 9",
+    "columnName": "dc:publicationYear",
+    "index": 9
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:publicationYear to position 8",
+    "columnName": "dc:publicationYear",
+    "index": 8
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:publicationYear to position 7",
+    "columnName": "dc:publicationYear",
+    "index": 7
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:publicationYear to position 6",
+    "columnName": "dc:publicationYear",
+    "index": 6
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:institute to position 8",
+    "columnName": "dc:institute",
+    "index": 8
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:institute to position 7",
+    "columnName": "dc:institute",
+    "index": 7
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:institute to position 6",
+    "columnName": "dc:institute",
+    "index": 6
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 0",
+    "columnName": "dc:date",
+    "index": 0
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 1",
+    "columnName": "dc:date",
+    "index": 1
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 2",
+    "columnName": "dc:date",
+    "index": 2
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 3",
+    "columnName": "dc:date",
+    "index": 3
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 4",
+    "columnName": "dc:date",
+    "index": 4
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 5",
+    "columnName": "dc:date",
+    "index": 5
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 6",
+    "columnName": "dc:date",
+    "index": 6
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 7",
+    "columnName": "dc:date",
+    "index": 7
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 8",
+    "columnName": "dc:date",
+    "index": 8
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 9",
+    "columnName": "dc:date",
+    "index": 9
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:date to position 10",
+    "columnName": "dc:date",
+    "index": 10
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:language to position 14",
+    "columnName": "dc:language",
+    "index": 14
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:language to position 13",
+    "columnName": "dc:language",
+    "index": 13
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:language to position 12",
+    "columnName": "dc:language",
+    "index": 12
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:language to position 11",
+    "columnName": "dc:language",
+    "index": 11
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column ResourceTypeGeneral to position 13",
+    "columnName": "ResourceTypeGeneral",
+    "index": 13
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column ResourceTypeGeneral to position 12",
+    "columnName": "ResourceTypeGeneral",
+    "index": 12
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:type to position 13",
+    "columnName": "dc:type",
+    "index": 13
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:type to resourceType",
+    "oldColumnName": "dc:type",
+    "newColumnName": "resourceType"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column ResourceTypeGeneral to resourceTypeGeneral",
+    "oldColumnName": "ResourceTypeGeneral",
+    "newColumnName": "resourceTypeGeneral"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column resourceTypeGeneral to position 13",
+    "columnName": "resourceTypeGeneral",
+    "index": 13
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:identifier to identifier",
+    "oldColumnName": "dc:identifier",
+    "newColumnName": "identifier"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:title to title",
+    "oldColumnName": "dc:title",
+    "newColumnName": "title"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:publisher to publisher",
+    "oldColumnName": "dc:publisher",
+    "newColumnName": "publisher"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:publicationYear to publicationYear",
+    "oldColumnName": "dc:publicationYear",
+    "newColumnName": "publicationYear"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:url to position 0",
+    "columnName": "dc:url",
+    "index": 0
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:url to position 1",
+    "columnName": "dc:url",
+    "index": 1
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:url to position 19",
+    "columnName": "dc:url",
+    "index": 19
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:rights to position 13",
+    "columnName": "dc:rights",
+    "index": 13
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:rights to position 12",
+    "columnName": "dc:rights",
+    "index": 12
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:rights to position 11",
+    "columnName": "dc:rights",
+    "index": 11
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:format to position 14",
+    "columnName": "dc:format",
+    "index": 14
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:format to position 13",
+    "columnName": "dc:format",
+    "index": 13
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:format to position 12",
+    "columnName": "dc:format",
+    "index": 12
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:format to position 11",
+    "columnName": "dc:format",
+    "index": 11
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:format to format",
+    "oldColumnName": "dc:format",
+    "newColumnName": "format"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:language to language",
+    "oldColumnName": "dc:language",
+    "newColumnName": "language"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:date to date",
+    "oldColumnName": "dc:date",
+    "newColumnName": "date"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:subject to subject",
+    "oldColumnName": "dc:subject",
+    "newColumnName": "subject"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rights at index 13 based on column dc:rights using expression grel:if(startsWith(value,\"h\"),\"individuelle Lizenz\",\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "rights",
+    "columnInsertIndex": 13,
+    "baseColumnName": "dc:rights",
+    "expression": "grel:if(startsWith(value,\"h\"),\"individuelle Lizenz\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column rights to position 12",
+    "columnName": "rights",
+    "index": 12
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:rights to rightsURI",
+    "oldColumnName": "dc:rights",
+    "newColumnName": "rightsURI"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column descriptionType at index 17 based on column dc:description using expression grel:if(isNonBlank(value) > 0, value, \"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "descriptionType",
+    "columnInsertIndex": 17,
+    "baseColumnName": "dc:description",
+    "expression": "grel:if(isNonBlank(value) > 0, value, \"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 0",
+    "columnName": "dc:subjectNumber",
+    "index": 0
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 1",
+    "columnName": "dc:subjectNumber",
+    "index": 1
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 2",
+    "columnName": "dc:subjectNumber",
+    "index": 2
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 3",
+    "columnName": "dc:subjectNumber",
+    "index": 3
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 4",
+    "columnName": "dc:subjectNumber",
+    "index": 4
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 5",
+    "columnName": "dc:subjectNumber",
+    "index": 5
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 6",
+    "columnName": "dc:subjectNumber",
+    "index": 6
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 7",
+    "columnName": "dc:subjectNumber",
+    "index": 7
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 8",
+    "columnName": "dc:subjectNumber",
+    "index": 8
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column dc:subjectNumber to position 9",
+    "columnName": "dc:subjectNumber",
+    "index": 9
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:subjectNumber to subjectDDC",
+    "oldColumnName": "dc:subjectNumber",
+    "newColumnName": "subjectDDC"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:institute",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:institute",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "BiologieBiologie"
+        ],
+        "to": "Biologie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:institute",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:institute",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ChemieMedizin"
+        ],
+        "to": "Chemie, Medizin"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:institute",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:institute",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "MedizinChemie"
+        ],
+        "to": "Chemie, Medizin"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:institute",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:institute",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "MedizinMedizin"
+        ],
+        "to": "Medizin"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dc:institute",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:institute",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "SozialwissenschaftenMedizin"
+        ],
+        "to": "Sozialwissenschaften, Medizin"
+      }
+    ]
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column publisher to university",
+    "oldColumnName": "publisher",
+    "newColumnName": "university"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:institute to institute",
+    "oldColumnName": "dc:institute",
+    "newColumnName": "institute"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column publisher at index 6 based on column university using expression grel:cells[\"university\"].value + \", \" + cells[\"institute\"].value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "publisher",
+    "columnInsertIndex": 6,
+    "baseColumnName": "university",
+    "expression": "grel:cells[\"university\"].value + \", \" + cells[\"institute\"].value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column publisher to position 5",
+    "columnName": "publisher",
+    "index": 5
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Hochschule für Bildende Künste Hamburg, "
+        ],
+        "to": "Hochschule für Bildende Künste Hamburg"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Hochschule für Musik und Theater Hamburg, "
+        ],
+        "to": "Hochschule für Musik und Theater Hamburg"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, "
+        ],
+        "to": "Universität Hamburg"
+      }
+    ]
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPointLatitude at index 6 based on column publisher using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "geoLocationPointLatitude",
+    "columnInsertIndex": 6,
+    "baseColumnName": "publisher",
+    "expression": "grel:value",
+    "onError": "keep-original"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPointLongitude at index 7 based on column geoLocationPointLatitude using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "geoLocationPointLongitude",
+    "columnInsertIndex": 7,
+    "baseColumnName": "geoLocationPointLatitude",
+    "expression": "grel:value",
+    "onError": "keep-original"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 24",
+    "columnName": "geoLocationPointLatitude",
+    "index": 24
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLongitude to position 24",
+    "columnName": "geoLocationPointLongitude",
+    "index": 24
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Hochschule für Bildende Künste Hamburg"
+        ],
+        "to": "53.567562"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Hochschule für Musik und Theater Hamburg"
+        ],
+        "to": "53.570587"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg"
+        ],
+        "to": "53.566570"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Asien-Afrika-Institut"
+        ],
+        "to": "53.562536"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Betriebswirtschaft"
+        ],
+        "to": "53.565669"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Biologie"
+        ],
+        "to": "53.558616"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Chemie"
+        ],
+        "to": "53.567894"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Chemie, Medizin"
+        ],
+        "to": "53.567894"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Erziehungswissenschaft"
+        ],
+        "to": "53.567358"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, European Doctorate in Law & Economics (EDLE)"
+        ],
+        "to": "Universität Hamburg, European Doctorate in Law & Economics (EDLE)"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, European Doctorate in Law & Economics (EDLE)"
+        ],
+        "to": "53.566899"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Evangelische Theologie"
+        ],
+        "to": "53.569647"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Geowissenschaften"
+        ],
+        "to": "53.567963"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Informatik"
+        ],
+        "to": "53.599532"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Kulturgeschichte und Kulturkunde"
+        ],
+        "to": "53.563306"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Mathematik"
+        ],
+        "to": "53.567963"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Medizin"
+        ],
+        "to": "53.590312"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Philosophie und Geschichtswissenschaft"
+        ],
+        "to": "53.567075"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Physik"
+        ],
+        "to": "53.558908"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, PhysikInformatik"
+        ],
+        "to": "53.558908"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Psychologie"
+        ],
+        "to": "53.565352"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Rechtswissenschaft"
+        ],
+        "to": "53.566899"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Sozialwissenschaften"
+        ],
+        "to": "53.566256"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Sozialwissenschaften, Medizin"
+        ],
+        "to": "53.566256"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Sportwissenschaft"
+        ],
+        "to": "53.569217"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Sprach-, Literatur- und Medienwissenschaften"
+        ],
+        "to": "53.567062"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Wirtschaftswissenschaften"
+        ],
+        "to": "Universität Hamburg, Wirtschaftswissenschaften"
+      }
+    ]
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 22",
+    "columnName": "geoLocationPointLatitude",
+    "index": 22
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 0",
+    "columnName": "geoLocationPointLatitude",
+    "index": 0
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 1",
+    "columnName": "geoLocationPointLatitude",
+    "index": 1
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 2",
+    "columnName": "geoLocationPointLatitude",
+    "index": 2
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 3",
+    "columnName": "geoLocationPointLatitude",
+    "index": 3
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 4",
+    "columnName": "geoLocationPointLatitude",
+    "index": 4
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 5",
+    "columnName": "geoLocationPointLatitude",
+    "index": 5
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 6",
+    "columnName": "geoLocationPointLatitude",
+    "index": 6
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column publisher to position 24",
+    "columnName": "publisher",
+    "index": 24
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column publisher to position 23",
+    "columnName": "publisher",
+    "index": 23
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column publisher to latitude",
+    "oldColumnName": "publisher",
+    "newColumnName": "latitude"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column geoLocationPointLatitude to publisher",
+    "oldColumnName": "geoLocationPointLatitude",
+    "newColumnName": "publisher"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column latitude to geoLocationPointLatitude",
+    "oldColumnName": "latitude",
+    "newColumnName": "geoLocationPointLatitude"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, PhysikInformatik"
+        ],
+        "to": "Universität Hamburg, Physik, Informatik"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Hochschule für Bildende Künste Hamburg"
+        ],
+        "to": "10.031269"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Hochschule für Musik und Theater Hamburg"
+        ],
+        "to": "9.998960"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg"
+        ],
+        "to": "9.984491"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Asien-Afrika-Institut"
+        ],
+        "to": "9.989055"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Betriebswirtschaft"
+        ],
+        "to": "9.984833\n"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Biologie"
+        ],
+        "to": "9.862081"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Chemie"
+        ],
+        "to": "9.978141"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Chemie, Medizin"
+        ],
+        "to": "9.978141"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Erziehungswissenschaft"
+        ],
+        "to": "9.984314"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, European Doctorate in Law & Economics (EDLE)"
+        ],
+        "to": "9.987884"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Evangelische Theologie"
+        ],
+        "to": "9.977828"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Geowissenschaften"
+        ],
+        "to": "9.974313"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Informatik"
+        ],
+        "to": "9.932600"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Kulturgeschichte und Kulturkunde"
+        ],
+        "to": "9.987427"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Mathematik"
+        ],
+        "to": "9.974313"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Medizin"
+        ],
+        "to": "9.978455"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Philosophie und Geschichtswissenschaft"
+        ],
+        "to": "9.985229"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Physik"
+        ],
+        "to": "9.981517"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, PhysikInformatik"
+        ],
+        "to": "9.981517"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Psychologie"
+        ],
+        "to": "9.984444"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Rechtswissenschaft"
+        ],
+        "to": "9.987884"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Sozialwissenschaften"
+        ],
+        "to": "9.983533"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Sozialwissenschaften, Medizin"
+        ],
+        "to": "9.983533"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Sportwissenschaft"
+        ],
+        "to": "9.991165"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Sprach-, Literatur- und Medienwissenschaften"
+        ],
+        "to": "9.985248"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLongitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLongitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Wirtschaftswissenschaften"
+        ],
+        "to": "9.984443"
+      }
+    ]
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column subject",
+    "columnName": "subject",
+    "keyColumnName": "identifier",
+    "separator": "||"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column descriptionType",
+    "columnName": "descriptionType"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:description to description",
+    "oldColumnName": "dc:description",
+    "newColumnName": "description"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column descriptionType at index 19 based on column description using expression grel:if(isBlank(value), \"\", \"Abstract\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "descriptionType",
+    "columnInsertIndex": 19,
+    "baseColumnName": "description",
+    "expression": "grel:if(isBlank(value), \"\", \"Abstract\")",
+    "onError": "keep-original"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPointLatitude",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPointLatitude",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, Wirtschaftswissenschaften"
+        ],
+        "to": "53.565342"
+      }
+    ]
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column title to bothtitles",
+    "oldColumnName": "title",
+    "newColumnName": "bothtitles"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column bothtitles",
+    "columnName": "bothtitles",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/column-split",
+    "description": "Split column bothtitles by separator",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "bothtitles",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "separator",
+    "separator": "||||",
+    "regex": false,
+    "maxColumns": 0
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column bothtitles 2 to title",
+    "oldColumnName": "bothtitles 2",
+    "newColumnName": "title"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column title to title2",
+    "oldColumnName": "title",
+    "newColumnName": "title2"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column bothtitles 1 to title",
+    "oldColumnName": "bothtitles 1",
+    "newColumnName": "title"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column creatorName",
+    "columnName": "creatorName",
+    "keyColumnName": "identifier",
+    "separator": ", "
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column description",
+    "columnName": "description",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column descriptionType",
+    "columnName": "descriptionType"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column descriptionType at index 20 based on column description using expression grel:if(isBlank(value),\"\",\"Abstract\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "descriptionType",
+    "columnInsertIndex": 20,
+    "baseColumnName": "description",
+    "expression": "grel:if(isBlank(value),\"\",\"Abstract\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column dc:source",
+    "columnName": "dc:source",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  }
+]

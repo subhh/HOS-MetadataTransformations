@@ -1,0 +1,28 @@
+  <doc>
+      <field name="collection">TUBDOK</field>
+      <field name="identifier">{{replace(replace(replace(cells["identifier"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="identifierType">{{replace(replace(replace(cells["identifierType"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="creatorName">{{replace(replace(replace(cells["creatorName"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="title">{{trim(replace(replace(replace(cells["title 1"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E'))}}</field>
+      <field name="title">{{trim(replace(replace(replace(cells["title 2"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E'))}}</field>
+      <field name="title">{{trim(replace(replace(replace(cells["title 3"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E'))}}</field>
+      <field name="titleLang">{{replace(replace(replace(cells["title lang"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="publisher">{{replace(replace(replace(cells["publisher"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="university">{{replace(replace(replace(cells["university"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="institute">{{replace(replace(replace(cells["institute"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="publicationYear">{{replace(replace(replace(cells["publicationYear"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+{{if(isBlank(cells["subject"]),"" ,forEach(cells["subject"].value.split("||"),v , '      <field name="subject">' + replace(replace(replace(trim(v.unescape("html").unescape("xml")),'&','&amp;'),'<','%3C'),'>','%3E') + "</field>" + "\n"))}}
+      {{if (isBlank(cells["subjectDDC"].value.unescape("html").unescape("xml")), "", '<field name="subject_ddc">' + replace(replace(replace(cells["subjectDDC"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E') + "</field>")}}
+      <field name="date">{{replace(replace(replace(cells["date"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="language">{{replace(replace(replace(cells["language"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="format">{{replace(replace(replace(cells["format"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="rights">{{replace(replace(replace(cells["rights"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="rightsURI">{{replace(replace(replace(cells["rightsURI"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="resourceType">{{replace(replace(replace(cells["resourceType"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="resourceTypeGeneral">{{replace(replace(replace(cells["resourceTypeGeneral"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+{{if(isBlank(cells["description"]),"" ,forEach(cells["description"].value.split("||"),v , '      <field name="description">' + replace(replace(replace(v.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E') + "</field>" + "\n"))}}
+      {{if (isBlank(cells["descriptionType"].value.unescape("html").unescape("xml")), "", '<field name="descriptionType">' + replace(replace(replace(cells["descriptionType"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E') + "</field>")}}
+      {{if (isBlank(cells["dc:source"].value.unescape("html").unescape("xml")), "", '<field name="source">' + replace(replace(replace(cells["dc:source"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E') + "</field>")}}
+      <field name="url">{{replace(replace(replace(cells["dc:url"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
+      <field name="geoLocationPoint">{{cells["geoLocationPointLatitude"].value}},{{cells["geoLocationPointLongitude"].value}}</field>
+  </doc>
