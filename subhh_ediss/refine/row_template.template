@@ -5,7 +5,7 @@
       <field name="creatorName">{{replace(replace(replace(cells["creatorName"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
       <field name="title">{{trim(replace(replace(replace(cells["title"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E'))}}</field>
       <field name="titleLang">{{replace(replace(replace(cells["title lang"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>  
-{{if(isBlank(cells["title2"].value),"" ,'      <field name="title">' + cells["title2"].value.unescape("html").unescape("xml").replace('&','&amp;') + "</field>\n" + '      <field name="titleLang">en</field>')}}
+{{if(isBlank(cells["title2"].value),"" ,'      <field name="title">' + cells["title2"].value.unescape("html").unescape("xml").replace('&','&amp;').replace('<','%3C').replace('>','%3E') + "</field>\n" + '      <field name="titleLang">en</field>')}}
       <field name="publisher">{{replace(replace(replace(cells["publisher"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
       <field name="university">{{replace(replace(replace(cells["university"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
       <field name="institute">{{replace(replace(replace(cells["institute"].value.unescape("html").unescape("xml"),'&','&amp;'),'<','%3C'),'>','%3E')}}</field>
