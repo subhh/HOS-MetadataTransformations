@@ -1,439 +1,158 @@
 [
   {
     "op": "core/column-removal",
-    "description": "Remove column File",
-    "columnName": "File"
+    "description": "Remove column metadata",
+    "columnName": "metadata"
   },
   {
     "op": "core/column-removal",
-    "description": "Remove column record - metadata",
-    "columnName": "record - metadata"
+    "description": "Remove column metadata - oai_dc:dc",
+    "columnName": "metadata - oai_dc:dc"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:description to description",
+    "oldColumnName": "metadata - oai_dc:dc - dc:description",
+    "newColumnName": "description"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:title to title",
+    "oldColumnName": "metadata - oai_dc:dc - dc:title",
+    "newColumnName": "title"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:language to language",
+    "oldColumnName": "metadata - oai_dc:dc - dc:language",
+    "newColumnName": "language"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:creator to creatorName",
+    "oldColumnName": "metadata - oai_dc:dc - dc:creator",
+    "newColumnName": "creatorName"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:date to date",
+    "oldColumnName": "metadata - oai_dc:dc - dc:date",
+    "newColumnName": "date"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:publisher to publisher",
+    "oldColumnName": "metadata - oai_dc:dc - dc:publisher",
+    "newColumnName": "publisher"
   },
   {
     "op": "core/column-removal",
-    "description": "Remove column record - metadata - oai_dc:dc",
-    "columnName": "record - metadata - oai_dc:dc"
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column record - metadata - oai_dc:dc - dc:type",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "record - metadata - oai_dc:dc - dc:type",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "workingPaper"
-        ],
-        "to": ""
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column record - metadata - oai_dc:dc - dc:type",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "record - metadata - oai_dc:dc - dc:type",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Working Paper"
-        ],
-        "to": ""
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column record - metadata - oai_dc:dc - dc:type",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "record - metadata - oai_dc:dc - dc:type",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Thesis"
-        ],
-        "to": ""
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column record - metadata - oai_dc:dc - dc:type",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "record - metadata - oai_dc:dc - dc:type",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "book"
-        ],
-        "to": ""
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column record - metadata - oai_dc:dc - dc:type",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "record - metadata - oai_dc:dc - dc:type",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Article"
-        ],
-        "to": ""
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column record - metadata - oai_dc:dc - dc:type",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "record - metadata - oai_dc:dc - dc:type",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Book"
-        ],
-        "to": ""
-      }
-    ]
+    "description": "Remove column metadata - oai_dc:dc - xsi:schemaLocation",
+    "columnName": "metadata - oai_dc:dc - xsi:schemaLocation"
   },
   {
     "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:source to dc:source",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:source",
-    "newColumnName": "dc:source"
+    "description": "Rename column metadata - oai_dc:dc - dc:subject to subject",
+    "oldColumnName": "metadata - oai_dc:dc - dc:subject",
+    "newColumnName": "subject"
   },
   {
     "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:contributor to dc:contributor",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:contributor",
-    "newColumnName": "dc:contributor"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:relation to dc:relation",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:relation",
-    "newColumnName": "dc:relation"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:publisher to dc:publisher",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:publisher",
-    "newColumnName": "dc:publisher"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:identifier to dc:identifier",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:identifier",
-    "newColumnName": "dc:identifier"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:creator to dc:creator",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:creator",
-    "newColumnName": "dc:creator"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:rights to dc:rights",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:rights",
-    "newColumnName": "dc:rights"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:description to dc:description",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:description",
-    "newColumnName": "dc:description"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - xsi:schemaLocation to xsi:schemaLocation",
-    "oldColumnName": "record - metadata - oai_dc:dc - xsi:schemaLocation",
-    "newColumnName": "xsi:schemaLocation"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:subject to dc:subject",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:subject",
-    "newColumnName": "dc:subject"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:type to dc:type",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:type",
-    "newColumnName": "dc:type"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:title to dc:title",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:title",
-    "newColumnName": "dc:title"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:date to dc:date",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:date",
-    "newColumnName": "dc:date"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - metadata - oai_dc:dc - dc:language to dc:language",
-    "oldColumnName": "record - metadata - oai_dc:dc - dc:language",
-    "newColumnName": "dc:language"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - header - datestamp to datestamp",
-    "oldColumnName": "record - header - datestamp",
-    "newColumnName": "datestamp"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - header - setSpec to setSpec",
-    "oldColumnName": "record - header - setSpec",
-    "newColumnName": "setSpec"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column record - header - identifier to identifier",
-    "oldColumnName": "record - header - identifier",
+    "description": "Rename column metadata - oai_dc:dc - dc:identifier to identifier",
+    "oldColumnName": "metadata - oai_dc:dc - dc:identifier",
     "newColumnName": "identifier"
   },
   {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:contributor to contributor",
+    "oldColumnName": "metadata - oai_dc:dc - dc:contributor",
+    "newColumnName": "contributor"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:source to source",
+    "oldColumnName": "metadata - oai_dc:dc - dc:source",
+    "newColumnName": "source"
+  },
+  {
     "op": "core/column-addition",
-    "description": "Create column subjectDDC at index 2 based on column dc:subject using expression grel:if(startsWith(value,\"ddc\"),trim(replaceChars(value,\"ddc:\",\"\")),\"\")",
+    "description": "Create column publicationYear at index 9 based on column date using expression grel:substring(value,0,4)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "publicationYear",
+    "columnInsertIndex": 9,
+    "baseColumnName": "date",
+    "expression": "grel:substring(value,0,4)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column subjectDDC at index 1 based on column subject using expression grel:if(startsWith(value,\"ddc:\"),substring(value,4,9),\"\")",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
     "newColumnName": "subjectDDC",
-    "columnInsertIndex": 2,
-    "baseColumnName": "dc:subject",
-    "expression": "grel:if(startsWith(value,\"ddc\"),trim(replaceChars(value,\"ddc:\",\"\")),\"\")",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column subjectDDC",
-    "columnName": "subjectDDC",
-    "keyColumnName": "xsi:schemaLocation",
-    "separator": ""
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:title to position 0",
-    "columnName": "dc:title",
-    "index": 0
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:title to position 1",
-    "columnName": "dc:title",
-    "index": 1
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:identifier to position 0",
-    "columnName": "dc:identifier",
-    "index": 0
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column url at index 1 based on column dc:identifier using expression grel:if(startsWith(value,\"http://dx.doi\"),value,\"\")",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "newColumnName": "url",
     "columnInsertIndex": 1,
-    "baseColumnName": "dc:identifier",
-    "expression": "grel:if(startsWith(value,\"http://dx.doi\"),value,\"\")",
+    "baseColumnName": "subject",
+    "expression": "grel:if(startsWith(value,\"ddc:\"),substring(value,4,9),\"\")",
     "onError": "set-to-blank"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column doi_identifier at index 2 based on column url using expression grel:replace(value,\"http://dx.doi.org/\",\"\")",
+    "description": "Create column URI at index 3 based on column identifier using expression grel:if(startsWith(value,\"http\"),value,\"\")",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
-    "newColumnName": "doi_identifier",
-    "columnInsertIndex": 2,
-    "baseColumnName": "url",
-    "expression": "grel:replace(value,\"http://dx.doi.org/\",\"\")",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column identifier_type at index 3 based on column doi_identifier using expression grel:if(isBlank(value),\"\",\"DOI\")",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "newColumnName": "identifier_type",
+    "newColumnName": "URI",
     "columnInsertIndex": 3,
-    "baseColumnName": "doi_identifier",
-    "expression": "grel:if(isBlank(value),\"\",\"DOI\")",
+    "baseColumnName": "identifier",
+    "expression": "grel:if(startsWith(value,\"http\"),value,\"\")",
     "onError": "set-to-blank"
   },
   {
     "op": "core/column-rename",
-    "description": "Rename column dc:identifier to delme1",
-    "oldColumnName": "dc:identifier",
-    "newColumnName": "delme1"
+    "description": "Rename column identifier to identifier_mult",
+    "oldColumnName": "identifier",
+    "newColumnName": "identifier_mult"
   },
   {
-    "op": "core/column-move",
-    "description": "Move column delme1 to position 20",
-    "columnName": "delme1",
-    "index": 20
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column identifier_type to position 0",
-    "columnName": "identifier_type",
-    "index": 0
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column doi_identifier to position 0",
-    "columnName": "doi_identifier",
-    "index": 0
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column setSpec to delme2",
-    "oldColumnName": "setSpec",
-    "newColumnName": "delme2"
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column delme2 to position 20",
-    "columnName": "delme2",
-    "index": 20
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column xsi:schemaLocation",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "xsi:schemaLocation",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"
-        ],
-        "to": "http://www.openarchives.org/OAI/2.0/oai_dc.xsd"
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column dc:creator",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "dc:creator",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Technische Universität Hamburg-Harburg"
-        ],
-        "to": ""
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column dc:creator",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "dc:creator",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Technische Universität Hamburg"
-        ],
-        "to": ""
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column dc:creator",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "dc:creator",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Technische Universität Hamburg Harburg"
-        ],
-        "to": ""
-      }
-    ]
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column dc:publisher using expression grel:\"TUHH\"",
+    "op": "core/column-addition",
+    "description": "Create column identifier at index 3 based on column identifier_mult using expression grel:replace(value,\"http://dx.doi.org/\",\"\")value",
     "engineConfig": {
       "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "doi",
+          "name": "identifier_mult",
+          "type": "text",
+          "columnName": "identifier_mult"
+        }
+      ]
+    },
+    "newColumnName": "identifier",
+    "columnInsertIndex": 3,
+    "baseColumnName": "identifier_mult",
+    "expression": "grel:replace(value,\"http://dx.doi.org/\",\"\")value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column identifier to position 0",
+    "columnName": "identifier",
+    "index": 0
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "record-based",
       "facets": [
         {
           "omitError": false,
@@ -448,406 +167,61 @@
             }
           ],
           "selectError": false,
-          "invert": false,
+          "invert": true,
           "name": "identifier",
           "omitBlank": false,
           "type": "list",
           "columnName": "identifier"
-        },
-        {
-          "omitError": false,
-          "expression": "value",
-          "selectBlank": true,
-          "selection": [],
-          "selectError": false,
-          "invert": false,
-          "name": "dc:publisher",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "dc:publisher"
         }
       ]
-    },
-    "columnName": "dc:publisher",
-    "expression": "grel:\"TUHH\"",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column identifier to identifier_local",
-    "oldColumnName": "identifier",
-    "newColumnName": "identifier_local"
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column identifier_local to position 0",
-    "columnName": "identifier_local",
-    "index": 0
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column identifier_local to position 1",
-    "columnName": "identifier_local",
-    "index": 1
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column doi_identifier to position 1",
-    "columnName": "doi_identifier",
-    "index": 1
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column identifier_local to position 1",
-    "columnName": "identifier_local",
-    "index": 1
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column identifier_local to position 2",
-    "columnName": "identifier_local",
-    "index": 2
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column doi_identifier to identifier",
-    "oldColumnName": "doi_identifier",
-    "newColumnName": "identifier"
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:creator to position 0",
-    "columnName": "dc:creator",
-    "index": 0
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:creator to position 1",
-    "columnName": "dc:creator",
-    "index": 1
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:creator to position 2",
-    "columnName": "dc:creator",
-    "index": 2
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:creator to position 3",
-    "columnName": "dc:creator",
-    "index": 3
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column dc:creator to creatorName",
-    "oldColumnName": "dc:creator",
-    "newColumnName": "creatorName"
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:title to position 5",
-    "columnName": "dc:title",
-    "index": 5
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:title to position 4",
-    "columnName": "dc:title",
-    "index": 4
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column dc:title to title",
-    "oldColumnName": "dc:title",
-    "newColumnName": "title"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column title",
-    "columnName": "title",
-    "keyColumnName": "identifier",
-    "separator": "||||"
-  },
-  {
-    "op": "core/column-split",
-    "description": "Split column title by separator",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "title",
-    "guessCellType": true,
-    "removeOriginalColumn": true,
-    "mode": "separator",
-    "separator": "||||",
-    "regex": false,
-    "maxColumns": 0
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:publisher to position 0",
-    "columnName": "dc:publisher",
-    "index": 0
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:publisher to position 1",
-    "columnName": "dc:publisher",
-    "index": 1
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:publisher to position 2",
-    "columnName": "dc:publisher",
-    "index": 2
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:publisher to position 3",
-    "columnName": "dc:publisher",
-    "index": 3
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:publisher to position 4",
-    "columnName": "dc:publisher",
-    "index": 4
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:publisher to position 5",
-    "columnName": "dc:publisher",
-    "index": 5
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:publisher to position 6",
-    "columnName": "dc:publisher",
-    "index": 6
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:publisher to position 7",
-    "columnName": "dc:publisher",
-    "index": 7
+    }
   },
   {
     "op": "core/column-addition",
-    "description": "Create column publicationYear at index 16 based on column dc:date using expression grel:value",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "newColumnName": "publicationYear",
-    "columnInsertIndex": 16,
-    "baseColumnName": "dc:date",
-    "expression": "grel:value",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column publicationYear using expression grel:match(value,/.*(\\d\\d\\d\\d).*/)[0]",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "publicationYear",
-    "expression": "grel:match(value,/.*(\\d\\d\\d\\d).*/)[0]",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column publicationYear to position 15",
-    "columnName": "publicationYear",
-    "index": 15
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column publicationYear to position 14",
-    "columnName": "publicationYear",
-    "index": 14
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column publicationYear to position 13",
-    "columnName": "publicationYear",
-    "index": 13
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column publicationYear to position 12",
-    "columnName": "publicationYear",
-    "index": 12
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column publicationYear to position 11",
-    "columnName": "publicationYear",
-    "index": 11
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column publicationYear to position 10",
-    "columnName": "publicationYear",
-    "index": 10
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column publicationYear to position 9",
-    "columnName": "publicationYear",
-    "index": 9
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column publicationYear to position 8",
-    "columnName": "publicationYear",
-    "index": 8
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:subject to position 10",
-    "columnName": "dc:subject",
-    "index": 10
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:subject to position 9",
-    "columnName": "dc:subject",
-    "index": 9
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column subjectDDC to position 11",
-    "columnName": "subjectDDC",
-    "index": 11
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column subjectDDC to position 10",
-    "columnName": "subjectDDC",
-    "index": 10
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column subjectBK at index 10 based on column dc:subject using expression grel:match(value,/(\\d\\d.\\d\\d\\:.*)/)[0]",
+    "description": "Create column alternateIdentifier at index 4 based on column identifier_mult using expression grel:if(startsWith(value,\"urn\"),value,\"\")",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
-    "newColumnName": "subjectBK",
-    "columnInsertIndex": 10,
-    "baseColumnName": "dc:subject",
-    "expression": "grel:match(value,/(\\d\\d.\\d\\d\\:.*)/)[0]",
+    "newColumnName": "alternateIdentifier",
+    "columnInsertIndex": 4,
+    "baseColumnName": "identifier_mult",
+    "expression": "grel:if(startsWith(value,\"urn\"),value,\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column alternateIdentifierType at index 5 based on column alternateIdentifier using expression grel:if(startsWith(value,\"urn\"),'URN',\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "alternateIdentifierType",
+    "columnInsertIndex": 5,
+    "baseColumnName": "alternateIdentifier",
+    "expression": "grel:if(startsWith(value,\"urn\"),'URN',\"\")",
     "onError": "set-to-blank"
   },
   {
     "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column subjectBK",
-    "columnName": "subjectBK",
+    "description": "Join multi-valued cells in column subjectDDC",
+    "columnName": "subjectDDC",
     "keyColumnName": "identifier",
     "separator": ""
   },
   {
-    "op": "core/column-addition",
-    "description": "Create column subjectBK_URI at index 11 based on column subjectBK using expression grel:if(isBlank(value),\"\",\"https://www.gbv.de/bibliotheken/verbundbibliotheken/02Verbund/01Erschliessung/02Richtlinien/05Basisklassifikation/index#1\")",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "newColumnName": "subjectBK_URI",
-    "columnInsertIndex": 11,
-    "baseColumnName": "subjectBK",
-    "expression": "grel:if(isBlank(value),\"\",\"https://www.gbv.de/bibliotheken/verbundbibliotheken/02Verbund/01Erschliessung/02Richtlinien/05Basisklassifikation/index#1\")",
-    "onError": "set-to-blank"
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column alternateIdentifier",
+    "columnName": "alternateIdentifier",
+    "keyColumnName": "identifier",
+    "separator": ""
   },
   {
-    "op": "core/column-move",
-    "description": "Move column dc:date to position 17",
-    "columnName": "dc:date",
-    "index": 17
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:date to position 16",
-    "columnName": "dc:date",
-    "index": 16
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:rights to position 16",
-    "columnName": "dc:rights",
-    "index": 16
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:date to position 16",
-    "columnName": "dc:date",
-    "index": 16
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:date to position 15",
-    "columnName": "dc:date",
-    "index": 15
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:date to position 14",
-    "columnName": "dc:date",
-    "index": 14
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:date to position 13",
-    "columnName": "dc:date",
-    "index": 13
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column dc:date to date",
-    "oldColumnName": "dc:date",
-    "newColumnName": "date"
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:language to position 18",
-    "columnName": "dc:language",
-    "index": 18
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:language to position 17",
-    "columnName": "dc:language",
-    "index": 17
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:language to position 16",
-    "columnName": "dc:language",
-    "index": 16
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:language to position 15",
-    "columnName": "dc:language",
-    "index": 15
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column dc:language to position 14",
-    "columnName": "dc:language",
-    "index": 14
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column dc:language to language",
-    "oldColumnName": "dc:language",
-    "newColumnName": "language"
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column alternateIdentifierType",
+    "columnName": "alternateIdentifierType",
+    "keyColumnName": "identifier",
+    "separator": ""
   },
   {
     "op": "core/mass-edit",
@@ -910,126 +284,248 @@
     ]
   },
   {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:relation to seriesInformation",
+    "oldColumnName": "metadata - oai_dc:dc - dc:relation",
+    "newColumnName": "seriesInformation"
+  },
+  {
     "op": "core/column-addition",
-    "description": "Create column Format at index 15 based on column language using expression grel:value",
+    "description": "Create column rightsURI at index 10 based on column metadata - oai_dc:dc - dc:rights using expression grel:if(startsWith(value,\"http\"),value,\"\")",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
-    "newColumnName": "Format",
-    "columnInsertIndex": 15,
-    "baseColumnName": "language",
-    "expression": "grel:value",
+    "newColumnName": "rightsURI",
+    "columnInsertIndex": 10,
+    "baseColumnName": "metadata - oai_dc:dc - dc:rights",
+    "expression": "grel:if(startsWith(value,\"http\"),value,\"\")",
     "onError": "set-to-blank"
   },
   {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column Format",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "Format",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "de"
-        ],
-        "to": "application/pdf"
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column Format",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "Format",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "en"
-        ],
-        "to": "application/pdf"
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column Format",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "Format",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "mul"
-        ],
-        "to": "application/pdf"
-      }
-    ]
-  },
-  {
     "op": "core/column-rename",
-    "description": "Rename column Format to format",
-    "oldColumnName": "Format",
-    "newColumnName": "format"
+    "description": "Rename column metadata - oai_dc:dc - dc:rights to rights",
+    "oldColumnName": "metadata - oai_dc:dc - dc:rights",
+    "newColumnName": "rights"
   },
   {
-    "op": "core/column-move",
-    "description": "Move column dc:rights to position 18",
-    "columnName": "dc:rights",
-    "index": 18
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "by"
+        ],
+        "to": "CC BY"
+      }
+    ]
   },
   {
-    "op": "core/column-move",
-    "description": "Move column dc:rights to position 17",
-    "columnName": "dc:rights",
-    "index": 17
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "by-nc-nd"
+        ],
+        "to": "CC BY-NC-ND"
+      }
+    ]
   },
   {
-    "op": "core/column-move",
-    "description": "Move column dc:rights to position 16",
-    "columnName": "dc:rights",
-    "index": 16
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "by-nc-nd 2.0"
+        ],
+        "to": "CC BY-NC-ND 2.0"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "by-nc-sa"
+        ],
+        "to": "CC BY-NC-SA"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "by-nd"
+        ],
+        "to": "CC BY-ND"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "by-sa"
+        ],
+        "to": "CC BY-SA"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "CC BY Attribution"
+        ],
+        "to": "CC BY"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+        ],
+        "to": "CC BY-NC-ND 4.0"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "http://creativecommons.org/licenses/by/4.0/"
+        ],
+        "to": "CC BY 4.0"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "https://creativecommons.org/licenses/by-nc-nd/2.0/"
+        ],
+        "to": "CC BY-NC-ND 2.0"
+      }
+    ]
   },
   {
     "op": "core/text-transform",
-    "description": "Text transform on cells in column dc:rights using expression grel:if(startsWith(value, \"https://creativecommons.org/licenses/\") ,replace(toUppercase(replace(value, \"https://creativecommons.org/licenses/\", \"CC \")),\"/\",\" \") , value)",
+    "description": "Text transform on cells in column rights using expression grel:if(startsWith(value,\"https://creativecommons.org/licenses/\"),value.replace(\"https://creativecommons.org/licenses/\",\"CC \").replace(\"/\",\" \").toUppercase().trim(),value)",
     "engineConfig": {
-      "mode": "row-based",
+      "mode": "record-based",
       "facets": []
     },
-    "columnName": "dc:rights",
-    "expression": "grel:if(startsWith(value, \"https://creativecommons.org/licenses/\") ,replace(toUppercase(replace(value, \"https://creativecommons.org/licenses/\", \"CC \")),\"/\",\" \") , value)",
+    "columnName": "rights",
+    "expression": "grel:if(startsWith(value,\"https://creativecommons.org/licenses/\"),value.replace(\"https://creativecommons.org/licenses/\",\"CC \").replace(\"/\",\" \").toUppercase().trim(),value)",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
   },
   {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column dc:rights using expression grel:if(startsWith(value, \"http://creativecommons.org/licenses/\") ,replace(toUppercase(replace(value, \"http://creativecommons.org/licenses/\", \"CC \")),\"/\",\" \") , value)",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "dc:rights",
-    "expression": "grel:if(startsWith(value, \"http://creativecommons.org/licenses/\") ,replace(toUppercase(replace(value, \"http://creativecommons.org/licenses/\", \"CC \")),\"/\",\" \") , value)",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column rightsURI",
+    "columnName": "rightsURI",
+    "keyColumnName": "identifier",
+    "separator": ""
   }
 ]
