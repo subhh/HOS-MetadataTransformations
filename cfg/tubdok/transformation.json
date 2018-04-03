@@ -527,5 +527,1139 @@
     "columnName": "rightsURI",
     "keyColumnName": "identifier",
     "separator": ""
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column metadata - oai_dc:dc - dc:type using expression grel:replace(value,\"doc-type:\",\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "metadata - oai_dc:dc - dc:type",
+    "expression": "grel:replace(value,\"doc-type:\",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:type to resourceType",
+    "oldColumnName": "metadata - oai_dc:dc - dc:type",
+    "newColumnName": "resourceType"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column resourceTypeGeneral at index 8 based on column resourceType using expression grel:if(isBlank(value),\"\",\"Text\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "resourceTypeGeneral",
+    "columnInsertIndex": 8,
+    "baseColumnName": "resourceType",
+    "expression": "grel:if(isBlank(value),\"\",\"Text\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "article"
+        ],
+        "to": "Article"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "bachelorThesis"
+        ],
+        "to": "BachelorThesis"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "book"
+        ],
+        "to": "Book"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "bookPart"
+        ],
+        "to": "BookPart"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "conferenceObject"
+        ],
+        "to": "ConferenceObject"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "doctoralThesis"
+        ],
+        "to": "Dissertation"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "preprint"
+        ],
+        "to": "Preprint"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "workingPaper"
+        ],
+        "to": "Working Paper"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "masterThesis"
+        ],
+        "to": "Master Thesis"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "journal"
+        ],
+        "to": "Journal"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "report"
+        ],
+        "to": "Report"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "StudyThesis"
+        ],
+        "to": "Study Thesis"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "festschrift"
+        ],
+        "to": "Festschrift"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "lecture"
+        ],
+        "to": "Lecture"
+      }
+    ]
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:if(startsWith(value,\"ddc:\"),\"\",value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:if(startsWith(value,\"ddc:\"),\"\",value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:replace(value,/\\d\\d\\d\\:/,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:replace(value,/\\d\\d\\d\\:/,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:replace(value,/^\\d\\d\\d$/,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:replace(value,/^\\d\\d\\d$/,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column subjectBK at index 2 based on column subject using expression grel:if(isNotNull(match(value, /^\\d\\d\\.\\d\\d$/)),value,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "subjectBK",
+    "columnInsertIndex": 2,
+    "baseColumnName": "subject",
+    "expression": "grel:if(isNotNull(match(value, /^\\d\\d\\.\\d\\d$/)),value,\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column subjectBK",
+    "columnName": "subjectBK",
+    "keyColumnName": "identifier",
+    "separator": ""
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:if(isNotNull(match(value, /^\\d\\d.\\d\\d$/)),\"\",value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:if(isNotNull(match(value, /^\\d\\d.\\d\\d$/)),\"\",value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column title",
+    "columnName": "title",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/column-split",
+    "description": "Split column title by separator",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "title",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "separator",
+    "separator": "||||",
+    "regex": false,
+    "maxColumns": 0
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column title 1 to title",
+    "oldColumnName": "title 1",
+    "newColumnName": "title"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column URI",
+    "columnName": "URI",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/column-split",
+    "description": "Split column URI by separator",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "URI",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "separator",
+    "separator": "||||",
+    "regex": false,
+    "maxColumns": 0
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column URI 3 at index 5 based on column identifier_mult using expression grel:if(startsWith(value,\"urn\"),\"https://nbn-resolving.org/resolver?identifier=\" + value.replace(\":\",\"%3A\"),\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "URI 3",
+    "columnInsertIndex": 5,
+    "baseColumnName": "identifier_mult",
+    "expression": "grel:if(startsWith(value,\"urn\"),\"https://nbn-resolving.org/resolver?identifier=\" + value.replace(\":\",\"%3A\"),\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column URI 3 to position 6",
+    "columnName": "URI 3",
+    "index": 6
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column URI 3 to position 7",
+    "columnName": "URI 3",
+    "index": 7
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column URI 3 to position 8",
+    "columnName": "URI 3",
+    "index": 8
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column URI 3 to position 9",
+    "columnName": "URI 3",
+    "index": 9
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column URI 3",
+    "columnName": "URI 3",
+    "keyColumnName": "identifier",
+    "separator": ""
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "BookPart"
+        ],
+        "to": "Book Part"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "CourseMaterial"
+        ],
+        "to": "Course Material"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "inBook"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ConferenceObject"
+        ],
+        "to": "Conference Object"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "PeriodicalPart"
+        ],
+        "to": "Periodical Part"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "BachelorThesis"
+        ],
+        "to": "Bachelor Thesis"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "inProceedings"
+        ],
+        "to": "Proceedings Part"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "contributionToPeriodical"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column resourceType",
+    "columnName": "resourceType",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column resourceType using expression grel:if(value.contains(\"||||\"),value.replace(/.*\\|/,\"\"),value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "grel:if(value.contains(\"||||\"),value.replace(/.*\\|/,\"\"),value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column identifier_mult",
+    "columnName": "identifier_mult"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column subjectACM at index 2 based on column subject using expression grel:if(isNotNull(match(value,/^\\w\\.\\d\\..$/)),value,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "subjectACM",
+    "columnInsertIndex": 2,
+    "baseColumnName": "subject",
+    "expression": "grel:if(isNotNull(match(value,/^\\w\\.\\d\\..$/)),value,\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:value.replace(/^\\w\\.\\d\\..:?/,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:value.replace(/^\\w\\.\\d\\..:?/,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column subjectACM",
+    "columnName": "subjectACM",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column subject",
+    "columnName": "subject",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column resourceTypeGeneral",
+    "columnName": "resourceTypeGeneral",
+    "keyColumnName": "identifier",
+    "separator": ", "
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceTypeGeneral",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceTypeGeneral",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Text, Text"
+        ],
+        "to": "Text"
+      }
+    ]
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column description",
+    "columnName": "description",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/column-split",
+    "description": "Split column description by separator",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "description",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "separator",
+    "separator": "||||",
+    "regex": false,
+    "maxColumns": 0
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column descriptionType at index 16 based on column description 1 using expression grel:if(isBlank(value),\"\",\"Abstract\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "descriptionType",
+    "columnInsertIndex": 16,
+    "baseColumnName": "description 1",
+    "expression": "grel:if(isBlank(value),\"\",\"Abstract\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column identifierType at index 1 based on column identifier using expression grel:if(isBlank(value),\"\",\"DOI\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "identifierType",
+    "columnInsertIndex": 1,
+    "baseColumnName": "identifier",
+    "expression": "grel:if(isBlank(value),\"\",\"DOI\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPointLatitude at index 1 based on column identifier using expression grel:if(isBlank(value),\"\",\"53.463558\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "geoLocationPointLatitude",
+    "columnInsertIndex": 1,
+    "baseColumnName": "identifier",
+    "expression": "grel:if(isBlank(value),\"\",\"53.463558\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLatitude to position 30",
+    "columnName": "geoLocationPointLatitude",
+    "index": 30
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPointLongitude at index 1 based on column identifier using expression grel:if(isBlank(value),\"\",\"9.969581\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "geoLocationPointLongitude",
+    "columnInsertIndex": 1,
+    "baseColumnName": "identifier",
+    "expression": "grel:if(isBlank(value),\"\",\"9.969581\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column identifier to position 31",
+    "columnName": "identifier",
+    "index": 31
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column geoLocationPointLongitude to position 31",
+    "columnName": "geoLocationPointLongitude",
+    "index": 31
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column identifier to position 0",
+    "columnName": "identifier",
+    "index": 0
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column creatorName",
+    "columnName": "creatorName",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "http://doku.b.tu-harburg.de/doku/lic_mit_pod.php"
+        ],
+        "to": "individuelle Lizenz"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "http://doku.b.tu-harburg.de/doku/lic_ohne_pod.php"
+        ],
+        "to": "individuelle Lizenz"
+      }
+    ]
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column rights",
+    "columnName": "rights",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rights using expression grel:value.replace(/^.*(CC\\s[\\w-]*\\s\\d\\.0).*$/,'$1')",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "grel:value.replace(/^.*(CC\\s[\\w-]*\\s\\d\\.0).*$/,'$1')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "CC BY-SA||||info:eu-repo/semantics/openAccess||||CC BY-SA"
+        ],
+        "to": "CC BY-SA"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "CC BY||||info:eu-repo/semantics/openAccess"
+        ],
+        "to": "CC BY"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "info:eu-repo/semantics/openAccess||||info:eu-repo/semantics/embargoedAccess"
+        ],
+        "to": "info:eu-repo/semantics/embargoedAccess"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "info:eu-repo/semantics/openAccess||||individuelle Lizenz"
+        ],
+        "to": "info:eu-repo/semantics/openAccess"
+      }
+    ]
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column contributor",
+    "columnName": "contributor",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publicationYear",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publicationYear",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "info"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column source",
+    "columnName": "source",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column seriesInformation",
+    "columnName": "seriesInformation",
+    "keyColumnName": "identifier",
+    "separator": "||||"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column date",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "identifier",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "identifier"
+        }
+      ]
+    },
+    "columnName": "date",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "info:eu-repo/date/embargoEnd/2017-12-05"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column language",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "identifier",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "identifier"
+        }
+      ]
+    },
+    "columnName": "language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "en"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/column-reorder",
+    "description": "Reorder columns",
+    "columnNames": [
+      "identifier",
+      "identifierType",
+      "alternateIdentifier",
+      "alternateIdentifierType",
+      "creatorName",
+      "title",
+      "title 2",
+      "title 3",
+      "publisher",
+      "publicationYear",
+      "subject",
+      "subjectACM",
+      "subjectBK",
+      "subjectDDC",
+      "date",
+      "language",
+      "rights",
+      "rightsURI",
+      "resourceType",
+      "resourceTypeGeneral",
+      "description 1",
+      "descriptionType",
+      "description 2",
+      "description 3",
+      "source",
+      "seriesInformation",
+      "contributor",
+      "URI 1",
+      "URI 2",
+      "URI 3",
+      "geoLocationPointLatitude",
+      "geoLocationPointLongitude"
+    ]
   }
 ]
