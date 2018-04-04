@@ -13,3 +13,16 @@ This is a collection of shell scripts to automatically load, transform and index
 ![Mermaid Flowchart](flowchart.png)
 
 Source: [flowchart.mmd](flowchart.mmd) (try [mermaid live editor](https://mermaidjs.github.io/mermaid-live-editor/))
+
+## Installation
+
+```
+git clone https://github.com/subhh/HOS-MetadataTransformations.git
+sudo install.sh
+```
+
+## Usage
+
+```
+bin/ediss.sh
+```

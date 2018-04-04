@@ -1,85 +1,142 @@
 #!/bin/bash
-# ediss.sh, Felix Lohmeier, v0.1, 2018-03-20
-# Script zum Download via OAI, Transformation mit OpenRefine und Indexierung in Solr
+# ediss.sh, Felix Lohmeier, v0.2, 2018-04-04
+# https://github.com/subhh/HOS-MetadataTransformations
 
-# Programmpfade
-openrefine_server="/home/hos/openrefine-2.8/refine"
-openrefine_client="/home/hos/openrefine-client_0-3-4_linux-64bit"
-metha_sync="/usr/sbin/metha-sync"
-metha_cat="/usr/sbin/metha-cat"
+# change directory to location of shell script
+cd $(dirname $0)
 
-# Konfiguration
+# config
 source="ediss"
 oai_url="http://ediss.sub.uni-hamburg.de/oai2/oai2.php"
-openrefine_json="ediss.json"
-ram="2048M"
-port="3333"
-solr_url="http://localhost:8983/solr/hos/"
+openrefine_json="$(readlink -f ../cfg/ediss/transformation.json)"
+separator="%E2%90%9F"
 
-# Weitere Variablen
+# pathnames
+metha_sync="$(which metha-sync)"
+metha_cat="$(which metha-cat)"
+openrefine_server="$(readlink -f ../opt/openrefine/refine)"
+openrefine_client="$(readlink -f ../opt/openrefine-client)"
+data_dir="$(readlink -f ../data)"
+log_dir="$(readlink -f ../log)"
+
+# help screen
+function usage () {
+    cat <<EOF
+Usage: ./ediss.sh [-m RAM] [-p PORT] [-s SOLRURL] [-d OPENREFINEURL]
+
+== options ==
+    -m RAM           maximum RAM for OpenRefine java heap space (default: 2048M)
+    -p PORT          PORT on which OpenRefine should listen (default: 3334)
+    -s SOLRURL       ingest data to specified Solr core
+    -d OPENREFINEURL ingest data to external OpenRefine service
+
+== example ==
+./ediss.sh -m 2048M -p 3334 -s http://localhost:8983/solr/hos -d http://localhost:3333
+EOF
+   exit 1
+}
+
+# defaults
+ram="2048M"
+port="3334"
+
+# get user input
+options="m:p:s:d:"
+while getopts $options opt; do
+   case $opt in
+   m )  ram=${OPTARG} ;;
+   p )  port=${OPTARG} ;;
+   s )  solr_url=${OPTARG} ;;
+   d )  openrefine_url=${OPTARG} ;;
+   h )  usage ;;
+   \? ) echo 1>&2 "Unknown option: -$OPTARG"; usage; exit 1;;
+   :  ) echo 1>&2 "Missing option argument for -$OPTARG"; usage; exit 1;;
+   *  ) echo 1>&2 "Unimplemented option: -$OPTARG"; usage; exit 1;;
+   esac
+done
+shift $((OPTIND - 1))
+
+# declare additional variables
 date=$(date +%Y%m%d_%H%M%S)
+openrefine_tmp="/tmp/openrefine_${date}"
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
-checkpointname[$((checkpoints + 1))]="Start"
+checkpointname[$((checkpoints + 1))]="Start process"
 memoryload=()
+multivalue_config=()
+external=${openrefine_url##*/}
+external_host=${external%:*}
+external_port=${external##*:}
 
-# Verzeichnisse
-cd $(dirname $0)
-mkdir -p input workdir output log
-workdir=$(readlink -f workdir)
+# safe cleanup handler
+cleanup()
+{
+  echo "cleanup..."
+  kill -9 ${pid}
+  rm -rf /tmp/openrefine_${date}
+  wait
+}
+trap "cleanup;exit" SIGHUP SIGINT SIGQUIT SIGTERM
 
-# Einfaches Logging
-exec &> >(tee -a "log/${date}.log")
-echo "Quelle:  ${source}"
-echo "URL:     ${oai_url}"
+# Simple Logging
+exec &> >(tee -a "${log_dir}/${date}.log")
+
+# print variables
+echo "Source name:             $source"
+echo "Source OAI Server:       $oai_url"
+echo "Transformation rules:    $openrefine_json"
+echo "OpenRefine heap space:   $ram"
+echo "OpenRefine port:         $port"
+echo "Solr core URL:           $solr_url"
+echo "OpenRefine service URL:  $openrefine_url"
 echo ""
 
-# Download via OAI mit metha
+# Download data via OAI with metha
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
-checkpointname[$((checkpoints + 1))]="Download via OAI mit metha"
+checkpointname[$((checkpoints + 1))]="Download via OAI with metha"
 echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
-echo "Startzeitpunkt: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
 $metha_sync "$oai_url"
-$metha_cat "$oai_url" > "input/${source}_${date}.xml"
+$metha_cat "$oai_url" > "${data_dir}/01_oai/${source}_${date}.xml"
 echo ""
 
-# OpenRefine Server starten
+# Launch OpenRefine server
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
-checkpointname[$((checkpoints + 1))]="OpenRefine Server starten"
+checkpointname[$((checkpoints + 1))]="Launch OpenRefine server"
 echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
-echo "Startzeitpunkt: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
-$openrefine_server -p ${port} -d "${workdir}" -m ${ram} &
+$openrefine_server -p ${port} -d "$openrefine_tmp" -m ${ram} &
 pid=$!
 until wget -q -O - http://localhost:${port} | cat | grep -q -o "OpenRefine" ; do sleep 1; done
 echo ""
 
-# Daten in OpenRefine laden
+# Load data
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
-checkpointname[$((checkpoints + 1))]="Daten in OpenRefine laden"
+checkpointname[$((checkpoints + 1))]="Load data"
 echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
-echo "Startzeitpunkt: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
-$openrefine_client -P ${port} --create "input/${source}_${date}.xml" --recordPath=Records --recordPath=Record
+$openrefine_client -P ${port} --create "${data_dir}/01_oai/${source}_${date}.xml" --recordPath=Records --recordPath=Record
 echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid}))
 echo ""
 
-# Transformation in OpenRefine
+# Transform data
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
-checkpointname[$((checkpoints + 1))]="Transformation in OpenRefine"
+checkpointname[$((checkpoints + 1))]="Transform data"
 echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
-echo "Startzeitpunkt: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
 $openrefine_client -P ${port} --apply "${openrefine_json}" "${source}_${date}"
 echo ""
@@ -87,70 +144,87 @@ ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid}))
 echo ""
 
-# Export aus OpenRefine
+# Export data
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
-checkpointname[$((checkpoints + 1))]="Export aus OpenRefine"
+checkpointname[$((checkpoints + 1))]="Export data"
 echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
-echo "Startzeitpunkt: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
-$openrefine_client -P ${port} --export --output="output/${source}_${date}.tsv" "${source}_${date}"
+$openrefine_client -P ${port} --export --output="${data_dir}/02_transformed/${source}_${date}.tsv" "${source}_${date}"
 echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid}))
 echo ""
 
-# OpenRefine Server beenden
+# Stop OpenRefine server
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
-checkpointname[$((checkpoints + 1))]="OpenRefine Server beenden"
+checkpointname[$((checkpoints + 1))]="Stop OpenRefine server"
 echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
-echo "Startzeitpunkt: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
-kill $pid
-wait
+cleanup
 echo ""
 
-# Daten in Solr indexieren
+# Ingest data into Solr
+if [ -n "$solr_url" ]; then
+  checkpoints=${#checkpointdate[@]}
+  checkpointdate[$((checkpoints + 1))]=$(date +%s)
+  checkpointname[$((checkpoints + 1))]="Ingest data into Solr"
+  echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
+  echo ""
+  echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+  echo ""
+  # read header from tsv
+  readarray multivalue_fields < <(head -n 1 "${data_dir}/02_transformed/${source}_${date}.tsv" | sed 's/\t/\n/g')
+  for i in ${multivalue_fields[@]}; do
+      multivalue_config+=(\&f.$i.separator=$separator)
+  done
+  multivalue_config=$(printf %s "${multivalue_config[@]}")
+  # delete existing data
+  curl --silent "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>source:${source}</query></delete>" 1>/dev/null
+  # load new data
+  curl "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${source}_${date}.tsv 1>/dev/null
+  echo ""
+fi
+
+# Ingest data into OpenRefine
+if [ -n "$openrefine_url" ]; then
+  checkpoints=${#checkpointdate[@]}
+  checkpointdate[$((checkpoints + 1))]=$(date +%s)
+  checkpointname[$((checkpoints + 1))]="Ingest data into OpenRefine"
+  echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
+  echo ""
+  echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+  echo ""
+  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${source}_live"
+  ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/02_transformed/${source}_${date}.tsv" --encoding=UTF-8 --projectName=${source}_live
+  echo ""
+fi
+
+# calculate and print checkpoints
+echo "=== Statistics ==="
+echo ""
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
-checkpointname[$((checkpoints + 1))]="Daten in Solr indexieren"
-echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
-echo ""
-echo "Startzeitpunkt: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
-echo ""
-curl --silent "http://localhost:8983/solr/hos/update?commit=true&optimize=true" -H "Content-Type: text/xml" --data-binary "<delete><query>source:${source}</query></delete>" 1>/dev/null
-curl "${solr_url}update/csv?commit=true&separator=%09&split=true&f.subject.separator=%E2%90%9F&f.subject.separator=%E2%90%9F&f.identifier.separator=%E2%90%9F&f.identifierType.separator=%E2%90%9F&f.title.separator=%E2%90%9F&f.creatorName.separator=%E2%90%9F&f.origin.separator=%E2%90%9F" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < output/${source}_${date}.tsv 1>/dev/null
-echo ""
-
-# Daten in OpenRefine Demo einspielen
-# ...
-
-# Statistik
-echo "=== Statistik ==="
-echo ""
+checkpointname[$((checkpoints + 1))]="End process"
+echo "starting time and run time of each step:"
 checkpoints=${#checkpointdate[@]}
-checkpointdate[$(($checkpoints + 1))]=$(date +%s)
-checkpointname[$(($checkpoints + 1))]="Ende"
-echo "Beginn und Laufzeiten der einzelnen Schritte:"
-checkpoints=${#checkpointdate[@]}
-checkpointdate[$(($checkpoints + 1))]=$(date +%s)
+checkpointdate[$((checkpoints + 1))]=$(date +%s)
 for i in $(seq 1 $checkpoints); do
     diffsec="$((${checkpointdate[$((i + 1))]} - ${checkpointdate[$i]}))"
     printf "%35s $(date --date=@${checkpointdate[$i]}) ($(date -d@${diffsec} -u +%H:%M:%S))\n" "${checkpointname[$i]}"
 done
 echo ""
 diffsec="$((checkpointdate[$checkpoints] - checkpointdate[1]))"
-echo "Gesamtlaufzeit: $(date -d@${diffsec} -u +%H:%M:%S) (hh:mm:ss)"
+echo "total run time: $(date -d@${diffsec} -u +%H:%M:%S) (hh:mm:ss)"
+
+# calculate and print memory load
 max=${memoryload[0]}
 for n in "${memoryload[@]}" ; do
     ((n > max)) && max=$n
 done
-echo "Max. Arbeitsspeicher OpenRefine: $((max / 1024)) MB"
-
-# Alle Prozesse beenden
-pkill -P $$
-wait
-exit 0
+echo "highest memory load: $((max / 1024)) MB"
