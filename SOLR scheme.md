@@ -27,11 +27,11 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | format | string | | | |
 | geoLocationPoint | string      |  | geoLocationPoint with longitude/latitude subfields | e.g. 53.590312,9.978455 |
 | id | string |  | - | copy of identifier (done by SOLR) |
-| identifier | string |  | identifier | |
-| identifierType | string |  | identifierType | |
+| identifier | string |  |  | |
+| identifierType | string |  |  | |
 | institute | string | x | | |
-| language | string |  | language | |
-| methods | text_general |  | description with type methods | |
+| language | string |  |  | |
+| methods | text_general |  | description with descriptionType methods | |
 | otherTitle | text_general | x | | |
 | otherTitleLang | string | x | | |
 | publicationYear | string |  | | |
