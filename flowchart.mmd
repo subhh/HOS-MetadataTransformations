@@ -1,0 +1,26 @@
+graph LR
+run.sh -. -p 3334 .-> bin/ediss.sh
+run.sh -. -p 3335 .-> bin/tubdok.sh
+
+subgraph service 2 - e.g. tubdok
+bin/tubdok.sh -.-> metha2[metha]
+oai2((OAI)) --> metha2
+metha2 --> 01oai2(data/01_oai/tubdok_$date.xml)
+bin/tubdok.sh -. openrefine-client .-> openrefine2[OpenRefine<br>port 3335]
+01oai2 --> openrefine2
+config2(cfg/ediss/transformation.json) --> openrefine2
+openrefine2 --> 02transformed2(data/02_transformed/tubdok_$date.tsv)
+end
+
+subgraph service 1 - e.g. ediss
+bin/ediss.sh -.-> metha1[metha]
+oai1((OAI)) --> metha1
+metha1 --> 01oai1(data/01_oai/ediss_$date.xml)
+bin/ediss.sh -. openrefine-client .-> openrefine1[OpenRefine<br>port 3334]
+config1(cfg/ediss/transformation.json) --> openrefine1
+01oai1 --> openrefine1
+openrefine1 --> 02transformed1(data/02_transformed/ediss_$date.tsv)
+end
+
+02transformed1 -- curl --> solr((Solr))
+02transformed2 -- curl --> solr
