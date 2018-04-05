@@ -15,41 +15,41 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 
 | Field          | Type           | Multivalued  | DataCite Field | Description |
 | -------------------- |:-------------:|:-----:|:--------------------|:----------------------------------------|
-| abstract | text_general      | [ ] | description with type abstract | |
-| alternativeTitle | text_general      | [x] | | |
-| alternativeTitleLang | text_general      | [x] | | |
-| collection | string | [x] | - |  describes the source of the metadata |
-| creatorName | text_general | [x] | | |
-| date | string | [x] | | |
-| dateType | string | [x] | | |
-| format | string | [ ] | | |
-| geoLocationPoint | string      | [ ] | geoLocationPoint with longitude/latitude subfields | e.g. 53.590312,9.978455 |
-| id | string | [ ] | - | copy of identifier (done by SOLR) |
-| identifier | string | [ ] | identifier | |
-| identifierType | string | [ ] | identifierType | |
-| institute | string | [x] | | |
-| language | string | [ ] | language | |
-| methods | text_general | [ ] | description with type methods | |
-| otherTitle | text_general | [x] | | |
-| otherTitleLang | string | [x] | | |
-| publicationYear | string | [ ] | | |
-| publisher | text_general | [ ] | | |
-| resourceType | string | [ ] | | |
-| resourceTypeGeneral | string | [ ] | | |
-| rights | text_general | [ ] | | single valued despite DataCite Scheme |
-| rightsURI | string | [ ] | | single valued despite DataCite Scheme |
-| seriesInformation | text_general | [ ] | description with type seriesInformation | |
-| subject | text_general | [x] | | |
-| subject_acm | string | [x] | | ACM classifiation |
-| subject_bk | string | [x] | | Basisklassification (a german classification )|
-| subject_ddc | string | [x] | | |
-| subtitle | text_general | [x] | | |
-| subtitleLang | string | [x] | | |
-| tableOfContents | text_general | [ ] | description with type tableOfContents | |
-| technicalInfo | text_general      | [x] | description with type technicalInfo | |
-| title | text_general | [ ] | | |
-| titleLang | string | [ ] | | |
-| translatedTitle | text_general | [x] | | |
-| translatedTitleLang | string | [x] | | |
-| university | text_general | [ ] | - | |
-| url | string      | [x] | | |
+| abstract | text_general      | | description with type abstract | |
+| alternativeTitle | text_general      | x | | |
+| alternativeTitleLang | text_general      | x | | |
+| collection | string | x | - |  describes the source of the metadata |
+| creatorName | text_general | x | | |
+| date | string | x | | |
+| dateType | string | x | | |
+| format | string | | | |
+| geoLocationPoint | string      |  | geoLocationPoint with longitude/latitude subfields | e.g. 53.590312,9.978455 |
+| id | string |  | - | copy of identifier (done by SOLR) |
+| identifier | string |  | identifier | |
+| identifierType | string |  | identifierType | |
+| institute | string | x | | |
+| language | string |  | language | |
+| methods | text_general |  | description with type methods | |
+| otherTitle | text_general | x | | |
+| otherTitleLang | string | x | | |
+| publicationYear | string |  | | |
+| publisher | text_general |  | | |
+| resourceType | string |  | | |
+| resourceTypeGeneral | string | | | |
+| rights | text_general | | | single valued despite DataCite Scheme |
+| rightsURI | string | | | single valued despite DataCite Scheme |
+| seriesInformation | text_general | | description with type seriesInformation | |
+| subject | text_general | x | | |
+| subject_acm | string | x | | ACM classifiation |
+| subject_bk | string | x | | Basisklassification (a german classification )|
+| subject_ddc | string | x | | |
+| subtitle | text_general | x | | |
+| subtitleLang | string | x | | |
+| tableOfContents | text_general | | description with type tableOfContents | |
+| technicalInfo | text_general | x | description with type technicalInfo | |
+| title | text_general | | | |
+| titleLang | string | | | |
+| translatedTitle | text_general | x | | |
+| translatedTitleLang | string | x | | |
+| university | text_general | | - | |
+| url | string | x | | |
