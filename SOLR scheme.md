@@ -43,9 +43,9 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | rightsURI | string | | | single valued despite DataCite Scheme |
 | seriesInformation | text_general | | description with type seriesInformation | |
 | subject | text_general | x | | |
-| subject_acm | string | x | | ACM classifiation |
-| subject_bk | string | x | | Basisklassification (a german classification )|
-| subject_ddc | string | x | | |
+| subject_acm | string | x | subject with subjectScheme "ACM" | ACM classifiation |
+| subject_bk | string | x | subject with subjectScheme "BK" and subjectURI pointing to the classification | Basisklassification (a german classification )|
+| subject_ddc | string | x | subject with subjectScheme "DDC" and subjectURI pointing to the classification | Dewey |
 | subtitle | text_general | x | | |
 | subtitleLang | string | x | | |
 | tableOfContents | text_general | | description with type tableOfContents | |
