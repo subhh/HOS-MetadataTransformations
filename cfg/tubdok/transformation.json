@@ -1661,5 +1661,324 @@
       "geoLocationPointLatitude",
       "geoLocationPointLongitude"
     ]
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column identifier using expression grel:replace(value,\"https://doi.org/\",\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "identifier",
+    "expression": "grel:replace(value,\"https://doi.org/\",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column identifier using expression grel:replace(value, \"doi: \",\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "identifier",
+    "expression": "grel:replace(value, \"doi: \",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": true,
+          "selection": [],
+          "selectError": false,
+          "invert": false,
+          "name": "identifier",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "identifier"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column description 1 to description",
+    "oldColumnName": "description 1",
+    "newColumnName": "description"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:replace(value,\"||||\",\"␟\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Abscheidung der Leuchtstoffbeschichtungen mit verbesserten Eigenschaften mittels Flammensprühpyrolyse",
+                "l": "Abscheidung der Leuchtstoffbeschichtungen mit verbesserten Eigenschaften mittels Flammensprühpyrolyse"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "title 3",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "title 3"
+        }
+      ]
+    },
+    "columnName": "subject",
+    "expression": "grel:replace(value,\"||||\",\"␟\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column title 3 using expression grel:if(contains(value,cells[\"title 2\"].value),\"\",value)",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "title 3",
+    "expression": "grel:if(contains(value,cells[\"title 2\"].value),\"\",value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column title 3",
+    "columnName": "title 3"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column title 2 using expression grel:if(contains(value,cells[\"title\"].value),\"\",value)",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "title 2",
+    "expression": "grel:if(contains(value,cells[\"title\"].value),\"\",value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column title 2 to alternativeTitle",
+    "oldColumnName": "title 2",
+    "newColumnName": "alternativeTitle"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:value.replace(\"||||\",\"␟\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:value.replace(\"||||\",\"␟\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subjectACM using expression grel:value.replace(\"||||\",\"␟\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "subjectACM",
+    "expression": "grel:value.replace(\"||||\",\"␟\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subjectBK using expression grel:value.replace(/([0-9]{2})([0-9]{2})/, \"$1␟$2\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "subjectBK",
+    "expression": "grel:value.replace(/([0-9]{2})([0-9]{2})/, \"$1␟$2\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subjectDDC using expression grel:value.replace(/([0-9]{3})([0-9]{3})/, \"$1␟$2\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "subjectDDC",
+    "expression": "grel:value.replace(/([0-9]{3})([0-9]{3})/, \"$1␟$2\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column subjectACM to subject_acm",
+    "oldColumnName": "subjectACM",
+    "newColumnName": "subject_acm"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column subjectBK to subject_bk",
+    "oldColumnName": "subjectBK",
+    "newColumnName": "subject_bk"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column subjectDDC to subject_ddc",
+    "oldColumnName": "subjectDDC",
+    "newColumnName": "subject_ddc"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column dateType at index 14 based on column date using expression grel:if(isBlank(value),\"\",\"Issued\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "dateType",
+    "columnInsertIndex": 14,
+    "baseColumnName": "date",
+    "expression": "grel:if(isBlank(value),\"\",\"Issued\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column otherDescription at index 23 based on column description 2 using expression grel:value + (if(isBlank(cells[\"description 3\"].value) , \"\", \"␟\" + cells[\"description 3\"].value))",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "otherDescription",
+    "columnInsertIndex": 23,
+    "baseColumnName": "description 2",
+    "expression": "grel:value + (if(isBlank(cells[\"description 3\"].value) , \"\", \"␟\" + cells[\"description 3\"].value))",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column description 2",
+    "columnName": "description 2"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column description 3",
+    "columnName": "description 3"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column source using expression grel:value.replace(\"||||\",\"␟\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "source",
+    "expression": "grel:value.replace(\"||||\",\"␟\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column seriesInformation using expression grel:replace(value,'||||',';')",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "seriesInformation",
+    "expression": "grel:replace(value,'||||',';')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column contributor using expression grel:replace(value,\"||||\",\"␟\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "contributor",
+    "expression": "grel:replace(value,\"||||\",\"␟\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column url at index 27 based on column URI 1 using expression grel:value + if(isBlank(cells[\"URI 2\"].value),\"\",\"␟\" + cells[\"URI 2\"].value) + if(isBlank(cells[\"URI 3\"].value),\"\",\"␟\" + cells[\"URI 3\"].value)",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "url",
+    "columnInsertIndex": 27,
+    "baseColumnName": "URI 1",
+    "expression": "grel:value + if(isBlank(cells[\"URI 2\"].value),\"\",\"␟\" + cells[\"URI 2\"].value) + if(isBlank(cells[\"URI 3\"].value),\"\",\"␟\" + cells[\"URI 3\"].value)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column URI 1",
+    "columnName": "URI 1"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column URI 2",
+    "columnName": "URI 2"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column URI 3",
+    "columnName": "URI 3"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPoint at index 28 based on column geoLocationPointLatitude using expression grel:value + \",\" +cells[\"geoLocationPointLongitude\"].value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "geoLocationPoint",
+    "columnInsertIndex": 28,
+    "baseColumnName": "geoLocationPointLatitude",
+    "expression": "grel:value + \",\" +cells[\"geoLocationPointLongitude\"].value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column geoLocationPointLatitude",
+    "columnName": "geoLocationPointLatitude"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column geoLocationPointLongitude",
+    "columnName": "geoLocationPointLongitude"
   }
 ]
