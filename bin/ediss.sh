@@ -1,5 +1,5 @@
 #!/bin/bash
-# ediss.sh, Felix Lohmeier, v0.2, 2018-04-04
+# ediss.sh, Felix Lohmeier, v0.3, 2018-04-05
 # https://github.com/subhh/HOS-MetadataTransformations
 
 # change directory to location of shell script
@@ -79,7 +79,7 @@ cleanup()
 trap "cleanup;exit" SIGHUP SIGINT SIGQUIT SIGTERM
 
 # Simple Logging
-exec &> >(tee -a "${log_dir}/${date}.log")
+exec &> >(tee -a "${log_dir}/${source}_${date}.log")
 
 # print variables
 echo "Source name:             $source"
@@ -187,7 +187,7 @@ if [ -n "$solr_url" ]; then
   # delete existing data
   curl --silent "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>source:${source}</query></delete>" 1>/dev/null
   # load new data
-  curl "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${source}_${date}.tsv 1>/dev/null
+  curl "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${source}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${source}_${date}.tsv 1>/dev/null
   echo ""
 fi
 
