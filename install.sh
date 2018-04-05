@@ -84,5 +84,8 @@ if [ ! -d "opt/solr" ]; then
   rm install_solr_service.sh
   sudo service solr start
   sudo -u solr opt/solr/bin/solr create -c hos
-  curl -X POST -H 'Content-type:application/json' --data-binary '{"add-copy-field" : {"source":"*","dest":"_text_"}}' http://localhost:8983/solr/hos/schema
+  # copy field for solr browse functionality (catchall)
+  curl -X POST -H 'Content-type:application/json' --data-binary '{"add-copy-field" : {"source":"*","dest":"_text_"} }' http://localhost:8983/solr/hos/schema
+  # add field subject_ddc (automatic field value class guessing fails)
+  curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field" : {"name":"subject_ddc","type":"string","multiValued":true,"indexed":true,"stored":true} }' http://localhost:8983/solr/hos/schema
 fi
