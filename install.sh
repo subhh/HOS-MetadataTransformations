@@ -9,12 +9,12 @@ metha_URL="https://github.com/miku/metha/releases/download/v0.1.24/metha_0.1.24_
 solr_URL="http://archive.apache.org/dist/lucene/solr/7.1.0/solr-7.1.0.tgz"
 
 # create directories
-mkdir -p data
-mkdir -p data/01_oai
-mkdir -p data/02_transformed
-mkdir -p data/solr
-mkdir -p log
-mkdir -p opt
+sudo -u $(who | awk '{print $1}') mkdir -p data
+sudo -u $(who | awk '{print $1}') mkdir -p data/01_oai
+sudo -u $(who | awk '{print $1}') mkdir -p data/02_transformed
+sudo -u $(who | awk '{print $1}') mkdir -p data/solr
+sudo -u $(who | awk '{print $1}') mkdir -p log
+sudo -u $(who | awk '{print $1}') mkdir -p opt
 
 # install JRE
 JAVA="$(which java 2> /dev/null)"
@@ -43,7 +43,7 @@ if [ ! -d "opt/openrefine" ]; then
     wget $openrefine_server_URL
     echo "Install OpenRefine in subdirectory openrefine..."
     tar -xzf "$(basename $openrefine_server_URL)" -C opt/openrefine --strip 1 --totals
-    rm -f "$(basename $openrefine_server_URL)"
+    rm "$(basename $openrefine_server_URL)"
     sed -i '$ a JAVA_OPTIONS=-Drefine.headless=true' opt/openrefine/refine.ini
     sed -i 's/#REFINE_AUTOSAVE_PERIOD=60/REFINE_AUTOSAVE_PERIOD=1440/' opt/openrefine/refine.ini
     sed -i 's/-Xms$REFINE_MIN_MEMORY/-Xms$REFINE_MEMORY/' opt/openrefine/refine
@@ -80,7 +80,8 @@ if [ ! -d "opt/solr" ]; then
   wget $solr_URL
   tar xzf $(basename $solr_URL) $(basename -s .tgz $solr_URL)/bin/install_solr_service.sh --strip-components=2
   ./install_solr_service.sh $(basename $solr_URL) -i ${path_opt} -d ${path_data}/solr -n
-  rm -f $(basename $solr_URL)
+  rm $(basename $solr_URL)
+  rm install_solr_service.sh
   sudo service solr start
   sudo -u solr opt/solr/bin/solr create -c hos
   curl -X POST -H 'Content-type:application/json' --data-binary '{"add-copy-field" : {"source":"*","dest":"_text_"}}' http://localhost:8983/solr/hos/schema
