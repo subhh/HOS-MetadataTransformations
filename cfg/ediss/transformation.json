@@ -4360,5 +4360,120 @@
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column title lang to titleLang",
+    "oldColumnName": "title lang",
+    "newColumnName": "titleLang"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column title2 to translatedTitle",
+    "oldColumnName": "title2",
+    "newColumnName": "translatedTitle"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:replace(value,'||','␟')",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:replace(value,'||','␟')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column subjectDDC to subject_ddc",
+    "oldColumnName": "subjectDDC",
+    "newColumnName": "subject_ddc"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column dateType at index 13 based on column date using expression grel:\"Created\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "dateType",
+    "columnInsertIndex": 13,
+    "baseColumnName": "date",
+    "expression": "grel:\"Created\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column dateType",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "dateType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Created"
+        ],
+        "to": "Issued"
+      }
+    ]
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column description to abstract",
+    "oldColumnName": "description",
+    "newColumnName": "abstract"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column descriptionType",
+    "columnName": "descriptionType"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - header - identifier",
+    "columnName": "Record - header - identifier"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:url to url",
+    "oldColumnName": "dc:url",
+    "newColumnName": "url"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPoint at index 24 based on column geoLocationPointLatitude using expression grel:cells[\"geoLocationPointLatitude\"].value + \",\" +cells[\"geoLocationPointLongitude\"].value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "geoLocationPoint",
+    "columnInsertIndex": 24,
+    "baseColumnName": "geoLocationPointLatitude",
+    "expression": "grel:cells[\"geoLocationPointLatitude\"].value + \",\" +cells[\"geoLocationPointLongitude\"].value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column geoLocationPointLatitude",
+    "columnName": "geoLocationPointLatitude"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column geoLocationPointLongitude",
+    "columnName": "geoLocationPointLongitude"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:source to seriesInformation",
+    "oldColumnName": "dc:source",
+    "newColumnName": "seriesInformation"
   }
 ]
