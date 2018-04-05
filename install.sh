@@ -12,6 +12,7 @@ solr_URL="http://archive.apache.org/dist/lucene/solr/7.1.0/solr-7.1.0.tgz"
 mkdir -p data
 mkdir -p data/01_oai
 mkdir -p data/02_transformed
+mkdir -p data/solr
 mkdir -p log
 mkdir -p opt
 
@@ -30,7 +31,7 @@ fi
 # install metha
 metha="$(which metha-sync 2> /dev/null)"
 if [ -z "$metha" ] ; then
-    wget -q $metha_URL
+    wget $metha_URL
     apt-get install ./$(basename $metha_URL)
     rm $(basename $metha_URL)
 fi
@@ -39,7 +40,7 @@ fi
 if [ ! -d "opt/openrefine" ]; then
     echo "Download OpenRefine..."
     mkdir -p opt/openrefine
-    wget -q $openrefine_server_URL
+    wget $openrefine_server_URL
     echo "Install OpenRefine in subdirectory openrefine..."
     tar -xzf "$(basename $openrefine_server_URL)" -C opt/openrefine --strip 1 --totals
     rm -f "$(basename $openrefine_server_URL)"
@@ -51,10 +52,11 @@ fi
 
 # install OpenRefine service
 if [ ! -f "/etc/systemd/system/openrefine.service" ]; then
+  path_openrefine=$(readlink -f opt/openrefine)
   echo "[Unit]
 Description=OpenRefine
 [Service]
-ExecStart=/root/openrefine-2.8/refine
+ExecStart=${path_openrefine}/refine
 [Install]
 WantedBy=default.target
 " > /etc/systemd/system/openrefine.service
@@ -66,15 +68,20 @@ fi
 # install OpenRefine client
 if [ ! -f "opt/openrefine-client" ]; then
     echo "Download OpenRefine client..."
-    wget -q -O opt/openrefine-client $openrefine_client_URL
+    wget -O opt/openrefine-client $openrefine_client_URL
     chmod +x opt/openrefine-client
     echo ""
 fi
 
 # install Solr service
-if [ ! -d "/opt/solr" ]; then
+if [ ! -d "opt/solr" ]; then
+  path_opt=$(readlink -f opt)
+  path_data=$(readlink -f data)
   wget $solr_URL
   tar xzf $(basename $solr_URL) $(basename -s .tgz $solr_URL)/bin/install_solr_service.sh --strip-components=2
-  install_solr_service.sh $(basename $solr_URL)
+  ./install_solr_service.sh $(basename $solr_URL) -i ${path_opt} -d ${path_data}/solr -n
   rm -f $(basename $solr_URL)
+  sudo service solr start
+  sudo -u solr opt/solr/bin/solr create -c hos
+  curl -X POST -H 'Content-type:application/json' --data-binary '{"add-copy-field" : {"source":"*","dest":"_text_"}}' http://localhost:8983/solr/hos/schema
 fi
