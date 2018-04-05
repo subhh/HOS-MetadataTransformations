@@ -27,8 +27,8 @@ Usage: ./tubdok.sh [-m RAM] [-p PORT] [-s SOLRURL] [-d OPENREFINEURL]
 == options ==
     -m RAM           maximum RAM for OpenRefine java heap space (default: 2048M)
     -p PORT          PORT on which OpenRefine should listen (default: 3334)
-    -s SOLRURL       ingest data to specified Solr core
-    -d OPENREFINEURL ingest data to external OpenRefine service
+    -s SOLRURL       ingest data to specified Solr core (default: http://localhost:8983/solr/hos)
+    -d OPENREFINEURL ingest data to external OpenRefine service (default: http://localhost:3333)
 
 == example ==
 ./tubdok.sh -m 2048M -p 3334 -s http://localhost:8983/solr/hos -d http://localhost:3333
@@ -39,6 +39,8 @@ EOF
 # defaults
 ram="2048M"
 port="3334"
+solr_url="http://localhost:8983/solr/hos"
+openrefine_url="http://localhost:3333"
 
 # get user input
 options="m:p:s:d:"
