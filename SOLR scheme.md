@@ -14,7 +14,7 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 
 | Field          | Type           | Multivalued  | DataCite Field | Description |
 | -------------------- |:-------------:|:-----:|:--------------------|:----------------------------------------|
-| abstract | text_general      | [ ] | description with type abstract | |
+| abstract | text_general      | - [ ] | description with type abstract | |
 | alternativeTitle | text_general      | [x] | | |
 | alternativeTitleLang | text_general      | [x] | | |
 | collection | string      | [x] | - |  describes the source of the metadata |
