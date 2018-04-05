@@ -14,7 +14,7 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 
 | Field          | Type           | Multivalued  | DataCite Field | Description |
 | -------------------- |:-------------:|:-----:|:--------------------|:----------------------------------------|
-| abstract | text_general      | - [ ] | description with type abstract | |
+| abstract | text_general      | [ ] | description with type abstract | |
 | alternativeTitle | text_general      | [x] | | |
 | alternativeTitleLang | text_general      | [x] | | |
 | collection | string      | [x] | - |  describes the source of the metadata |
@@ -25,31 +25,30 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | geoLocationPoint | string      | [ ] | geoLocationPoint with longitude/latitude subfields | e.g. 53.590312,9.978455 |
 | id | string      | [ ] | - | copy of identifier (done by SOLR) |
 | identifier | text_general      | [ ] | identifier | |
-| identifierType | text_general      | [x] | identifierType | |
+| identifierType | text_general      | [ ] | identifierType | |
 | institute | text_general      | [x] | | |
-| language | text_general      | [x] | language | |
+| language | text_general      | [ ] | language | |
 | methods | text_general      | [ ] | description with type methods | |
 | otherTitle | text_general      | [x] | | |
 | otherTitleLang | text_general      | [x] | | |
-| publicationYear | text_general      | [x] | | |
-| publisher | text_general      | [x] | | |
-| resourceType | text_general      | [x] | | |
-| resourceTypeGeneral | text_general      | [x] | | |
+| publicationYear | text_general      | [ ] | | |
+| publisher | text_general      | [ ] | | |
+| resourceType | text_general      | [ ] | | |
+| resourceTypeGeneral | text_general      | [ ] | | |
 | rights | text_general      | [ ] | | single valued despite DataCite Scheme |
 | rightsURI | text_general      | [ ] | | single valued despite DataCite Scheme |
-| seriesInformation | text_general      | [x] | description with type seriesInformation | |
+| seriesInformation | text_general      | [ ] | description with type seriesInformation | |
 | subject | text_general      | [x] | | |
 | subject_acm | text_general      | [x] | | ACM classifiation |
 | subject_bk | text_general      | [x] | | Basisklassification (a german classification )|
 | subject_ddc | text_general      | [x] | | |
 | subtitle | text_general      | [x] | | |
 | subtitleLang | text_general      | [x] | | |
-| tableOfContents | text_general      | [x] | | |
+| tableOfContents | text_general      | [ ] | | |
 | technicalInfo | text_general      | [x] | description with type technicalInfo | |
-| title | text_general      | [x] | | |
-| titleLang | text_general      | [x] | | |
+| title | text_general      | [ ] | | |
+| titleLang | text_general      | [ ] | | |
 | translatedTitle | text_general      | [x] | | |
 | translatedTitleLang | text_general      | [x] | | |
-| university | text_general      | [x] | - | |
+| university | text_general      | [ ] | - | |
 | url | string      | [x] | | |
-
