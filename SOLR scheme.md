@@ -32,6 +32,7 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | institute | string | x | | |
 | language | string |  |  | |
 | methods | text_general |  | description with descriptionType methods | |
+| otherDescription | text_general | x | description with descriptionType "Other"| |
 | otherTitle | text_general | x | | |
 | otherTitleLang | string | x | | |
 | publicationYear | string |  | | |
