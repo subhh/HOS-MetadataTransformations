@@ -11,11 +11,13 @@
 
 Please consider that this is work in progress.
 
-The column "DataCite Field" describes the corresponding DataCite Metadata Scheme 4.1 fields for metadata conversion.
+The column "DataCite Field" describes the corresponding DataCite Metadata Scheme 4.1 fields for metadata conversion. If no field is specified, the field name corresponds to the field name of the DataCite field.
 
 | Field          | Type           | Multivalued  | DataCite Field | Description |
 | -------------------- |:-------------:|:-----:|:--------------------|:----------------------------------------|
-| abstract | text_general      | | description with type abstract | |
+| abstract | text_general      | | description with descriptionType abstract | |
+| alternateIdentifier | string | x | | |
+| alternateIdentifierType | string | x | | |
 | alternativeTitle | text_general      | x | | |
 | alternativeTitleLang | string | x | | |
 | collection | string | x | - |  describes the source of the metadata |
