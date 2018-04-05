@@ -1,11 +1,12 @@
 #!/bin/bash
-# install.sh, Felix Lohmeier, v0.2, 2018-04-04
+# install.sh, Felix Lohmeier, v0.3, 2018-04-05
 # https://github.com/subhh/HOS-MetadataTransformations
 
 # declare download URLs
 openrefine_server_URL="https://github.com/OpenRefine/OpenRefine/releases/download/2.8/openrefine-linux-2.8.tar.gz"
 openrefine_client_URL="https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.4/openrefine-client_0-3-4_linux-64bit"
 metha_URL="https://github.com/miku/metha/releases/download/v0.1.24/metha_0.1.24_amd64.deb"
+solr_URL="http://archive.apache.org/dist/lucene/solr/7.1.0/solr-7.1.0.tgz"
 
 # create directories
 mkdir -p data
@@ -14,10 +15,16 @@ mkdir -p data/02_transformed
 mkdir -p log
 mkdir -p opt
 
-# install JAVA JRE
+# install JRE
 JAVA="$(which java 2> /dev/null)"
 if [ -z "$JAVA" ] ; then
     apt-get -qq update && apt-get -qq --yes install default-jre
+fi
+
+# install curl
+curl="$(which curl 2> /dev/null)"
+if [ -z "$curl" ] ; then
+    apt-get -qq update && apt-get -qq --yes install curl
 fi
 
 # install metha
@@ -42,10 +49,32 @@ if [ ! -d "opt/openrefine" ]; then
     echo ""
 fi
 
+# install OpenRefine service
+if [ ! -f "/etc/systemd/system/openrefine.service" ]; then
+  echo "[Unit]
+Description=OpenRefine
+[Service]
+ExecStart=/root/openrefine-2.8/refine
+[Install]
+WantedBy=default.target
+" > /etc/systemd/system/openrefine.service
+  systemctl daemon-reload
+  systemctl enable openrefine.service
+  systemctl start openrefine.service
+fi
+
 # install OpenRefine client
 if [ ! -f "opt/openrefine-client" ]; then
     echo "Download OpenRefine client..."
     wget -q -O opt/openrefine-client $openrefine_client_URL
     chmod +x opt/openrefine-client
     echo ""
+fi
+
+# install Solr service
+if [ ! -d "/opt/solr" ]; then
+  wget $solr_URL
+  tar xzf $(basename $solr_URL) $(basename -s .tgz $solr_URL)/bin/install_solr_service.sh --strip-components=2
+  install_solr_service.sh $(basename $solr_URL)
+  rm -f $(basename $solr_URL)
 fi
