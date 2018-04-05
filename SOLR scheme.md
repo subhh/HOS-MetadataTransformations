@@ -11,11 +11,13 @@
 
 Please consider that this is work in progress.
 
-The column "DataCite Field" describes the corresponding DataCite Metadata Scheme 4.1 fields for metadata conversion.
+The column "DataCite Field" describes the corresponding DataCite Metadata Scheme 4.1 fields for metadata conversion. If no field is specified, the field name corresponds to the field name of the DataCite field.
 
 | Field          | Type           | Multivalued  | DataCite Field | Description |
 | -------------------- |:-------------:|:-----:|:--------------------|:----------------------------------------|
-| abstract | text_general      | | description with type abstract | |
+| abstract | text_general      | | description with descriptionType abstract | |
+| alternateIdentifier | string | x | | |
+| alternateIdentifierType | string | x | | |
 | alternativeTitle | text_general      | x | | |
 | alternativeTitleLang | string | x | | |
 | collection | string | x | - |  describes the source of the metadata |
@@ -25,11 +27,12 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | format | string | | | |
 | geoLocationPoint | string      |  | geoLocationPoint with longitude/latitude subfields | e.g. 53.590312,9.978455 |
 | id | string |  | - | copy of identifier (done by SOLR) |
-| identifier | string |  | identifier | |
-| identifierType | string |  | identifierType | |
+| identifier | string |  |  | |
+| identifierType | string |  |  | |
 | institute | string | x | | |
-| language | string |  | language | |
-| methods | text_general |  | description with type methods | |
+| language | string |  |  | |
+| methods | text_general |  | description with descriptionType methods | |
+| otherDescription | text_general | x | description with descriptionType "Other"| |
 | otherTitle | text_general | x | | |
 | otherTitleLang | string | x | | |
 | publicationYear | string |  | | |
@@ -40,9 +43,9 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | rightsURI | string | | | single valued despite DataCite Scheme |
 | seriesInformation | text_general | | description with type seriesInformation | |
 | subject | text_general | x | | |
-| subject_acm | string | x | | ACM classifiation |
-| subject_bk | string | x | | Basisklassification (a german classification )|
-| subject_ddc | string | x | | |
+| subject_acm | string | x | subject with subjectScheme "ACM" | ACM classifiation |
+| subject_bk | string | x | subject with subjectScheme "BK" and subjectURI pointing to the classification | Basisklassification (a german classification )|
+| subject_ddc | string | x | subject with subjectScheme "DDC" and subjectURI pointing to the classification | Dewey |
 | subtitle | text_general | x | | |
 | subtitleLang | string | x | | |
 | tableOfContents | text_general | | description with type tableOfContents | |
