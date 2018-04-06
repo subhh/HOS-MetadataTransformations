@@ -1,5 +1,4 @@
 #!/bin/bash
-# install.sh, Felix Lohmeier, v0.3, 2018-04-05
 # https://github.com/subhh/HOS-MetadataTransformations
 
 # declare download URLs
@@ -83,9 +82,6 @@ if [ ! -d "opt/solr" ]; then
   rm $(basename $solr_URL)
   rm install_solr_service.sh
   sudo service solr start
+  # create solr core hos
   sudo -u solr opt/solr/bin/solr create -c hos
-  # copy field for solr browse functionality (catchall)
-  curl -X POST -H 'Content-type:application/json' --data-binary '{"add-copy-field" : {"source":"*","dest":"_text_"} }' http://localhost:8983/solr/hos/schema
-  # add field subject_ddc (automatic field value class guessing fails)
-  curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field" : {"name":"subject_ddc","type":"string","multiValued":true,"indexed":true,"stored":true} }' http://localhost:8983/solr/hos/schema
 fi

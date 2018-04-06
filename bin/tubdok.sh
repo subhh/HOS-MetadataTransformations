@@ -1,5 +1,4 @@
 #!/bin/bash
-# tubdok.sh, Felix Lohmeier, v0.3, 2018-04-05
 # https://github.com/subhh/HOS-MetadataTransformations
 
 # change directory to location of shell script
@@ -43,7 +42,7 @@ solr_url="http://localhost:8983/solr/hos"
 openrefine_url="http://localhost:3333"
 
 # get user input
-options="m:p:s:d:"
+options="m:p:s:d:h"
 while getopts $options opt; do
    case $opt in
    m )  ram=${OPTARG} ;;
@@ -187,9 +186,9 @@ if [ -n "$solr_url" ]; then
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
   # delete existing data
-  curl --silent "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>source:${source}</query></delete>" 1>/dev/null
+  curl --silent "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>collection:${source}</query></delete>" 1>/dev/null
   # load new data
-  curl "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${source}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${source}_${date}.tsv 1>/dev/null
+  curl "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.collection=${source}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${source}_${date}.tsv 1>/dev/null
   echo ""
 fi
 

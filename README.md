@@ -31,6 +31,12 @@ install JRE, curl, metha, OpenRefine, [openrefine-client](https://github.com/ope
 sudo ./install.sh
 ```
 
+create Solr core "hos" and configure Solr schema:
+
+```
+./init-solr-core.sh
+```
+
 ## Usage
 
 Data will be available after first run at:
