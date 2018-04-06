@@ -8,7 +8,7 @@ oai2((OAI)) --> metha2
 metha2 --> 01oai2(data/01_oai/tubdok_$date.xml)
 bin/tubdok.sh -. openrefine-client .-> openrefine2[OpenRefine<br>port 3335]
 01oai2 --> openrefine2
-config2(cfg/ediss/transformation.json) --> openrefine2
+config2(cfg/tubdok/transformation.json) --> openrefine2
 openrefine2 --> 02transformed2(data/02_transformed/tubdok_$date.tsv)
 end
 
