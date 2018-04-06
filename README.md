@@ -1,5 +1,7 @@
 # HOS-MetadataTransformations
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6d9c8171289f424b903d22682663bb6d)](https://www.codacy.com/app/felixlohmeier/HOS-MetadataTransformations?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=subhh/HOS-MetadataTransformations&amp;utm_campaign=Badge_Grade)
+
 Automated workflow for harvesting, transforming and indexing of bibliographic metadata using [metha](https://github.com/miku/metha), [OpenRefine](http://openrefine.org/) and [Solr](http://lucene.apache.org/solr/). Part of the Hamburg Open Science "Schaufenster" software stack.
 
 ## Flowchart
@@ -31,10 +33,10 @@ install JRE, curl, metha, OpenRefine, [openrefine-client](https://github.com/ope
 sudo ./install.sh
 ```
 
-Configure Solr schema:
+Configure [Solr schema](cfg/solr):
 
 ```
-./init-solr-core.sh
+./init-solr-schema.sh
 ```
 
 ## Usage
