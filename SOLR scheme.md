@@ -20,7 +20,7 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | alternateIdentifierType | string | x | | |
 | alternativeTitle | text_general      | x | | |
 | alternativeTitleLang | string | x | | |
-| collection | string | x | - |  describes the source of the metadata |
+| collection | string | | - |  describes the source of the metadata |
 | creatorName | text_general | x | | |
 | date | string | x | | |
 | dateType | string | x | | |
