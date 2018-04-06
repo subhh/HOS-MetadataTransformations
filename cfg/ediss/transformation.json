@@ -4475,5 +4475,24 @@
     "description": "Rename column dc:source to seriesInformation",
     "oldColumnName": "dc:source",
     "newColumnName": "seriesInformation"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column id at index 1 based on column identifier using expression grel:replace(value,\":\",\"_\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "id",
+    "columnInsertIndex": 1,
+    "baseColumnName": "identifier",
+    "expression": "grel:replace(value,\":\",\"_\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column id to position 0",
+    "columnName": "id",
+    "index": 0
   }
 ]
