@@ -87,13 +87,6 @@
       "stored":true
     },
     {
-      "name":"id",
-      "type":"string",
-      "indexed":true,
-      "required":true,
-      "stored":true
-    },
-    {
       "name":"identifier",
       "type":"string",
       "indexed":true,
