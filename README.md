@@ -101,4 +101,4 @@ gedit bin/yourdatasource.sh
 bin/yourdatasource.sh
 ```
 
-* Step 6: Check results in OpenRefine at <http://localhost:3333> (project `yourdatasource_live`) and Solr (query: `collection:yourdatasource`)
+* Step 6: Check results in OpenRefine at <http://localhost:3333> (project `yourdatasource_live`) and Solr (query: [collection:yourdatasource](http://localhost:8983/solr/hos/browse?q=collection%3Ayourdatasource))
