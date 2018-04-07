@@ -223,7 +223,7 @@ for i in $(seq 1 $checkpoints); do
 done
 echo ""
 diffsec="$((checkpointdate[$checkpoints] - checkpointdate[1]))"
-echo "number of records: $records_metha"
+echo "$records_metha records"
 echo "total run time: $(date -d@${diffsec} -u +%H:%M:%S) (hh:mm:ss)"
 
 # calculate and print memory load
@@ -231,4 +231,4 @@ max=${memoryload[0]}
 for n in "${memoryload[@]}" ; do
     ((n > max)) && max=$n
 done
-echo "highest memory load: $((max / 1024)) of $ram MB"
+echo "highest memory load: $((max / 1024)) MB of $ram"
