@@ -102,6 +102,8 @@ echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
 $metha_sync "$oai_url"
 $metha_cat "$oai_url" > "${data_dir}/01_oai/${source}_${date}.xml"
+records_metha=$(grep -c '<Record>' "${data_dir}/01_oai/${source}_${date}.xml")
+echo "saved $records_metha records in ${data_dir}/01_oai/${source}_${date}.xml"
 echo ""
 
 # Launch OpenRefine server
@@ -125,7 +127,7 @@ echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
 echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
-$openrefine_client -P ${port} --create "${data_dir}/01_oai/${source}_${date}.xml" --recordPath=Records --recordPath=Record --recordPath=metadata
+$openrefine_client -P ${port} --create "${data_dir}/01_oai/${source}_${date}.xml" --recordPath=Records --recordPath=Record
 echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid}))
@@ -154,8 +156,6 @@ echo ""
 echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
 $openrefine_client -P ${port} --export --output="${data_dir}/02_transformed/${source}_${date}.tsv" "${source}_${date}"
-rows="$(($(${data_dir}/02_transformed/${source}_${date}.tsv | wc -l) - 1))"
-echo "tsv file contains $records rows"
 echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid}))
@@ -223,7 +223,7 @@ for i in $(seq 1 $checkpoints); do
 done
 echo ""
 diffsec="$((checkpointdate[$checkpoints] - checkpointdate[1]))"
-echo "number of records: $rows (tsv)"
+echo "number of records: $records_metha"
 echo "total run time: $(date -d@${diffsec} -u +%H:%M:%S) (hh:mm:ss)"
 
 # calculate and print memory load
@@ -231,4 +231,4 @@ max=${memoryload[0]}
 for n in "${memoryload[@]}" ; do
     ((n > max)) && max=$n
 done
-echo "highest memory load: $((max / 1024)) MB"
+echo "highest memory load: $((max / 1024)) of $ram MB"
