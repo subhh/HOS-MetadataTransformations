@@ -55,7 +55,7 @@ if [ ! -f "/etc/systemd/system/openrefine.service" ]; then
   echo "[Unit]
 Description=OpenRefine
 [Service]
-ExecStart=${path_openrefine}/refine
+ExecStart=${path_openrefine}/refine -i 0.0.0.0
 [Install]
 WantedBy=default.target
 " > /etc/systemd/system/openrefine.service
