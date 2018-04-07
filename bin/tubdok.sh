@@ -154,6 +154,8 @@ echo ""
 echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
 $openrefine_client -P ${port} --export --output="${data_dir}/02_transformed/${source}_${date}.tsv" "${source}_${date}"
+rows="$(($(${data_dir}/02_transformed/${source}_${date}.tsv | wc -l) - 1))"
+echo "tsv file contains $records rows"
 echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid}))
@@ -221,6 +223,7 @@ for i in $(seq 1 $checkpoints); do
 done
 echo ""
 diffsec="$((checkpointdate[$checkpoints] - checkpointdate[1]))"
+echo "number of records: $rows (tsv)"
 echo "total run time: $(date -d@${diffsec} -u +%H:%M:%S) (hh:mm:ss)"
 
 # calculate and print memory load

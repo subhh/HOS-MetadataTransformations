@@ -65,7 +65,7 @@ echo "run scripts in parallel..."
 for f in "${path_bin}"/*.sh; do
   "${f}" -p $port -s "${solr_url}" -d "${openrefine_url}" > /dev/null &
   pid+=("$!")
-  echo -en "$(basename ${f}) ($!)   "
+  echo -en "$(basename ${f}) (pid: $!)   "
   port=$((port + 1))
 done
 echo ""
@@ -77,7 +77,7 @@ count="1"
 until [[ "$count" -eq "0" ]]; do
   stats=$(ps --no-headers -o %mem,%cpu ax | awk '{mem += $1; cpu += $2} END {print "%MEM: " mem, "  %CPU: " cpu}')
   count=$(ps --no-headers -p ${pid[@]} | wc -l)
-  echo -en "\r $stats   Jobs: $count   Elapsed: $SECONDS     "
+  echo -en "\r $stats   Jobs: $count running   Elapsed: $SECONDS seconds    "
   sleep 5
 done
 echo ""
@@ -86,6 +86,6 @@ echo ""
 # print logs
 echo "print stats from logs..."
 for f in "${path_bin}"/*.sh; do
-  stats=$(tail -n 2 "${path_log}/$(basename -s .sh ${f})_${date}"*.log |  sed 's/total run time://' | sed 's/highest memory load://')
+  stats=$(tail -n 3 "${path_log}/$(basename -s .sh ${f})_${date}"*.log |  sed 's/total run time://' | sed 's/highest memory load://' | sed 's/number of records://')
   echo $(basename ${f}): $stats
 done
