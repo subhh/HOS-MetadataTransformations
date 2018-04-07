@@ -14,12 +14,17 @@ Source: [flowchart.mmd](flowchart.mmd) (try [mermaid live editor](https://mermai
 
 tested with [Ubuntu 16.04 LTS](https://www.ubuntu.com/download/desktop)
 
-download git repository:
+install git:
 
 ```
-wget https://github.com/subhh/HOS-MetadataTransformations/archive/master.zip
-unzip master.zip
-cd HOS-MetadataTransformations-master
+sudo apt install git
+```
+
+clone git repository:
+
+```
+git clone https://github.com/subhh/HOS-MetadataTransformations.git
+cd HOS-MetadataTransformations
 ```
 
 install JRE, curl, metha, OpenRefine, [openrefine-client](https://github.com/opencultureconsulting/openrefine-client) and Solr:
