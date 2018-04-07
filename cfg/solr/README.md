@@ -1,11 +1,10 @@
 # SOLR-scheme
 
 ## notes
-* a tsv-file (exported from Openrefine) ist used as a source
-* the tsv uses the utf8 unit separator symbol U+241F to separate multivalued fields. SOLR splits the input into multivalued fields during indexing
-* some multivalued fields describe others. E.g. otherTitle / otherTitleLang. Since SOLR retains the order of multivalued fields, otherTitleLang[3] describes otherTitle[3] etc. In  the tsv source, empty fields are filled with the field separator utf8 symbol
-* per default, all fields are stored and indexed
-
+* tsv-files (exported from OpenRefine) are used as sources for indexing
+* the tsv files contain a special character (utf8 unit separator symbol U+241F) to separate multivalued fields. SOLR splits the input into multivalued fields during indexing
+* some multivalued fields describe others. E.g. otherTitle / otherTitleLang. Since SOLR retains the order of multivalued fields, otherTitleLang[3] describes otherTitle[3] etc. In the tsv source, empty fields are filled with the field separator utf8 symbol
+* all fields are stored and indexed per default
 
 ## Tabular overview of the scheme
 
@@ -28,7 +27,7 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | dateType | string | x | | |
 | format | string | | | |
 | geoLocationPoint | string      |  | geoLocationPoint with longitude/latitude subfields | e.g. 53.590312,9.978455 |
-| id | string |  | - | copy of identifier (done by SOLR) |
+| id | string |  | - | copy of identifier (without slashes) |
 | identifier | string |  |  | |
 | identifierType | string |  |  | |
 | institute | string | x | | |

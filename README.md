@@ -6,7 +6,7 @@ Automated workflow for harvesting, transforming and indexing of bibliographic me
 
 ## Flowchart
 
-![Mermaid Flowchart](flowchart.png)
+[![mermaid flowchart](flowchart.png)](https://github.com/subhh/HOS-MetadataTransformations/raw/master/flowchart.png)
 
 Source: [flowchart.mmd](flowchart.mmd) (try [mermaid live editor](https://mermaidjs.github.io/mermaid-live-editor/))
 
