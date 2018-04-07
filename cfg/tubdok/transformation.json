@@ -917,7 +917,7 @@
     "description": "Join multi-valued cells in column title",
     "columnName": "title",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/column-split",
@@ -930,7 +930,7 @@
     "guessCellType": true,
     "removeOriginalColumn": true,
     "mode": "separator",
-    "separator": "||||",
+    "separator": "␟",
     "regex": false,
     "maxColumns": 0
   },
@@ -945,7 +945,7 @@
     "description": "Join multi-valued cells in column URI",
     "columnName": "URI",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/column-split",
@@ -958,7 +958,7 @@
     "guessCellType": true,
     "removeOriginalColumn": true,
     "mode": "separator",
-    "separator": "||||",
+    "separator": "␟",
     "regex": false,
     "maxColumns": 0
   },
@@ -1171,17 +1171,17 @@
     "description": "Join multi-valued cells in column resourceType",
     "columnName": "resourceType",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/text-transform",
-    "description": "Text transform on cells in column resourceType using expression grel:if(value.contains(\"||||\"),value.replace(/.*\\|/,\"\"),value)",
+    "description": "Text transform on cells in column resourceType using expression grel:if(value.contains(\"␟\"),value.replace(/.*\\|/,\"\"),value)",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
     "columnName": "resourceType",
-    "expression": "grel:if(value.contains(\"||||\"),value.replace(/.*\\|/,\"\"),value)",
+    "expression": "grel:if(value.contains(\"␟\"),value.replace(/.*\\|/,\"\"),value)",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
@@ -1222,14 +1222,14 @@
     "description": "Join multi-valued cells in column subjectACM",
     "columnName": "subjectACM",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/multivalued-cell-join",
     "description": "Join multi-valued cells in column subject",
     "columnName": "subject",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/multivalued-cell-join",
@@ -1263,7 +1263,7 @@
     "description": "Join multi-valued cells in column description",
     "columnName": "description",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/column-split",
@@ -1276,7 +1276,7 @@
     "guessCellType": true,
     "removeOriginalColumn": true,
     "mode": "separator",
-    "separator": "||||",
+    "separator": "␟",
     "regex": false,
     "maxColumns": 0
   },
@@ -1361,7 +1361,7 @@
     "description": "Join multi-valued cells in column creatorName",
     "columnName": "creatorName",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/mass-edit",
@@ -1408,7 +1408,7 @@
     "description": "Join multi-valued cells in column rights",
     "columnName": "rights",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/text-transform",
@@ -1437,7 +1437,7 @@
         "fromBlank": false,
         "fromError": false,
         "from": [
-          "CC BY-SA||||info:eu-repo/semantics/openAccess||||CC BY-SA"
+          "CC BY-SA␟info:eu-repo/semantics/openAccess␟CC BY-SA"
         ],
         "to": "CC BY-SA"
       }
@@ -1457,7 +1457,7 @@
         "fromBlank": false,
         "fromError": false,
         "from": [
-          "CC BY||||info:eu-repo/semantics/openAccess"
+          "CC BY␟info:eu-repo/semantics/openAccess"
         ],
         "to": "CC BY"
       }
@@ -1477,7 +1477,7 @@
         "fromBlank": false,
         "fromError": false,
         "from": [
-          "info:eu-repo/semantics/openAccess||||info:eu-repo/semantics/embargoedAccess"
+          "info:eu-repo/semantics/openAccess␟info:eu-repo/semantics/embargoedAccess"
         ],
         "to": "info:eu-repo/semantics/embargoedAccess"
       }
@@ -1497,7 +1497,7 @@
         "fromBlank": false,
         "fromError": false,
         "from": [
-          "info:eu-repo/semantics/openAccess||||individuelle Lizenz"
+          "info:eu-repo/semantics/openAccess␟individuelle Lizenz"
         ],
         "to": "info:eu-repo/semantics/openAccess"
       }
@@ -1508,7 +1508,7 @@
     "description": "Join multi-valued cells in column contributor",
     "columnName": "contributor",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/mass-edit",
@@ -1535,14 +1535,14 @@
     "description": "Join multi-valued cells in column source",
     "columnName": "source",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/multivalued-cell-join",
     "description": "Join multi-valued cells in column seriesInformation",
     "columnName": "seriesInformation",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/mass-edit",
@@ -1717,39 +1717,6 @@
   },
   {
     "op": "core/text-transform",
-    "description": "Text transform on cells in column subject using expression grel:replace(value,\"||||\",\"␟\")",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": [
-        {
-          "omitError": false,
-          "expression": "value",
-          "selectBlank": false,
-          "selection": [
-            {
-              "v": {
-                "v": "Abscheidung der Leuchtstoffbeschichtungen mit verbesserten Eigenschaften mittels Flammensprühpyrolyse",
-                "l": "Abscheidung der Leuchtstoffbeschichtungen mit verbesserten Eigenschaften mittels Flammensprühpyrolyse"
-              }
-            }
-          ],
-          "selectError": false,
-          "invert": false,
-          "name": "title 3",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "title 3"
-        }
-      ]
-    },
-    "columnName": "subject",
-    "expression": "grel:replace(value,\"||||\",\"␟\")",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
-  },
-  {
-    "op": "core/text-transform",
     "description": "Text transform on cells in column title 3 using expression grel:if(contains(value,cells[\"title 2\"].value),\"\",value)",
     "engineConfig": {
       "mode": "row-based",
@@ -1784,32 +1751,6 @@
     "description": "Rename column title 2 to alternativeTitle",
     "oldColumnName": "title 2",
     "newColumnName": "alternativeTitle"
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column subject using expression grel:value.replace(\"||||\",\"␟\")",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "subject",
-    "expression": "grel:value.replace(\"||||\",\"␟\")",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column subjectACM using expression grel:value.replace(\"||||\",\"␟\")",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "subjectACM",
-    "expression": "grel:value.replace(\"||||\",\"␟\")",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
   },
   {
     "op": "core/text-transform",
@@ -1893,39 +1834,13 @@
   },
   {
     "op": "core/text-transform",
-    "description": "Text transform on cells in column source using expression grel:value.replace(\"||||\",\"␟\")",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "source",
-    "expression": "grel:value.replace(\"||||\",\"␟\")",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column seriesInformation using expression grel:replace(value,'||||',';')",
+    "description": "Text transform on cells in column seriesInformation using expression grel:replace(value,'␟',';')",
     "engineConfig": {
       "mode": "row-based",
       "facets": []
     },
     "columnName": "seriesInformation",
-    "expression": "grel:replace(value,'||||',';')",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column contributor using expression grel:replace(value,\"||||\",\"␟\")",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "contributor",
-    "expression": "grel:replace(value,\"||||\",\"␟\")",
+    "expression": "grel:replace(value,'␟',';')",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10

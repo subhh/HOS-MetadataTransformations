@@ -4211,7 +4211,7 @@
     "description": "Join multi-valued cells in column subject",
     "columnName": "subject",
     "keyColumnName": "identifier",
-    "separator": "||"
+    "separator": "␟"
   },
   {
     "op": "core/column-removal",
@@ -4268,7 +4268,7 @@
     "description": "Join multi-valued cells in column bothtitles",
     "columnName": "bothtitles",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/column-split",
@@ -4281,7 +4281,7 @@
     "guessCellType": true,
     "removeOriginalColumn": true,
     "mode": "separator",
-    "separator": "||||",
+    "separator": "␟",
     "regex": false,
     "maxColumns": 0
   },
@@ -4315,7 +4315,7 @@
     "description": "Join multi-valued cells in column description",
     "columnName": "description",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/column-removal",
@@ -4340,7 +4340,7 @@
     "description": "Join multi-valued cells in column dc:source",
     "columnName": "dc:source",
     "keyColumnName": "identifier",
-    "separator": "||||"
+    "separator": "␟"
   },
   {
     "op": "core/column-move",
@@ -4372,19 +4372,6 @@
     "description": "Rename column title2 to translatedTitle",
     "oldColumnName": "title2",
     "newColumnName": "translatedTitle"
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column subject using expression grel:replace(value,'||','␟')",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": []
-    },
-    "columnName": "subject",
-    "expression": "grel:replace(value,'||','␟')",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
   },
   {
     "op": "core/column-rename",
