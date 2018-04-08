@@ -48,10 +48,11 @@ date=$(date +%Y%m%d_%H%M)
 cleanup()
 {
   echo "cleanup..."
-  for i in ${pid[@]}; do
-    kill $i &
-  done
-  wait
+  # Get process group id
+  PGID=$(ps -o pgid= $$ | grep -o '[0-9]*')
+  # Kill it in a new process group
+  setsid kill -- -$PGID
+  exit 0
 }
 trap "cleanup;exit" SIGHUP SIGINT SIGQUIT SIGTERM
 
