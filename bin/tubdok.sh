@@ -202,7 +202,7 @@ if [ -n "$openrefine_url" ]; then
   echo ""
   echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
   echo ""
-  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${source}_live"
+  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${source}_live" &>/dev/null
   ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/02_transformed/${source}_${date}.tsv" --encoding=UTF-8 --projectName=${source}_live
   echo ""
 fi
