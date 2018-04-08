@@ -8,7 +8,7 @@ cd $(dirname $0)
 source="tubdok"
 oai_url="http://tubdok.tub.tuhh.de/oai/request"
 ram="2048M"
-recordPath=(Records Record metadata)
+record_path=(Records Record metadata)
 openrefine_json="$(readlink -f ../cfg/${source}/transformation.json)"
 separator="%E2%90%9F"
 
