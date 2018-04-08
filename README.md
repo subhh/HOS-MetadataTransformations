@@ -82,13 +82,17 @@ Run workflow with all data sources and load data into external Solr core
 
 ## Add a data source
 
-* Step 1: Harvest new oai endpoint and load data into OpenRefine (this has to be done manually, a script will be provided shortly)
+* Step 1: Harvest new OAI-PMH endpoint and load data into OpenRefine. Example for a new data source called `yourdatasource` with OAI-PMH endpoint `http://ediss.sub.uni-hamburg.de/oai2/oai2.php`:
 
-* Step 2: Explore the data in OpenRefine at <http://localhost:3333> and create transformations until data looks fine
+```
+./load-new-data.sh -s yourdatasource -i http://ediss.sub.uni-hamburg.de/oai2/oai2.php
+```
 
-* Step 3: [Extract the OpenRefine project history in json format](http://kb.refinepro.com/2012/06/google-refine-json-and-my-notepad-or.html) and save it in `cfg/yourdatasource/transformation.json`
+* Step 2: Explore the data in OpenRefine at <http://localhost:3333> (project `yourdatasource_new`) and create transformations until data looks fine and suits the [Solr schema](cfg/solr).
 
-* Step 4: Copy an existing bash shell script (e.g. [bin/ediss.sh](bin/ediss.sh) to `bin/yourdatasource.sh` and edit lines 8-11 (name of the source, url to oai endpoint, ram allocation for OpenRefine and xml record path of harvested data)
+* Step 3: [Extract the OpenRefine project history in json format](http://kb.refinepro.com/2012/06/google-refine-json-and-my-notepad-or.html) and save it in a subdirectory of cfg/, e.g. `cfg/yourdatasource/transformation.json`.
+
+* Step 4: Copy an existing bash shell script (e.g. [bin/ediss.sh](bin/ediss.sh) to `bin/yourdatasource.sh` and edit line 17 (name of the source, e.g. `yourdatasource`) and line 18 (url to OAI-PMH endpoint, e.g. `http://ediss.sub.uni-hamburg.de/oai2/oai2.php`). If you load a big dataset you may need to allocate more memory to OpenRefine (line 19).
 
 ```
 cp -a bin/ediss.sh bin/yourdatasource.sh
