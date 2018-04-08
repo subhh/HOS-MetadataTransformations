@@ -8,6 +8,7 @@ cd $(dirname $0)
 source="ediss"
 oai_url="http://ediss.sub.uni-hamburg.de/oai2/oai2.php"
 ram="2048M"
+record_path=(Records Record)
 openrefine_json="$(readlink -f ../cfg/${source}/transformation.json)"
 separator="%E2%90%9F"
 
@@ -125,7 +126,7 @@ echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
 echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
-$openrefine_client -P ${port} --create "${data_dir}/01_oai/${source}_${date}.xml" --recordPath=Records --recordPath=Record
+$openrefine_client -P ${port} --create "${data_dir}/01_oai/${source}_${date}.xml" $(for i in ${record_path[@]}; do echo "--recordPath=$i "; done)
 echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid}))
