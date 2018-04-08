@@ -7,7 +7,8 @@ cd $(dirname $0)
 # config
 source="tubdok"
 oai_url="http://tubdok.tub.tuhh.de/oai/request"
-openrefine_json="$(readlink -f ../cfg/tubdok/transformation.json)"
+ram="2048M"
+openrefine_json="$(readlink -f ../cfg/${source}/transformation.json)"
 separator="%E2%90%9F"
 
 # pathnames
@@ -21,31 +22,28 @@ log_dir="$(readlink -f ../log)"
 # help screen
 function usage () {
     cat <<EOF
-Usage: ./tubdok.sh [-m RAM] [-p PORT] [-s SOLRURL] [-d OPENREFINEURL]
+Usage: ./${source}.sh [-p PORT] [-s SOLRURL] [-d OPENREFINEURL]
 
 == options ==
-    -m RAM           maximum RAM for OpenRefine java heap space (default: 2048M)
-    -p PORT          PORT on which OpenRefine should listen (default: 3334)
+    -p PORT          PORT on which OpenRefine should run (default: 3334)
     -s SOLRURL       ingest data to specified Solr core (default: http://localhost:8983/solr/hos)
     -d OPENREFINEURL ingest data to external OpenRefine service (default: http://localhost:3333)
 
 == example ==
-./tubdok.sh -m 2048M -p 3334 -s http://localhost:8983/solr/hos -d http://localhost:3333
+./${source}.sh -p 3334 -s http://localhost:8983/solr/hos -d http://localhost:3333
 EOF
    exit 1
 }
 
 # defaults
-ram="2048M"
 port="3334"
 solr_url="http://localhost:8983/solr/hos"
 openrefine_url="http://localhost:3333"
 
 # get user input
-options="m:p:s:d:h"
+options="p:s:d:h"
 while getopts $options opt; do
    case $opt in
-   m )  ram=${OPTARG} ;;
    p )  port=${OPTARG} ;;
    s )  solr_url=${OPTARG} ;;
    d )  openrefine_url=${OPTARG} ;;
