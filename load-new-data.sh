@@ -104,7 +104,7 @@ if [ -n "$openrefine_url" ]; then
   echo ""
   echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
   echo ""
-  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${source}_new"
+  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${source}_new" &>/dev/null
   ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/01_oai/${source}_${date}.xml" $(for i in ${recordpath[@]}; do echo "--recordPath=$i "; done) --projectName=${source}_new
   echo ""
 fi
