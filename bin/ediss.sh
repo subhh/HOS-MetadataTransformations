@@ -68,7 +68,7 @@ multivalue_config=()
 external=${openrefine_url##*/}
 external_host=${external%:*}
 external_port=${external##*:}
-if [ -n "${config_dir// }" ] ; then jsonfiles=($(find -L "${config_dir}"/* -type f -printf "%f\n" 2>/dev/null))
+if [ -n "${config_dir// }" ] ; then jsonfiles=($(find -L "${config_dir}"/* -type f -printf "%f\n" 2>/dev/null)) ; fi
 
 # safe cleanup handler
 cleanup()
