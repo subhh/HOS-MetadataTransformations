@@ -4,21 +4,22 @@
 # change directory to location of shell script
 cd $(dirname $0)
 
-# config
-source="ediss"
-oai_url="http://ediss.sub.uni-hamburg.de/oai2/oai2.php"
-ram="2048M"
-recordpath=(Records Record)
-openrefine_json="$(readlink -f ../cfg/${source}/transformation.json)"
-separator="%E2%90%9F"
-
 # pathnames
 metha_sync="$(which metha-sync)"
 metha_cat="$(which metha-cat)"
+recordpath=(Records Record) # metha-cat default xml path to harvested records
 openrefine_server="$(readlink -f ../opt/openrefine/refine)"
 openrefine_client="$(readlink -f ../opt/openrefine-client)"
 data_dir="$(readlink -f ../data)"
 log_dir="$(readlink -f ../log)"
+
+# config
+source="ediss" # name of OpenRefine project and value for Solr field "collection"
+oai_url="http://ediss.sub.uni-hamburg.de/oai2/oai2.php" # base url of OAI-PMH endpoint
+ram="2048M" # highest OpenRefine memory load is below 2048M
+recordpath+=() # select /Records/Record/ (including /Records/Record/header)
+separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
+config_dir="$(readlink -f ../cfg/${source})" # location of OpenRefine transformation rules in json format
 
 # help screen
 function usage () {
@@ -67,6 +68,7 @@ multivalue_config=()
 external=${openrefine_url##*/}
 external_host=${external%:*}
 external_port=${external##*:}
+if [ -n "${config_dir// }" ] ; then jsonfiles=($(find -L "${config_dir}"/* -type f -printf "%f\n" 2>/dev/null))
 
 # safe cleanup handler
 cleanup()
@@ -84,7 +86,7 @@ exec &> >(tee -a "${log_dir}/${source}_${date}.log")
 # print variables
 echo "Source name:             $source"
 echo "Source OAI Server:       $oai_url"
-echo "Transformation rules:    $openrefine_json"
+echo "Transformation rules:    ${jsonfiles[*]}"
 echo "OpenRefine heap space:   $ram"
 echo "OpenRefine port:         $port"
 echo "Solr core URL:           $solr_url"
@@ -140,10 +142,13 @@ echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
 echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
-$openrefine_client -P ${port} --apply "${openrefine_json}" "${source}_${date}"
-echo ""
-ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
-memoryload+=($(ps --no-headers -o rss -p ${pid}))
+for f in "${jsonfiles[@]}" ; do
+    echo "transform ${f}..."
+    $openrefine_client -P ${port} --apply "${config_dir}/${f}" "${source}_${date}"
+    ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
+    memoryload+=($(ps --no-headers -o rss -p ${pid}))
+    echo ""
+done
 echo ""
 
 # Export data
