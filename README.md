@@ -88,7 +88,7 @@ Run workflow with all data sources and load data into external Solr core
 
 * Step 3: [Extract the OpenRefine project history in json format](http://kb.refinepro.com/2012/06/google-refine-json-and-my-notepad-or.html) and save it in `cfg/yourdatasource/transformation.json`
 
-* Step 4: Copy an existing bash shell script (e.g. [bin/ediss.sh](bin/ediss.sh) to `bin/yourdatasource.sh` and edit lines 8 (name of the source), 9 (url to oai endpoint) and 10 (RAM for OpenRefine container)
+* Step 4: Copy an existing bash shell script (e.g. [bin/ediss.sh](bin/ediss.sh) to `bin/yourdatasource.sh` and edit lines 8-11 (name of the source, url to oai endpoint, ram allocation for OpenRefine and xml record path of harvested data)
 
 ```
 cp -a bin/ediss.sh bin/yourdatasource.sh
