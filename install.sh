@@ -1,6 +1,12 @@
 #!/bin/bash
 # https://github.com/subhh/HOS-MetadataTransformations
 
+# run as root? if not, exit
+if [ "$EUID" -ne 0 ]
+  then echo "Please run installation as root"
+  exit
+fi
+
 # declare download URLs
 openrefine_server_URL="https://github.com/OpenRefine/OpenRefine/releases/download/2.8/openrefine-linux-2.8.tar.gz"
 openrefine_client_URL="https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.4/openrefine-client_0-3-4_linux-64bit"
