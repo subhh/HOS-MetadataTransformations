@@ -7,6 +7,9 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+# get user name
+user="$(who | head -n1 | awk '{print $1;}')"
+
 # declare download URLs
 openrefine_server_URL="https://github.com/OpenRefine/OpenRefine/releases/download/2.8/openrefine-linux-2.8.tar.gz"
 openrefine_client_URL="https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.4/openrefine-client_0-3-4_linux-64bit"
@@ -59,6 +62,8 @@ fi
 if [ ! -f "/etc/systemd/system/openrefine.service" ]; then
   path_openrefine=$(readlink -f opt/openrefine)
   echo "[Unit]
+User=${user}
+Group=${user}
 Description=OpenRefine
 [Service]
 ExecStart=${path_openrefine}/refine -i 0.0.0.0
@@ -87,7 +92,10 @@ if [ ! -d "opt/solr" ]; then
   ./install_solr_service.sh $(basename $solr_URL) -i ${path_opt} -d ${path_data}/solr -n
   rm $(basename $solr_URL)
   rm install_solr_service.sh
+  echo "add ${user} to group solr..."
+  adduser ${user} solr
+  echo "start Solr service..."
   sudo service solr start
-  # create solr core hos
+  echo "create Solr core hos..."
   sudo -u solr opt/solr/bin/solr create -c hos
 fi
