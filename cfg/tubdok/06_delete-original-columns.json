@@ -1,0 +1,67 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:subject",
+    "columnName": "dc:subject"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:identifier",
+    "columnName": "dc:identifier"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:type",
+    "columnName": "dc:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:creator",
+    "columnName": "dc:creator"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:rights",
+    "columnName": "dc:rights"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:description",
+    "columnName": "dc:description"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:title",
+    "columnName": "dc:title"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:language",
+    "columnName": "dc:language"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:date",
+    "columnName": "dc:date"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:relation",
+    "columnName": "dc:relation"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:contributor",
+    "columnName": "dc:contributor"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:publisher",
+    "columnName": "dc:publisher"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:source",
+    "columnName": "dc:source"
+  }
+]

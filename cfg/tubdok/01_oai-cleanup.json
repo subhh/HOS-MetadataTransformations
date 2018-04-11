@@ -1,0 +1,118 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column metadata",
+    "columnName": "metadata"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column metadata - oai_dc:dc",
+    "columnName": "metadata - oai_dc:dc"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": true,
+          "name": "metadata - oai_dc:dc - xsi:schemaLocation",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "metadata - oai_dc:dc - xsi:schemaLocation"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:subject to dc:subject",
+    "oldColumnName": "metadata - oai_dc:dc - dc:subject",
+    "newColumnName": "dc:subject"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:identifier to dc:identifier",
+    "oldColumnName": "metadata - oai_dc:dc - dc:identifier",
+    "newColumnName": "dc:identifier"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:type to dc:type",
+    "oldColumnName": "metadata - oai_dc:dc - dc:type",
+    "newColumnName": "dc:type"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:creator to dc:creator",
+    "oldColumnName": "metadata - oai_dc:dc - dc:creator",
+    "newColumnName": "dc:creator"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:rights to dc:rights",
+    "oldColumnName": "metadata - oai_dc:dc - dc:rights",
+    "newColumnName": "dc:rights"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:description to dc:description",
+    "oldColumnName": "metadata - oai_dc:dc - dc:description",
+    "newColumnName": "dc:description"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:title to dc:title",
+    "oldColumnName": "metadata - oai_dc:dc - dc:title",
+    "newColumnName": "dc:title"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:language to dc:language",
+    "oldColumnName": "metadata - oai_dc:dc - dc:language",
+    "newColumnName": "dc:language"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:date to dc:date",
+    "oldColumnName": "metadata - oai_dc:dc - dc:date",
+    "newColumnName": "dc:date"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:relation to dc:relation",
+    "oldColumnName": "metadata - oai_dc:dc - dc:relation",
+    "newColumnName": "dc:relation"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:contributor to dc:contributor",
+    "oldColumnName": "metadata - oai_dc:dc - dc:contributor",
+    "newColumnName": "dc:contributor"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:publisher to dc:publisher",
+    "oldColumnName": "metadata - oai_dc:dc - dc:publisher",
+    "newColumnName": "dc:publisher"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column metadata - oai_dc:dc - dc:source to dc:source",
+    "oldColumnName": "metadata - oai_dc:dc - dc:source",
+    "newColumnName": "dc:source"
+  }
+]

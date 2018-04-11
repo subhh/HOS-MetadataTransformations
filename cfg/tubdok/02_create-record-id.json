@@ -1,0 +1,46 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column id at index 3 based on column dc:identifier using expression grel:value.replace(\"http://dx.doi.org/\",\"\").replace(\"/\",\"_\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "metadata - oai_dc:dc - xsi:schemaLocation",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "metadata - oai_dc:dc - xsi:schemaLocation"
+        }
+      ]
+    },
+    "newColumnName": "id",
+    "columnInsertIndex": 3,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:value.replace(\"http://dx.doi.org/\",\"\").replace(\"/\",\"_\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column id to position 0",
+    "columnName": "id",
+    "index": 0
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column metadata - oai_dc:dc - xsi:schemaLocation",
+    "columnName": "metadata - oai_dc:dc - xsi:schemaLocation"
+  }
+]

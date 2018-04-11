@@ -1,0 +1,654 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column subject_ddc at index 2 based on column dc:subject using expression grel:value[4,9]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "^ddc:",
+          "name": "dc:subject",
+          "type": "text",
+          "columnName": "dc:subject"
+        }
+      ]
+    },
+    "newColumnName": "subject_ddc",
+    "columnInsertIndex": 2,
+    "baseColumnName": "dc:subject",
+    "expression": "grel:value[4,9]",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column subject_bk at index 2 based on column dc:subject using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "^\\d\\d\\.\\d\\d$",
+          "name": "dc:subject",
+          "type": "text",
+          "columnName": "dc:subject"
+        }
+      ]
+    },
+    "newColumnName": "subject_bk",
+    "columnInsertIndex": 2,
+    "baseColumnName": "dc:subject",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column subject_acm at index 2 based on column dc:subject using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "^\\w\\.\\d\\..$",
+          "name": "dc:subject",
+          "type": "text",
+          "columnName": "dc:subject"
+        }
+      ]
+    },
+    "newColumnName": "subject_acm",
+    "columnInsertIndex": 2,
+    "baseColumnName": "dc:subject",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column identifier at index 6 based on column dc:identifier using expression grel:value.replace(\"http://dx.doi.org/\",\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "doi.org",
+          "name": "dc:identifier",
+          "type": "text",
+          "columnName": "dc:identifier"
+        }
+      ]
+    },
+    "newColumnName": "identifier",
+    "columnInsertIndex": 6,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:value.replace(\"http://dx.doi.org/\",\"\").replace(\"https://doi.org/\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column identifierType at index 7 based on column identifier using expression grel:\"DOI\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "doi.org",
+          "name": "dc:identifier",
+          "type": "text",
+          "columnName": "dc:identifier"
+        }
+      ]
+    },
+    "newColumnName": "identifierType",
+    "columnInsertIndex": 7,
+    "baseColumnName": "identifier",
+    "expression": "grel:\"DOI\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column alternateIdentifier at index 6 based on column dc:identifier using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "urn:",
+          "name": "dc:identifier",
+          "type": "text",
+          "columnName": "dc:identifier"
+        }
+      ]
+    },
+    "newColumnName": "alternateIdentifier",
+    "columnInsertIndex": 6,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column alternateIdentifierType at index 7 based on column alternateIdentifier using expression grel:\"URN\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "urn:",
+          "name": "dc:identifier",
+          "type": "text",
+          "columnName": "dc:identifier"
+        }
+      ]
+    },
+    "newColumnName": "alternateIdentifierType",
+    "columnInsertIndex": 7,
+    "baseColumnName": "alternateIdentifier",
+    "expression": "grel:\"URN\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column resourceType at index 11 based on column dc:type using expression grel:value.replace(\"doc-type:\",\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "resourceType",
+    "columnInsertIndex": 11,
+    "baseColumnName": "dc:type",
+    "expression": "grel:value.replace(\"doc-type:\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column resourceTypeGeneral at index 12 based on column resourceType using expression grel:\"Text\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "resourceTypeGeneral",
+    "columnInsertIndex": 12,
+    "baseColumnName": "resourceType",
+    "expression": "grel:\"Text\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column creatorName at index 14 based on column dc:creator using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "creatorName",
+    "columnInsertIndex": 14,
+    "baseColumnName": "dc:creator",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rightsURI at index 16 based on column dc:rights using expression grel:value.replace(\"CC \",\"https://creativecommons.org/licenses/\").replace(\"http:\",\"https:\").toLowercase().replace(\" \",\"\\/\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "rightsURI",
+    "columnInsertIndex": 16,
+    "baseColumnName": "dc:rights",
+    "expression": "grel:value.replace(\"CC \",\"https://creativecommons.org/licenses/\").replace(\"http:\",\"https:\").toLowercase().replace(\" \",\"\\/\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rightsURI using expression grel:\"https://creativecommons.org/licenses/\" + value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "^by",
+          "name": "rightsURI",
+          "type": "text",
+          "columnName": "rightsURI"
+        }
+      ]
+    },
+    "columnName": "rightsURI",
+    "expression": "grel:\"https://creativecommons.org/licenses/\" + value",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rightsURI using expression grel:if(value.contains(\".0\"),value,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "\\d",
+          "name": "rights",
+          "type": "text",
+          "columnName": "rights"
+        }
+      ]
+    },
+    "columnName": "rightsURI",
+    "expression": "grel:if(value.contains(\".0\"),value,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rights at index 16 based on column dc:rights using expression grel:if(value.contains(\"creativecommons\"),value.replace(\"http:\",\"https:\").replace(\"https://creativecommons.org/licenses\",\"CC \").toUppercase().replace(\"\\/\",\" \").trim(),value)",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "rights",
+    "columnInsertIndex": 16,
+    "baseColumnName": "dc:rights",
+    "expression": "grel:if(value.contains(\"creativecommons\"),value.replace(\"http:\",\"https:\").replace(\"https://creativecommons.org/licenses\",\"CC \").toUppercase().replace(\"\\/\",\" \").trim(),value)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rights using expression grel:\"CC \" + value.toUppercase()",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "^by",
+          "name": "rights",
+          "type": "text",
+          "columnName": "rights"
+        }
+      ]
+    },
+    "columnName": "rights",
+    "expression": "grel:\"CC \" + value.toUppercase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rights using expression grel:if(value.contains(\".0\"),value,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "\\d",
+          "name": "rights",
+          "type": "text",
+          "columnName": "rights"
+        }
+      ]
+    },
+    "columnName": "rights",
+    "expression": "grel:if(value.contains(\".0\"),value,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column description at index 19 based on column dc:description using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "description",
+    "columnInsertIndex": 19,
+    "baseColumnName": "dc:description",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column otherDescription at index 19 based on column dc:description using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "otherDescription",
+    "columnInsertIndex": 19,
+    "baseColumnName": "dc:description",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column descriptionType at index 21 based on column description using expression grel:\"Abstract\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "description",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "description"
+        }
+      ]
+    },
+    "newColumnName": "descriptionType",
+    "columnInsertIndex": 21,
+    "baseColumnName": "description",
+    "expression": "grel:\"Abstract\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column title at index 23 based on column dc:title using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "title",
+    "columnInsertIndex": 23,
+    "baseColumnName": "dc:title",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column alternativeTitle at index 23 based on column dc:title using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "alternativeTitle",
+    "columnInsertIndex": 23,
+    "baseColumnName": "dc:title",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column language at index 26 based on column dc:language using expression grel:value.replace(\"en_US\",\"eng\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "language",
+    "columnInsertIndex": 26,
+    "baseColumnName": "dc:language",
+    "expression": "grel:value.replace(\"en_US\",\"eng\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column date at index 28 based on column dc:date using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "caseSensitive": false,
+          "query": "^\\d{4}",
+          "name": "dc:date",
+          "type": "text",
+          "columnName": "dc:date"
+        }
+      ]
+    },
+    "newColumnName": "date",
+    "columnInsertIndex": 28,
+    "baseColumnName": "dc:date",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column publicationYear at index 28 based on column date using expression grel:value[0,4]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "publicationYear",
+    "columnInsertIndex": 28,
+    "baseColumnName": "date",
+    "expression": "grel:value[0,4]",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column dateType at index 29 based on column date using expression grel:\"Issued\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "date",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "date"
+        }
+      ]
+    },
+    "newColumnName": "dateType",
+    "columnInsertIndex": 29,
+    "baseColumnName": "date",
+    "expression": "grel:\"Issued\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column seriesInformation at index 32 based on column dc:relation using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "seriesInformation",
+    "columnInsertIndex": 32,
+    "baseColumnName": "dc:relation",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column seriesInformation",
+    "columnName": "seriesInformation",
+    "keyColumnName": "id",
+    "separator": "; "
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column contributorName at index 34 based on column dc:contributor using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "contributorName",
+    "columnInsertIndex": 34,
+    "baseColumnName": "dc:contributor",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column publisher at index 36 based on column dc:publisher using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "publisher",
+    "columnInsertIndex": 36,
+    "baseColumnName": "dc:publisher",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column source at index 38 based on column dc:source using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "source",
+    "columnInsertIndex": 38,
+    "baseColumnName": "dc:source",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column url at index 9 based on column identifier using expression grel:\"https://doi.org/\" + value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "url",
+    "columnInsertIndex": 9,
+    "baseColumnName": "identifier",
+    "expression": "grel:\"https://doi.org/\" + value",
+    "onError": "set-to-blank"
+  }
+]
