@@ -638,15 +638,35 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column language at index 26 based on column dc:language using expression grel:value.replace(\"en_US\",\"eng\")",
+    "description": "Create column language at index 26 based on column dc:language using expression grel:value.replace(\"en_US\",\"en\").replace(\"eng\",\"en\").replace(\"ger\",\"de\").replace(\"mul\",\"de\")",
     "engineConfig": {
       "mode": "row-based",
-      "facets": []
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
     },
     "newColumnName": "language",
     "columnInsertIndex": 26,
     "baseColumnName": "dc:language",
-    "expression": "grel:value.replace(\"en_US\",\"eng\")",
+    "expression": "grel:value.replace(\"en_US\",\"en\").replace(\"eng\",\"en\").replace(\"ger\",\"de\").replace(\"mul\",\"de\")",
     "onError": "set-to-blank"
   },
   {
