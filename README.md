@@ -2,11 +2,11 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6d9c8171289f424b903d22682663bb6d)](https://www.codacy.com/app/felixlohmeier/HOS-MetadataTransformations?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=subhh/HOS-MetadataTransformations&amp;utm_campaign=Badge_Grade)
 
-Automated workflow for harvesting, transforming and indexing of bibliographic metadata using [metha](https://github.com/miku/metha), [OpenRefine](http://openrefine.org/) and [Solr](http://lucene.apache.org/solr/). Part of the [Hamburg Open Science](http://www.hamburg.de/openscience) "Schaufenster" software stack.
+Automated workflow for harvesting, transforming and indexing of metadata using [metha](https://github.com/miku/metha), [OpenRefine](http://openrefine.org/) and [Solr](http://lucene.apache.org/solr/). Part of the [Hamburg Open Science](http://www.hamburg.de/openscience) "Schaufenster" software stack.
 
 ## Use case
 
-1. Harvest bibliographic metadata in different standards (dublin core, datacite, ...) from multiple [OAI-PMH](https://www.openarchives.org/pmh/) endpoints
+1. Harvest metadata in different standards (dublin core, datacite, ...) from multiple [OAI-PMH](https://www.openarchives.org/pmh/) endpoints
 2. Transform harvested data with specific rules for each source to produce normalized and enriched data
 3. Load transformed data into a Solr search index (which serves as a backend for a discovery system, e.g. [HOS-TYPO3-find](https://github.com/subhh/HOS-TYPO3-find))
 
