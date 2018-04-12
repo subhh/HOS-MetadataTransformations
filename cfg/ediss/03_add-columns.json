@@ -290,12 +290,12 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column rightsURL at index 17 based on column dc:rights using expression grel:value",
+    "description": "Create column rightsURI at index 17 based on column dc:rights using expression grel:value",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
-    "newColumnName": "rightsURL",
+    "newColumnName": "rightsURI",
     "columnInsertIndex": 17,
     "baseColumnName": "dc:rights",
     "expression": "grel:value",
