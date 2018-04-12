@@ -17,12 +17,12 @@ metha_URL="https://github.com/miku/metha/releases/download/v0.1.24/metha_0.1.24_
 solr_URL="http://archive.apache.org/dist/lucene/solr/7.1.0/solr-7.1.0.tgz"
 
 # create directories
-sudo -u $(who | awk '{print $1}') mkdir -p data
-sudo -u $(who | awk '{print $1}') mkdir -p data/01_oai
-sudo -u $(who | awk '{print $1}') mkdir -p data/02_transformed
-sudo -u $(who | awk '{print $1}') mkdir -p data/solr
-sudo -u $(who | awk '{print $1}') mkdir -p log
-sudo -u $(who | awk '{print $1}') mkdir -p opt
+sudo -u $user mkdir -p data
+sudo -u $user mkdir -p data/01_oai
+sudo -u $user mkdir -p data/02_transformed
+sudo -u $user mkdir -p data/solr
+sudo -u $user mkdir -p log
+sudo -u $user mkdir -p opt
 
 # install JRE
 JAVA="$(which java 2> /dev/null)"
@@ -47,14 +47,14 @@ fi
 # install OpenRefine
 if [ ! -d "opt/openrefine" ]; then
     echo "Download OpenRefine..."
-    mkdir -p opt/openrefine
-    wget $openrefine_server_URL
+    sudo -u $user mkdir -p opt/openrefine
+    sudo -u $user wget $openrefine_server_URL
     echo "Install OpenRefine in subdirectory openrefine..."
-    tar -xzf "$(basename $openrefine_server_URL)" -C opt/openrefine --strip 1 --totals
-    rm "$(basename $openrefine_server_URL)"
-    sed -i '$ a JAVA_OPTIONS=-Drefine.headless=true' opt/openrefine/refine.ini
-    sed -i 's/#REFINE_AUTOSAVE_PERIOD=60/REFINE_AUTOSAVE_PERIOD=1440/' opt/openrefine/refine.ini
-    sed -i 's/-Xms$REFINE_MIN_MEMORY/-Xms$REFINE_MEMORY/' opt/openrefine/refine
+    sudo -u $user tar -xzf "$(basename $openrefine_server_URL)" -C opt/openrefine --strip 1 --totals
+    sudo -u $user rm "$(basename $openrefine_server_URL)"
+    sudo -u $user sed -i '$ a JAVA_OPTIONS=-Drefine.headless=true' opt/openrefine/refine.ini
+    sudo -u $user sed -i 's/#REFINE_AUTOSAVE_PERIOD=60/REFINE_AUTOSAVE_PERIOD=1440/' opt/openrefine/refine.ini
+    sudo -u $user sed -i 's/-Xms$REFINE_MIN_MEMORY/-Xms$REFINE_MEMORY/' opt/openrefine/refine
     echo ""
 fi
 
@@ -78,7 +78,7 @@ fi
 # install OpenRefine client
 if [ ! -f "opt/openrefine-client" ]; then
     echo "Download OpenRefine client..."
-    wget -O opt/openrefine-client $openrefine_client_URL
+    sudo -u $user wget -O opt/openrefine-client $openrefine_client_URL
     chmod +x opt/openrefine-client
     echo ""
 fi
@@ -92,7 +92,9 @@ if [ ! -d "opt/solr" ]; then
   ./install_solr_service.sh $(basename $solr_URL) -i ${path_opt} -d ${path_data}/solr -n
   rm $(basename $solr_URL)
   rm install_solr_service.sh
-  echo "add ${user} to group solr..."
+  echo "make ${user} owner of opt/solr..."
+  sudo chown -R $user:$user opt
+  # add local user to group solr (takes effect on next login)
   adduser ${user} solr
   echo "start Solr service..."
   sudo service solr start
