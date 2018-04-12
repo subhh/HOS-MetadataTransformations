@@ -211,7 +211,7 @@
         "to": "Book"
       }
     ]
-  }
+  },
   {
     "op": "core/text-transform",
     "description": "Text transform on cells in column rights using expression grel:value.replace(\"CC  \",\"CC \")",
@@ -288,6 +288,126 @@
           "https://creativecommons.org/licenses/by-nc-nd/2.0/␟https://creativecommons.org/licenses/by-nc-nd/2.0"
         ],
         "to": "https://creativecommons.org/licenses/by-nc-nd/2.0"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rightsURI",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "rightsURI",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "https://creativecommons.org/licenses/by/4.0␟https://creativecommons.org/licenses/by-nc/4.0"
+        ],
+        "to": "https://creativecommons.org/licenses/by-nc/4.0"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rightsURI",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "rightsURI",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "https://creativecommons.org/licenses/by/4.0␟https://creativecommons.org/licenses/by/3.0"
+        ],
+        "to": "https://creativecommons.org/licenses/by/4.0"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "info:eu-repo/semantics/openAccess␟individuelle Lizenz"
+        ],
+        "to": "info:eu-repo/semantics/openAccess"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "info:eu-repo/semantics/openAccess␟CC BY-SA"
+        ],
+        "to": "info:eu-repo/semantics/openAccess"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "CC BY 4.0␟CC BY-NC 4.0"
+        ],
+        "to": "CC BY-NC 4.0"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column rights",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "CC BY 3.0␟CC BY 4.0"
+        ],
+        "to": "CC BY 4.0"
       }
     ]
   }
