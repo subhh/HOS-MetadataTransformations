@@ -1,0 +1,72 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:subject",
+    "columnName": "dc:subject"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:identifier",
+    "columnName": "dc:identifier"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:publisher",
+    "columnName": "dc:publisher"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:title",
+    "columnName": "dc:title"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:creator",
+    "columnName": "dc:creator"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:date",
+    "columnName": "dc:date"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:type",
+    "columnName": "dc:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:format",
+    "columnName": "dc:format"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - header - setSpec",
+    "columnName": "Record - header - setSpec"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - header - datestamp",
+    "columnName": "Record - header - datestamp"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:description",
+    "columnName": "dc:description"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:language",
+    "columnName": "dc:language"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - metadata - oai_dc:dc - dc:source",
+    "columnName": "Record - metadata - oai_dc:dc - dc:source"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column dc:rights",
+    "columnName": "dc:rights"
+  }
+]

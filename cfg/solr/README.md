@@ -14,7 +14,7 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 
 | Field          | Type           | Multivalued  | DataCite Field | Description |
 | -------------------- |:-------------:|:-----:|:--------------------|:----------------------------------------|
-| abstract | text_general      | | description with descriptionType abstract | |
+| abstract | text_general      | x | description with descriptionType abstract | |
 | alternateIdentifier | string | x | | |
 | alternateIdentifierType | string | x | | |
 | alternativeTitle | text_general      | x | | |
@@ -42,15 +42,15 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | resourceTypeGeneral | string | | | |
 | rights | text_general | | | single valued despite DataCite Scheme |
 | rightsURI | string | | | single valued despite DataCite Scheme |
-| seriesInformation | text_general | | description with type seriesInformation | |
+| seriesInformation | text_general | x | description with type "SeriesInformation" | |
 | subject | text_general | x | | |
 | subject_acm | string | x | subject with subjectScheme "ACM" | ACM classifiation |
 | subject_bk | string | x | subject with subjectScheme "BK" and subjectURI pointing to the classification | Basisklassification (a german classification )|
 | subject_ddc | string | x | subject with subjectScheme "DDC" and subjectURI pointing to the classification | Dewey |
 | subtitle | text_general | x | | |
 | subtitleLang | string | x | | |
-| tableOfContents | text_general | | description with type tableOfContents | |
-| technicalInfo | text_general | x | description with type technicalInfo | |
+| tableOfContents | text_general | | description with type "TableOfContents" | |
+| technicalInfo | text_general | x | description with type "TechnicalInfo" | |
 | title | text_general | | | |
 | titleLang | string | | | |
 | translatedTitle | text_general | x | | |

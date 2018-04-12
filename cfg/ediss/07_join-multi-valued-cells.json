@@ -1,0 +1,37 @@
+[
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column subject",
+    "columnName": "subject",
+    "keyColumnName": "id",
+    "separator": "␟"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column url",
+    "columnName": "url",
+    "keyColumnName": "id",
+    "separator": "␟"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column creatorName",
+    "columnName": "creatorName",
+    "keyColumnName": "id",
+    "separator": "␟"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column abstract",
+    "columnName": "abstract",
+    "keyColumnName": "id",
+    "separator": "␟"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column seriesInformation",
+    "columnName": "seriesInformation",
+    "keyColumnName": "id",
+    "separator": "␟"
+  }
+]

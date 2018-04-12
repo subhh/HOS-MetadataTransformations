@@ -1,0 +1,688 @@
+[
+ {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column publisher using expression grel:C)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "grel:if(isNotNull(value.match(/.+\\.\\s.+/)),value.split(\".\")[0],value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg"
+        ],
+        "to": "Universität Hamburg, "
+      }
+    ]
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column publisher",
+    "columnName": "publisher",
+    "keyColumnName": "id",
+    "separator": ""
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, "
+        ],
+        "to": "Universität Hamburg"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, BiologieBiologie"
+        ],
+        "to": "Universität Hamburg, Biologie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, BiologieUniversität Hamburg, Wirtschaftswissenschaften"
+        ],
+        "to": "Universität Hamburg, Biologie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, ChemieMedizin"
+        ],
+        "to": "Universität Hamburg, Chemie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, MedizinChemie"
+        ],
+        "to": "Universität Hamburg, Medizin"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, MedizinMedizin"
+        ],
+        "to": "Universität Hamburg, Medizin"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, PhysikInformatik"
+        ],
+        "to": "Universität Hamburg, Physik"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column publisher",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, SozialwissenschaftenMedizin"
+        ],
+        "to": "Universität Hamburg, Sozialwissenschaften"
+      }
+    ]
+  },  
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column url using expression grel:if(value.startsWith(\"urn\"),\"http://nbn-resolving.de/\" + value,value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "url",
+    "expression": "grel:if(value.startsWith(\"urn\"),\"http://nbn-resolving.de/\" + value,value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+    {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "eng"
+        ],
+        "to": "en"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ger"
+        ],
+        "to": "de"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "rus"
+        ],
+        "to": "ru"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "fre"
+        ],
+        "to": "fr"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "mis"
+        ],
+        "to": "mul"
+      }
+    ]
+  },
+      {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column titleLang",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "titleLang",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "eng"
+        ],
+        "to": "en"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column titleLang",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "titleLang",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ger"
+        ],
+        "to": "de"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column titleLang",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "titleLang",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "rus"
+        ],
+        "to": "ru"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column titleLang",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "titleLang",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "fre"
+        ],
+        "to": "fr"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column titleLang",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "titleLang",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "mis"
+        ],
+        "to": "mul"
+      }
+    ]
+  },
+    {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Thesis.Doctoral"
+        ],
+        "to": "Dissertation"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Thesis.Habilitation"
+        ],
+        "to": "Habilitation"
+      }
+    ]
+  },  
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column geoLocationPoint using expression grel:if(isNotNull(value.match(/.+\\.\\s.+/)),value.split(\".\")[0],value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "grel:if(isNotNull(value.match(/.+\\.\\s.+/)),value.split(\".\")[0],value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg"
+        ],
+        "to": "Universität Hamburg, "
+      }
+    ]
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column geoLocationPoint",
+    "columnName": "geoLocationPoint",
+    "keyColumnName": "id",
+    "separator": ""
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, "
+        ],
+        "to": "Universität Hamburg"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, BiologieBiologie"
+        ],
+        "to": "Universität Hamburg, Biologie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, BiologieUniversität Hamburg, Wirtschaftswissenschaften"
+        ],
+        "to": "Universität Hamburg, Biologie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, ChemieMedizin"
+        ],
+        "to": "Universität Hamburg, Chemie"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, MedizinChemie"
+        ],
+        "to": "Universität Hamburg, Medizin"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, MedizinMedizin"
+        ],
+        "to": "Universität Hamburg, Medizin"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, PhysikInformatik"
+        ],
+        "to": "Universität Hamburg, Physik"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Universität Hamburg, SozialwissenschaftenMedizin"
+        ],
+        "to": "Universität Hamburg, Sozialwissenschaften"
+      }
+    ]
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column university using expression grel:if(isNotNull(value.match(/.+\\.\\s.+/)),\"\",value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "university",
+    "expression": "grel:if(isNotNull(value.match(/.+\\.\\s.+/)),\"\",value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column institute",
+    "columnName": "institute",
+    "keyColumnName": "id",
+    "separator": "␟"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column institute using expression grel:split(value,\"␟\")[0]",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "institute",
+    "expression": "grel:split(value,\"␟\")[0]",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
