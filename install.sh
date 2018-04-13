@@ -103,4 +103,4 @@ sudo /etc/init.d/solr status
 
 # create Solr core
 echo "create Solr core hos..."
-sudo -u solr $(cat /etc/init.d/solr | grep SOLR_INSTALL_DIR= | sed 's/\"//g' | sed 's/SOLR_INSTALL_DIR=//')/bin/solr create -c hos
+sudo -u solr $(grep SOLR_INSTALL_DIR= /etc/init.d/solr | sed 's/\"//g' | sed 's/SOLR_INSTALL_DIR=//')/bin/solr create -c hos
