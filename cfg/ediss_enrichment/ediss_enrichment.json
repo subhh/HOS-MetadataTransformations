@@ -1,0 +1,1108 @@
+[
+  {
+    "op": "core/column-rename",
+    "description": "Rename column xMetaDiss:xMetaDiss - ddb:identifier to urlprefix",
+    "oldColumnName": "xMetaDiss:xMetaDiss - ddb:identifier",
+    "newColumnName": "urlprefix"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column xMetaDiss:xMetaDiss - ddb:fileProperties - ddb:fileName to filename",
+    "oldColumnName": "xMetaDiss:xMetaDiss - ddb:fileProperties - ddb:fileName",
+    "newColumnName": "filename"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column filename using expression grel:if(toLowercase(value).contains(\".pdf\"),value,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "grel:if(toLowercase(value).contains(\".pdf\"),value,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "zusammen.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Zusammen.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Zusammenfassung.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Zusammen_deutsch.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Zusammen_englisch.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "zusammenfassung.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Abstract.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "abstract.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Summary.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ABSTRACT.PDF"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "zusammen_englisch.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Kurzfassung.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "summary.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Anhang.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "zusammen.PDF"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Zusammen.PDF"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ZUSAMMEN.PDF"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "1_Summary.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "2abstract.PDF"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "2ABSTRACT.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "4Erklaerung.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Appendix.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Anlage.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "anhang.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Anhang_A_Carsten_Unger_Pflichtexemplar.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "Anhang_Staatsbibo_07-02-08.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "AnhangDatenCD.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "abstracts.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "zusam.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column filename",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "ZUSAMM.pdf"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column filename using expression grel:if(toLowercase(value).startsWith(\"zusammen\"),\"\",value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "grel:if(toLowercase(value).startsWith(\"zusammen\"),\"\",value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column filename using expression grel:if(toLowercase(value).startsWith(\"abstract\"),\"\",value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "grel:if(toLowercase(value).startsWith(\"abstract\"),\"\",value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column filename",
+    "columnName": "filename",
+    "keyColumnName": "xMetaDiss:xMetaDiss - xsi:schemaLocation",
+    "separator": "␟"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column filename using expression grel:value.split(\"␟\")[0]",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "filename",
+    "expression": "grel:value.split(\"␟\")[0]",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column id at index 38 based on column xMetaDiss:xMetaDiss - dc:identifier using expression grel:value.replace(\":\",\"_\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": ".pdf",
+          "name": "xMetaDiss:xMetaDiss - ddb:fileProperties - ddb:fileName",
+          "type": "text",
+          "columnName": "xMetaDiss:xMetaDiss - ddb:fileProperties - ddb:fileName"
+        }
+      ]
+    },
+    "newColumnName": "id",
+    "columnInsertIndex": 38,
+    "baseColumnName": "xMetaDiss:xMetaDiss - dc:identifier",
+    "expression": "grel:value.replace(\":\",\"_\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column filename",
+    "columnName": "filename",
+    "keyColumnName": "xMetaDiss:xMetaDiss - xsi:schemaLocation",
+    "separator": "␟"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - xsi:schemaLocation",
+    "columnName": "xMetaDiss:xMetaDiss - xsi:schemaLocation"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:source - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:source - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:source",
+    "columnName": "xMetaDiss:xMetaDiss - dc:source"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:alternative - ddb:type",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:alternative - ddb:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:alternative - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:alternative - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:alternative - lang",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:alternative - lang"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:alternative",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:alternative"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:abstract",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:abstract"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:abstract - ddb:type",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:abstract - ddb:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:abstract - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:abstract - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:abstract - lang",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:abstract - lang"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:dateAccepted - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:dateAccepted - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:dateAccepted",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:dateAccepted"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:academicTitle",
+    "columnName": "xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:academicTitle"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - pc:personEnteredUnderGivenName",
+    "columnName": "xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - pc:personEnteredUnderGivenName"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - pc:prefix",
+    "columnName": "xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - pc:prefix"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - pc:foreName",
+    "columnName": "xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - pc:foreName"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - pc:surName",
+    "columnName": "xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - pc:surName"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:contributor - pc:person - pc:name - type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:contributor - thesis:role",
+    "columnName": "xMetaDiss:xMetaDiss - dc:contributor - thesis:role"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:contributor - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:contributor - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - ddb:identifier - ddb:type",
+    "columnName": "xMetaDiss:xMetaDiss - ddb:identifier - ddb:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - ddb:fileNumber",
+    "columnName": "xMetaDiss:xMetaDiss - ddb:fileNumber"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:issued - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:issued - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:issued",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:issued"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - thesis:degree - thesis:grantor - cc:universityOrInstitution - cc:place",
+    "columnName": "xMetaDiss:xMetaDiss - thesis:degree - thesis:grantor - cc:universityOrInstitution - cc:place"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - thesis:degree - thesis:grantor - cc:universityOrInstitution - cc:name",
+    "columnName": "xMetaDiss:xMetaDiss - thesis:degree - thesis:grantor - cc:universityOrInstitution - cc:name"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - thesis:degree - thesis:grantor - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - thesis:degree - thesis:grantor - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - thesis:degree - thesis:level",
+    "columnName": "xMetaDiss:xMetaDiss - thesis:degree - thesis:level"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:identifier - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:identifier - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - ddb:transfer",
+    "columnName": "xMetaDiss:xMetaDiss - ddb:transfer"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:publisher - cc:universityOrInstitution - cc:place",
+    "columnName": "xMetaDiss:xMetaDiss - dc:publisher - cc:universityOrInstitution - cc:place"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - ddb:transfer - ddb:type",
+    "columnName": "xMetaDiss:xMetaDiss - ddb:transfer - ddb:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:publisher - cc:universityOrInstitution - cc:name",
+    "columnName": "xMetaDiss:xMetaDiss - dc:publisher - cc:universityOrInstitution - cc:name"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:publisher - cc:address - cc:Scheme",
+    "columnName": "xMetaDiss:xMetaDiss - dc:publisher - cc:address - cc:Scheme"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:publisher - cc:address",
+    "columnName": "xMetaDiss:xMetaDiss - dc:publisher - cc:address"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:publisher - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:publisher - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - ddb:contact - ddb:contactID",
+    "columnName": "xMetaDiss:xMetaDiss - ddb:contact - ddb:contactID"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:language - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:language - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:language",
+    "columnName": "xMetaDiss:xMetaDiss - dc:language"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - ddb:rights - ddb:kind",
+    "columnName": "xMetaDiss:xMetaDiss - ddb:rights - ddb:kind"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:rights - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:rights - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:rights",
+    "columnName": "xMetaDiss:xMetaDiss - dc:rights"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:academicTitle",
+    "columnName": "xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:academicTitle"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - pc:personEnteredUnderGivenName",
+    "columnName": "xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - pc:personEnteredUnderGivenName"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - pc:prefix",
+    "columnName": "xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - pc:prefix"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - pc:foreName",
+    "columnName": "xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - pc:foreName"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - pc:surName",
+    "columnName": "xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - pc:surName"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:creator - pc:person - pc:name - type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:creator - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:creator - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:medium - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:medium - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dcterms:medium",
+    "columnName": "xMetaDiss:xMetaDiss - dcterms:medium"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - ddb:fileProperties - ddb:fileSize",
+    "columnName": "xMetaDiss:xMetaDiss - ddb:fileProperties - ddb:fileSize"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - ddb:fileProperties - ddb:fileID",
+    "columnName": "xMetaDiss:xMetaDiss - ddb:fileProperties - ddb:fileID"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - ddb:fileProperties",
+    "columnName": "xMetaDiss:xMetaDiss - ddb:fileProperties"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:title - ddb:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:title - ddb:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:title - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:title - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:title - lang",
+    "columnName": "xMetaDiss:xMetaDiss - dc:title - lang"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:title",
+    "columnName": "xMetaDiss:xMetaDiss - dc:title"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:type - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:type - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:subject - xsi:type",
+    "columnName": "xMetaDiss:xMetaDiss - dc:subject - xsi:type"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:subject",
+    "columnName": "xMetaDiss:xMetaDiss - dc:subject"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column xMetaDiss:xMetaDiss - dc:identifier",
+    "columnName": "xMetaDiss:xMetaDiss - dc:identifier"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column id to position 0",
+    "columnName": "id",
+    "index": 0
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "filename",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "filename"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column fulltextURL at index 3 based on column urlprefix using expression grel:value + \"pdf/\" + cells['filename'].value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "fulltextURL",
+    "columnInsertIndex": 3,
+    "baseColumnName": "urlprefix",
+    "expression": "grel:value + \"pdf/\" + cells['filename'].value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column filename",
+    "columnName": "filename"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column urlprefix",
+    "columnName": "urlprefix"
+  }
+]
