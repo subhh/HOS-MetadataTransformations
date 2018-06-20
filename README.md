@@ -87,7 +87,7 @@ export HOSSOLRPASS=
 * Step 1: Harvest new OAI-PMH endpoint and load data into OpenRefine. Example for a new data source called `yourdatasource` with OAI-PMH endpoint `http://ediss.sub.uni-hamburg.de/oai2/oai2.php`:
 
 ```
-./load-new-data.sh -s yourdatasource -i http://ediss.sub.uni-hamburg.de/oai2/oai2.php
+./load-new-data.sh -c yourdatasource -i http://ediss.sub.uni-hamburg.de/oai2/oai2.php
 ```
 
 * Step 2: Explore the data in OpenRefine at <http://localhost:3333> (project `yourdatasource_new`) and create transformations until data looks fine and suits the [Solr schema](cfg/solr).
