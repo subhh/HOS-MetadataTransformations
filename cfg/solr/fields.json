@@ -108,6 +108,12 @@
       "stored":true
     },
     {
+      "name":"id",
+      "type":"string",
+      "indexed":true,
+      "stored":true
+    },
+    {
       "name":"identifier",
       "type":"string",
       "indexed":true,
