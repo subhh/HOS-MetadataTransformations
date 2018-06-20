@@ -7,7 +7,7 @@ function usage () {
 Usage: ./init-solr-schema.sh [-s SOLRURL]
 
 == options ==
-    -s SOLRURL       URL to Solr core (default: http://localhost:8983/solr/hos)
+    -s SOLR       URL to Solr core (default: http://localhost:8983/solr/hos)
 
 == example ==
 ./init-solr-schema.sh -s http://localhost:8983/solr/hos
@@ -31,25 +31,25 @@ while getopts $options opt; do
 done
 shift $((OPTIND - 1))
 
+# get sysenv
+if [ -n "$HOSSOLRUSER" ]; then solr_credentials="-u $HOSSOLRUSER:$HOSSOLRPASS"; fi
+
 # declare additional variables
 path_config=$(readlink -f cfg/solr)
+solr_base=${solr_url%/*}
+solr_core=${solr_url##*/}
 
 # delete existing data
 echo "delete existing data..."
-curl --silent "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>*:*</query></delete>" 1>/dev/null
+curl $solr_credentials -sS "${solr_base}/${solr_core}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>*:*</query></delete>" 1>/dev/null
 
-# delete fields
-echo "delete existing fields..."
-curl -X POST -H 'Content-type:application/json' --data-binary "{ \"delete-field\" : [ $(curl --silent "http://localhost:8983/solr/hos/schema/fields" | grep name | grep -v "_root_\|_text_\|_version_\|\"id\"" | sed 's/,/}/g' | sed 's/\"name\"/{\"name\"/' | sed 's/$/,/' | sed '$ s/,//') ] }" ${solr_url}/schema
+# delete fields and copy fields
+echo "delete fields and copy fields..."
+curl $solr_credentials -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"delete-copy-field\" : $(curl $solr_credentials --silent "${solr_base}/${solr_core}/schema/copyfields" | jq '[.copyFields[] | {source: .source, dest: .dest}]') }" ${solr_base}/${solr_core}/schema
+curl $solr_credentials -sS "${solr_base}/admin/cores?action=RELOAD&core=${solr_core}" 1>/dev/null
+curl $solr_credentials -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"delete-field\" : $(curl $solr_credentials --silent "${solr_base}/${solr_core}/schema/fields" | jq '[ .fields[] | {name: .name } ]') }" ${solr_base}/${solr_core}/schema
 
-# add fields
-echo "add fields..."
-curl -X POST -H 'Content-type:application/json' --data-binary "{ \"add-field\" : $(< ${path_config}/fields.json) }" ${solr_url}/schema
-
-# delete fields
-echo "delete existing copy fields..."
-curl -X POST -H 'Content-type:application/json' --data-binary "{ \"delete-copy-field\" : [ $(curl --silent "http://localhost:8983/solr/hos/schema/copyfields" | grep name | grep -v "_root_\|_text_\|_version_\|\"id\"" | sed 's/,/}/g' | sed 's/\"name\"/{\"name\"/' | sed 's/$/,/' | sed '$ s/,//') ] }" ${solr_url}/schema
-
-# add copy fields
-echo "add copy fields..."
-curl -X POST -H 'Content-type:application/json' --data-binary "{ \"add-copy-field\" : $(< ${path_config}/copyfields.json) }" ${solr_url}/schema
+# add fields and copy fields
+echo "add fields and copy fields..."
+curl $solr_credentials -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"add-field\" : $(< ${path_config}/fields.json) }" ${solr_base}/${solr_core}/schema
+curl $solr_credentials -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"add-copy-field\" : $(< ${path_config}/copyfields.json) }" ${solr_base}/${solr_core}/schema

@@ -1,5 +1,25 @@
 [
     {
+      "name":"_root_",
+      "type":"string",
+      "docValues":false,
+      "indexed":true,
+      "stored":false
+    },
+    {
+      "name":"_text_",
+      "type":"text_general",
+      "multiValued":true,
+      "indexed":true,
+      "stored":false
+    },
+    {
+      "name":"_version_",
+      "type":"plong",
+      "indexed":false,
+      "stored":false
+    },
+    {
       "name":"abstract",
       "type":"text_general",
       "multiValued":true,

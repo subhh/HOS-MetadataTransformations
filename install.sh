@@ -36,6 +36,12 @@ if [ -z "$curl" ] ; then
     apt-get -qq update && apt-get -qq --yes install curl
 fi
 
+# install jq
+jq="$(which jq 2> /dev/null)"
+if [ -z "$jq" ] ; then
+    apt-get -qq update && apt-get -qq --yes install jq
+fi
+
 # install metha
 metha="$(which metha-sync 2> /dev/null)"
 if [ -z "$metha" ] ; then

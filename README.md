@@ -41,7 +41,7 @@ git clone https://github.com/subhh/HOS-MetadataTransformations.git
 cd HOS-MetadataTransformations
 ```
 
-install [default-jre](https://packages.ubuntu.com/de/xenial/default-jre), [curl](https://curl.haxx.se/), [metha](https://github.com/miku/metha), [OpenRefine](http://openrefine.org/), [openrefine-client](https://github.com/opencultureconsulting/openrefine-client) and [Solr](http://lucene.apache.org/solr/):
+install [default-jre](https://packages.ubuntu.com/de/xenial/default-jre), [curl](https://curl.haxx.se/), [jq](https://stedolan.github.io/jq/), [metha](https://github.com/miku/metha), [OpenRefine](http://openrefine.org/), [openrefine-client](https://github.com/opencultureconsulting/openrefine-client) and [Solr](http://lucene.apache.org/solr/):
 
 ```
 sudo ./install.sh
@@ -73,10 +73,12 @@ Run workflow with all data sources in parallel and load data into local Solr and
 ./run.sh
 ```
 
-Run workflow with all data sources and load data into external Solr core
+Run workflow with all data sources and load data into external Solr core (optional: credentials via sysenv)
 
 ```
-./run.sh -s "http://hosdev.sub.uni-hamburg.de:8983/solr/HOS_MASTER"
+export HOSSOLRUSER=
+export HOSSOLRPASS=
+./run.sh -s "https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS"
 
 ```
 
