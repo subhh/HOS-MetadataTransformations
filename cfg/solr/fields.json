@@ -55,6 +55,13 @@
       "stored":true
     },
     {
+      "name":"classification",
+      "type":"string",
+      "multiValued":false,
+      "indexed":true,
+      "stored":true
+    },
+    {
       "name":"collection",
       "type":"string",
       "indexed":true,
@@ -76,7 +83,7 @@
     },
     {
       "name":"creatorName",
-      "type":"text_general",
+      "type":"string",
       "multiValued":true,
       "indexed":true,
       "stored":true
@@ -111,6 +118,7 @@
       "name":"id",
       "type":"string",
       "indexed":true,
+      "required":true,
       "stored":true
     },
     {
@@ -173,7 +181,7 @@
     },
     {
       "name":"publisher",
-      "type":"text_general",
+      "type":"string",
       "indexed":true,
       "stored":true
     },
@@ -210,7 +218,7 @@
     },
     {
       "name":"subject",
-      "type":"text_general",
+      "type":"string",
       "multiValued":true,
       "indexed":true,
       "stored":true
@@ -284,7 +292,7 @@
     },
     {
       "name":"university",
-      "type":"text_general",
+      "type":"string",
       "indexed":true,
       "stored":true
     },

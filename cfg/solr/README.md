@@ -22,7 +22,7 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | collection | string | | |  describes the source of the metadata |
 | contributorName | string | x | |  |
 | contributorType | string | x | |  |
-| creatorName | text_general | x | | |
+| creatorName | string | x | | |
 | date | string | x | | |
 | dateType | string | x | | |
 | format | string | | | |
@@ -37,13 +37,13 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | otherTitle | text_general | x | | |
 | otherTitleLang | string | x | | |
 | publicationYear | string |  | | |
-| publisher | text_general |  | | |
+| publisher | string |  | | |
 | resourceType | string |  | | |
 | resourceTypeGeneral | string | | | |
 | rights | text_general | | | single valued despite DataCite Scheme |
 | rightsURI | string | | | single valued despite DataCite Scheme |
 | seriesInformation | text_general | x | description with type "SeriesInformation" | |
-| subject | text_general | x | | |
+| subject | string | x | | |
 | subject_acm | string | x | subject with subjectScheme "ACM" | ACM classifiation |
 | subject_bk | string | x | subject with subjectScheme "BK" and subjectURI pointing to the classification | Basisklassification (a german classification )|
 | subject_ddc | string | x | subject with subjectScheme "DDC" and subjectURI pointing to the classification | Dewey |
@@ -55,5 +55,5 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | titleLang | string | | | |
 | translatedTitle | text_general | x | | |
 | translatedTitleLang | string | x | | |
-| university | text_general | | - | |
+| university | string | | - | |
 | url | string | x | | |
