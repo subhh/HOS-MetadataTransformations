@@ -49,8 +49,8 @@ options="p:s:d:h"
 while getopts $options opt; do
    case $opt in
    p )  port=${OPTARG} ;;
-   s )  solr_url=${OPTARG} ;;
-   d )  openrefine_url=${OPTARG} ;;
+   s )  solr_url=${OPTARG%/} ;;
+   d )  openrefine_url=${OPTARG%/} ;;
    h )  usage ;;
    \? ) echo 1>&2 "Unknown option: -$OPTARG"; usage; exit 1;;
    :  ) echo 1>&2 "Missing option argument for -$OPTARG"; usage; exit 1;;
