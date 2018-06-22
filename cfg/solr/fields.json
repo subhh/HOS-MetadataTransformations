@@ -55,13 +55,6 @@
       "stored":true
     },
     {
-      "name":"classification",
-      "type":"string",
-      "multiValued":false,
-      "indexed":true,
-      "stored":true
-    },
-    {
       "name":"collection",
       "type":"string",
       "indexed":true,
