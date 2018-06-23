@@ -1,7 +1,7 @@
 [
   {
     "op": "core/column-addition",
-    "description": "Create column subject_ddc at index 37 based on column Record - header - setSpec using expression grel:value.replace(\"ddc:\",\"\")",
+    "description": "Create column subject_ddc at index 3 based on column Record - header - setSpec using expression grel:value.replace(\"ddc:\",\"\")",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -26,7 +26,7 @@
       ]
     },
     "newColumnName": "subject_ddc",
-    "columnInsertIndex": 37,
+    "columnInsertIndex": 3,
     "baseColumnName": "Record - header - setSpec",
     "expression": "grel:value.replace(\"ddc:\",\"\")",
     "onError": "set-to-blank"
@@ -208,12 +208,6 @@
     "description": "Rename column title 2 to translatedTitle",
     "oldColumnName": "title 2",
     "newColumnName": "translatedTitle"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column title 3 to otherTitle",
-    "oldColumnName": "title 3",
-    "newColumnName": "otherTitle"
   },
   {
     "op": "core/column-addition",
