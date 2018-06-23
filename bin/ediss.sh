@@ -30,8 +30,8 @@ Usage: ./${collection}.sh [-p PORT] [-s SOLRURL] [-d OPENREFINEURL]
 
 == options ==
     -p PORT          PORT on which OpenRefine should run (default: 3334)
-    -s SOLRURL       ingest data to specified Solr core (default: http://localhost:8983/solr/hos)
-    -d OPENREFINEURL ingest data to external OpenRefine service (default: http://localhost:3333)
+    -s SOLRURL       ingest data to specified Solr core
+    -d OPENREFINEURL ingest data to external OpenRefine service
 
 == example ==
 ./${collection}.sh -p 3334 -s http://localhost:8983/solr/hos -d http://localhost:3333
@@ -41,8 +41,6 @@ EOF
 
 # defaults
 port="3334"
-solr_url="http://localhost:8983/solr/hos"
-openrefine_url="http://localhost:3333"
 
 # get user input
 options="p:s:d:h"

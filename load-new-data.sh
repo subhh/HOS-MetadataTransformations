@@ -26,7 +26,7 @@ Usage: ./load-new-data.sh [-c collection] [-i OAIURL] [-s OAISET] [-f OAIFORMAT]
 
 == examples ==
 ./load-new-data.sh -c ediss-test -i http://ediss.sub.uni-hamburg.de/oai2/oai2.php -r metadata -d http://localhost:3333
-./load-new-data.sh -c fdm_TUHH -i https://zenodo.org/oai2d -s user-tuhh -f datacite
+./load-new-data.sh -c fdm_TUHH -i https://zenodo.org/oai2d -s user-tuhh -f datacite -d http://localhost:3333
 EOF
    exit 1
 }

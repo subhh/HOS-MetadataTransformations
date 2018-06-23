@@ -41,8 +41,6 @@ EOF
 
 # defaults
 port="3334"
-solr_url="http://localhost:8983/solr/hos"
-openrefine_url="http://localhost:3333"
 
 # get user input
 options="p:s:d:h"

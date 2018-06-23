@@ -10,8 +10,8 @@ function usage () {
 Usage: ./run.sh [-s SOLRURL] [-d OPENREFINEURL]
 
 == options ==
-    -s SOLRURL       ingest data to specified Solr core (default: http://localhost:8983/solr/hos)
-    -d OPENREFINEURL ingest data to external OpenRefine service (default: http://localhost:3333)
+    -s SOLRURL       ingest data to specified Solr core
+    -d OPENREFINEURL ingest data to external OpenRefine service
 
 == example ==
 ./run.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
@@ -21,8 +21,6 @@ EOF
 
 # defaults
 port="3334"
-solr_url="http://localhost:8983/solr/hos"
-openrefine_url="http://localhost:3333"
 
 # get user input
 options="s:d:h"
@@ -63,7 +61,7 @@ echo ""
 # run jobs
 echo "run scripts in parallel..."
 for f in "${path_bin}"/*.sh; do
-  "${f}" -p $port -s "${solr_url}" -d "${openrefine_url}" > /dev/null &
+  "${f}" -p $port $(if [ -n "$solr_url" ]; then echo "-s ${solr_url}"; fi) $(if [ -n "$solr_url" ]; then echo "-d ${openrefine_url}"; fi) > /dev/null &
   pid+=("$!")
   echo -en "$(basename ${f}) (pid: $!)   "
   port=$((port + 1))

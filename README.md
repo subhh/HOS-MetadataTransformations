@@ -61,16 +61,16 @@ Data will be available after first run at:
 * Solr browse: <http://localhost:8983/solr/hos/browse>
 * OpenRefine: <http://localhost:3333>
 
-Run workflow with data source "ediss" and load data into local Solr and local OpenRefine service
+Run workflow with data source "ediss" and load data into local Solr (-s) and local OpenRefine service (-d)
 
 ```
-bin/ediss.sh
+bin/ediss.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
 ```
 
-Run workflow with all data sources in parallel and load data into local Solr and local OpenRefine service:
+Run workflow with all data sources in parallel and load data into local Solr (-s) and local OpenRefine service (-d):
 
 ```
-./run.sh
+./run.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
 ```
 
 Run workflow with all data sources and load data into external Solr core (optional: credentials via environmental variables)
@@ -104,7 +104,7 @@ gedit bin/yourdatasource.sh
 * Step 5: Run your shell script (or full workflow)
 
 ```
-bin/yourdatasource.sh
+bin/yourdatasource.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
 ```
 
 * Step 6: Check results in OpenRefine at <http://localhost:3333> (project `yourdatasource_live`) and Solr (query: [collection:yourdatasource](http://localhost:8983/solr/hos/browse?q=collection%3Ayourdatasource))
