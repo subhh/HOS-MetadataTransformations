@@ -12,7 +12,7 @@ log_dir="$(readlink -f log)"
 
 # config
 separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
-config_dir="$(readlink -f /cfg/all)" # location of OpenRefine transformation rules in json format
+config_dir="$(readlink -f cfg/all)" # location of OpenRefine transformation rules in json format
 
 # help screen
 function usage () {
@@ -134,7 +134,7 @@ mkdir -p "${openrefine_tmp}"
 zip ${openrefine_tmp}/tmp.zip "${data_dir}/02_transformed/"*"_${date}"*".tsv"
 echo ""
 echo "launch OpenRefine server..."
-$openrefine_server -p ${port} -d "$openrefine_tmp" -m ${ram} &
+$openrefine_server -p ${port} -d "$openrefine_tmp" -m ${ram} 1>/dev/null &
 pid_openrefine=$!
 until wget -q -O - http://localhost:${port} | cat | grep -q -o "OpenRefine" ; do sleep 1; done
 echo ""
@@ -176,7 +176,7 @@ if [ -n "$solr_url" ]; then
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
   # delete existing data
-  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary '<delete><query>*:*</query></delete>'
+  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary '<delete><query>*:*</query></delete>' 1>/dev/null
   # load new data
   curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${all}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/03_combined/all_${date}.tsv
   echo ""
