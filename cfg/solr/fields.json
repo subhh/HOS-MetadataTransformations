@@ -38,7 +38,7 @@
       "type":"string",
       "multiValued":true,
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"alternativeTitle",
@@ -52,7 +52,7 @@
       "type":"string",
       "multiValued":true,
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"collection",
@@ -86,14 +86,14 @@
       "type":"string",
       "multiValued":true,
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"dateType",
       "type":"string",
       "multiValued":true,
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"format",
@@ -112,7 +112,7 @@
       "type":"string",
       "indexed":true,
       "required":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"identifier",
@@ -124,14 +124,14 @@
       "name":"identifierType",
       "type":"string",
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"institute",
       "type":"string",
       "multiValued":true,
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"language",
@@ -164,7 +164,7 @@
       "type":"string",
       "multiValued":true,
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"publicationYear",
@@ -188,7 +188,7 @@
       "name":"resourceTypeGeneral",
       "type":"string",
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"rights",
@@ -255,7 +255,7 @@
       "type":"string",
       "multiValued":true,
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"tableOfContents",
@@ -273,7 +273,7 @@
       "name":"titleLang",
       "type":"string",
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"translatedTitle",
@@ -287,13 +287,13 @@
       "type":"string",
       "multiValued":true,
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"university",
       "type":"string",
       "indexed":true,
-      "stored":true
+      "stored":false
     },
     {
       "name":"url",
