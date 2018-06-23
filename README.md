@@ -26,7 +26,7 @@ Source: [flowchart.mmd](flowchart.mmd) (try [mermaid live editor](https://mermai
 
 ## Installation
 
-tested with [Ubuntu 16.04 LTS](https://www.ubuntu.com/download/desktop)
+tested with [Ubuntu 16.04 LTS](http://releases.ubuntu.com/16.04/) and [Ubuntu 18.04 LTS](http://releases.ubuntu.com/18.04/)
 
 install git:
 
@@ -41,7 +41,7 @@ git clone https://github.com/subhh/HOS-MetadataTransformations.git
 cd HOS-MetadataTransformations
 ```
 
-install [default-jre](https://packages.ubuntu.com/de/xenial/default-jre), [curl](https://curl.haxx.se/), [jq](https://stedolan.github.io/jq/), [metha](https://github.com/miku/metha), [OpenRefine](http://openrefine.org/), [openrefine-client](https://github.com/opencultureconsulting/openrefine-client) and [Solr](http://lucene.apache.org/solr/):
+install [openjdk-9-jre-headless](https://packages.ubuntu.com/de/xenial/openjdk-9-jre-headless), [curl](https://curl.haxx.se/), [jq](https://stedolan.github.io/jq/), [metha 1.29](https://github.com/miku/metha), [OpenRefine 2.8](http://openrefine.org/), [openrefine-client 0.3.4](https://github.com/opencultureconsulting/openrefine-client) and [Solr 7.3.1](http://lucene.apache.org/solr/):
 
 ```
 sudo ./install.sh
@@ -73,11 +73,11 @@ Run workflow with all data sources in parallel and load data into local Solr and
 ./run.sh
 ```
 
-Run workflow with all data sources and load data into external Solr core (optional: credentials via sysenv)
+Run workflow with all data sources and load data into external Solr core (optional: credentials via environmental variables)
 
 ```
-export HOSSOLRUSER=
-export HOSSOLRPASS=
+export HOSSOLRUSER=""
+export HOSSOLRPASS=""
 ./run.sh -s "https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS"
 
 ```

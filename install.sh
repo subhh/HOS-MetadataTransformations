@@ -13,8 +13,8 @@ user="$(who | head -n1 | awk '{print $1;}')"
 # declare download URLs
 openrefine_server_URL="https://github.com/OpenRefine/OpenRefine/releases/download/2.8/openrefine-linux-2.8.tar.gz"
 openrefine_client_URL="https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.4/openrefine-client_0-3-4_linux-64bit"
-metha_URL="https://github.com/miku/metha/releases/download/v0.1.24/metha_0.1.24_amd64.deb"
-solr_URL="http://archive.apache.org/dist/lucene/solr/7.1.0/solr-7.1.0.tgz"
+metha_URL="https://github.com/miku/metha/releases/download/v0.1.29/metha_0.1.29_amd64.deb"
+solr_URL="https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz"
 
 # create directories
 sudo -u $(who | awk '{print $1}') mkdir -p data
@@ -27,7 +27,7 @@ sudo -u $(who | awk '{print $1}') mkdir -p opt
 # install JRE
 JAVA="$(which java 2> /dev/null)"
 if [ -z "$JAVA" ] ; then
-    apt-get -qq update && apt-get -qq --yes install default-jre
+    apt-get -qq update && apt-get -qq --yes install openjdk-9-jre-headless
 fi
 
 # install curl
