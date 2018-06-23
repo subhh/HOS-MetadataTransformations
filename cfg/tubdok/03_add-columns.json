@@ -70,6 +70,29 @@
   },
   {
     "op": "core/column-addition",
+    "description": "Create column subject at index 2 based on column dc:subject using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": true,
+          "caseSensitive": false,
+          "query": ":|\\.|^\\d",
+          "name": "dc:subject",
+          "type": "text",
+          "columnName": "dc:subject"
+        }
+      ]
+    },
+    "newColumnName": "subject",
+    "columnInsertIndex": 2,
+    "baseColumnName": "dc:subject",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
     "description": "Create column identifier at index 6 based on column dc:identifier using expression grel:value.replace(\"http://dx.doi.org/\",\"\")",
     "engineConfig": {
       "mode": "row-based",
@@ -300,16 +323,94 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column resourceType at index 11 based on column dc:type using expression grel:value.replace(\"doc-type:\",\"\")",
+    "description": "Create column resourceType at index 12 based on column dc:type using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": true,
+          "caseSensitive": false,
+          "query": "doc-type",
+          "name": "dc:type",
+          "type": "text",
+          "columnName": "dc:type"
+        }
+      ]
+    },
+    "newColumnName": "resourceType",
+    "columnInsertIndex": 12,
+    "baseColumnName": "dc:type",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/blank-down",
+    "description": "Blank down cells in column resourceType",
     "engineConfig": {
       "mode": "row-based",
       "facets": []
     },
-    "newColumnName": "resourceType",
-    "columnInsertIndex": 11,
-    "baseColumnName": "dc:type",
-    "expression": "grel:value.replace(\"doc-type:\",\"\")",
-    "onError": "set-to-blank"
+    "columnName": "resourceType"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column resourceType",
+    "columnName": "resourceType",
+    "keyColumnName": "id",
+    "separator": ", "
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column resourceType using expression grel:\"Other\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "resourceType",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "resourceType"
+        },
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "columnName": "resourceType",
+    "expression": "grel:\"Other\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
   },
   {
     "op": "core/column-addition",
@@ -473,7 +574,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column description at index 19 based on column dc:description using expression grel:value",
+    "description": "Create column abstract at index 19 based on column dc:description using expression grel:value",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -498,7 +599,7 @@
         }
       ]
     },
-    "newColumnName": "description",
+    "newColumnName": "abstract",
     "columnInsertIndex": 19,
     "baseColumnName": "dc:description",
     "expression": "grel:value",
@@ -539,39 +640,6 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column descriptionType at index 21 based on column description using expression grel:\"Abstract\"",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": [
-        {
-          "omitError": false,
-          "expression": "isBlank(value)",
-          "selectBlank": false,
-          "selection": [
-            {
-              "v": {
-                "v": false,
-                "l": "false"
-              }
-            }
-          ],
-          "selectError": false,
-          "invert": false,
-          "name": "description",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "description"
-        }
-      ]
-    },
-    "newColumnName": "descriptionType",
-    "columnInsertIndex": 21,
-    "baseColumnName": "description",
-    "expression": "grel:\"Abstract\"",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-addition",
     "description": "Create column title at index 23 based on column dc:title using expression grel:value",
     "engineConfig": {
       "mode": "row-based",
@@ -605,7 +673,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column alternativeTitle at index 23 based on column dc:title using expression grel:value",
+    "description": "Create column translatedTitle at index 23 based on column dc:title using expression grel:value",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -630,7 +698,7 @@
         }
       ]
     },
-    "newColumnName": "alternativeTitle",
+    "newColumnName": "translatedTitle",
     "columnInsertIndex": 23,
     "baseColumnName": "dc:title",
     "expression": "grel:value",
@@ -784,17 +852,56 @@
     "onError": "set-to-blank"
   },
   {
-    "op": "core/column-addition",
-    "description": "Create column source at index 38 based on column dc:source using expression grel:value",
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column publisher using expression grel:\"Technische Universität Hamburg\"",
     "engineConfig": {
       "mode": "row-based",
-      "facets": []
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "publisher",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "publisher"
+        },
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
     },
-    "newColumnName": "source",
-    "columnInsertIndex": 38,
-    "baseColumnName": "dc:source",
-    "expression": "grel:value",
-    "onError": "set-to-blank"
+    "columnName": "publisher",
+    "expression": "grel:\"Technische Universität Hamburg\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
   },
   {
     "op": "core/column-addition",
@@ -807,6 +914,39 @@
     "columnInsertIndex": 9,
     "baseColumnName": "identifier",
     "expression": "grel:\"https://doi.org/\" + value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Tubdok\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "collection",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"Tubdok\"",
     "onError": "set-to-blank"
   }
 ]

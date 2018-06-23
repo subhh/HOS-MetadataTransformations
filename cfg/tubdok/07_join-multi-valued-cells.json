@@ -15,13 +15,6 @@
   },
   {
     "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column alternativeTitle",
-    "columnName": "alternativeTitle",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
     "description": "Join multi-valued cells in column contributorName",
     "columnName": "contributorName",
     "keyColumnName": "id",
@@ -31,97 +24,6 @@
     "op": "core/multivalued-cell-join",
     "description": "Join multi-valued cells in column creatorName",
     "columnName": "creatorName",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column date",
-    "columnName": "date",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column dateType",
-    "columnName": "dateType",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column description",
-    "columnName": "description",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column descriptionType",
-    "columnName": "descriptionType",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column geoLocationPoint",
-    "columnName": "geoLocationPoint",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column identifier",
-    "columnName": "identifier",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column identifierType",
-    "columnName": "identifierType",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column language",
-    "columnName": "language",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column otherDescription",
-    "columnName": "otherDescription",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column publicationYear",
-    "columnName": "publicationYear",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column publisher",
-    "columnName": "publisher",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column resourceType",
-    "columnName": "resourceType",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column resourceTypeGeneral",
-    "columnName": "resourceTypeGeneral",
     "keyColumnName": "id",
     "separator": "␟"
   },
@@ -141,15 +43,15 @@
   },
   {
     "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column seriesInformation",
-    "columnName": "seriesInformation",
+    "description": "Join multi-valued cells in column otherDescription",
+    "columnName": "otherDescription",
     "keyColumnName": "id",
     "separator": "␟"
   },
   {
     "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column source",
-    "columnName": "source",
+    "description": "Join multi-valued cells in column subject",
+    "columnName": "subject",
     "keyColumnName": "id",
     "separator": "␟"
   },
@@ -176,15 +78,8 @@
   },
   {
     "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column title",
-    "columnName": "title",
-    "keyColumnName": "id",
-    "separator": "␟"
-  },
-  {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column url",
-    "columnName": "url",
+    "description": "Join multi-valued cells in column translatedTitle",
+    "columnName": "translatedTitle",
     "keyColumnName": "id",
     "separator": "␟"
   }
