@@ -104,6 +104,12 @@
     "newColumnName": "dc:format"
   },
   {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:source to dc:source",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:source",
+    "newColumnName": "dc:source"
+  },
+  {
     "op": "core/column-removal",
     "description": "Remove column Record - header - identifier",
     "columnName": "Record - header - identifier"

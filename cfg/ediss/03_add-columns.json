@@ -1,45 +1,128 @@
 [
   {
     "op": "core/column-addition",
-    "description": "Create column subject_ddc at index 14 based on column Record - header - setSpec using expression grel:if(value.startsWith(\"ddc:\"),value.replace(\"ddc:\",\"\"),\"\")",
+    "description": "Create column subject_ddc at index 37 based on column Record - header - setSpec using expression grel:value.replace(\"ddc:\",\"\")",
     "engineConfig": {
-      "mode": "record-based",
-      "facets": []
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "ddc:",
+          "name": "Record - header - setSpec",
+          "type": "text",
+          "columnName": "Record - header - setSpec"
+        },
+        {
+          "mode": "text",
+          "invert": true,
+          "caseSensitive": false,
+          "query": "no",
+          "name": "Record - header - setSpec",
+          "type": "text",
+          "columnName": "Record - header - setSpec"
+        }
+      ]
     },
     "newColumnName": "subject_ddc",
-    "columnInsertIndex": 14,
+    "columnInsertIndex": 37,
     "baseColumnName": "Record - header - setSpec",
-    "expression": "grel:if(value.startsWith(\"ddc:\"),value.replace(\"ddc:\",\"\"),\"\")",
+    "expression": "grel:value.replace(\"ddc:\",\"\")",
     "onError": "set-to-blank"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column publisher at index 4 based on column dc:publisher using expression grel:value",
+    "description": "Create column university at index 9 based on column dc:publisher using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "university",
+    "columnInsertIndex": 9,
+    "baseColumnName": "dc:publisher",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column institute at index 9 based on column dc:publisher using expression grel:value.split(\".\")[0]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "institute",
+    "columnInsertIndex": 9,
+    "baseColumnName": "dc:publisher",
+    "expression": "grel:value.split(\".\")[0]",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column publisher at index 9 based on column dc:publisher using expression grel:cells[\"university\"].value + forNonBlank(row.record.cells[\"institute\"].value[0],v,\", \"+v,\"\")",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
     "newColumnName": "publisher",
-    "columnInsertIndex": 4,
+    "columnInsertIndex": 9,
     "baseColumnName": "dc:publisher",
-    "expression": "grel:value",
+    "expression": "grel:cells[\"university\"].value + forNonBlank(row.record.cells[\"institute\"].value[0],v,\", \"+v,\"\")",
     "onError": "set-to-blank"
   },
- 
   {
     "op": "core/column-addition",
-    "description": "Create column url at index 3 based on column dc:identifier using expression grel:value",
+    "description": "Create column url at index 5 based on column dc:identifier using expression grel:if(value.startsWith(\"urn\"),\"http://nbn-resolving.de/\" + value,value)",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
     "newColumnName": "url",
-    "columnInsertIndex": 3,
+    "columnInsertIndex": 5,
     "baseColumnName": "dc:identifier",
-    "expression": "grel:value",
+    "expression": "grel:if(value.startsWith(\"urn\"),\"http://nbn-resolving.de/\" + value,value)",
     "onError": "set-to-blank"
   },
-  
   {
     "op": "core/column-addition",
     "description": "Create column abstract at index 8 based on column dc:description using expression grel:value",
@@ -66,7 +149,7 @@
     "expression": "grel:value",
     "onError": "set-to-blank"
   },
-    {
+  {
     "op": "core/column-addition",
     "description": "Create column geoLocationPoint at index 6 based on column publisher using expression grel:value",
     "engineConfig": {
@@ -145,7 +228,7 @@
     "expression": "grel:value",
     "onError": "set-to-blank"
   },
-    {
+  {
     "op": "core/column-addition",
     "description": "Create column format at index 21 based on column dc:format using expression grel:value",
     "engineConfig": {
@@ -184,7 +267,7 @@
     "expression": "grel:if(isNotNull(value),\"Text\",\"\")",
     "onError": "set-to-blank"
   },
-    {
+  {
     "op": "core/column-addition",
     "description": "Create column subject at index 2 based on column dc:subject using expression grel:value",
     "engineConfig": {
@@ -277,14 +360,14 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column seriesInformation at index 20 based on column Record - metadata - oai_dc:dc - dc:source using expression grel:value",
+    "description": "Create column seriesInformation at index 20 based on column dc:source using expression grel:value",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
     "newColumnName": "seriesInformation",
     "columnInsertIndex": 20,
-    "baseColumnName": "Record - metadata - oai_dc:dc - dc:source",
+    "baseColumnName": "dc:source",
     "expression": "grel:value",
     "onError": "set-to-blank"
   },
@@ -303,7 +386,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column rights at index 17 based on column dc:rights using expression grel:if(isNotNull(value),\"repository license\",\"\")",
+    "description": "Create column rights at index 17 based on column dc:rights using expression grel:if(isNotNull(value),\"individuelle Lizenz\",\"\")",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
@@ -311,33 +394,40 @@
     "newColumnName": "rights",
     "columnInsertIndex": 17,
     "baseColumnName": "dc:rights",
-    "expression": "grel:if(isNotNull(value),\"repository license\",\"\")",
+    "expression": "grel:if(isNotNull(value),\"individuelle Lizenz\",\"\")",
     "onError": "set-to-blank"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column university at index 8 based on column dc:publisher using expression grel:value",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"E-Dissertationen Uni Hamburg\"",
     "engineConfig": {
-      "mode": "record-based",
-      "facets": []
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
     },
-    "newColumnName": "university",
-    "columnInsertIndex": 8,
-    "baseColumnName": "dc:publisher",
-    "expression": "grel:value",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column institute at index 8 based on column dc:publisher using expression grel:if(isNotNull(value.match(/.+\\.\\s.+/)),value.split(\".\")[0],\"\")",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "newColumnName": "institute",
-    "columnInsertIndex": 8,
-    "baseColumnName": "dc:publisher",
-    "expression": "grel:if(isNotNull(value.match(/.+\\.\\s.+/)),value.split(\".\")[0],\"\")",
+    "newColumnName": "collection",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"E-Dissertationen Uni Hamburg\"",
     "onError": "set-to-blank"
   }
 ]
