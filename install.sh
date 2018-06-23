@@ -20,6 +20,7 @@ solr_URL="https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz"
 sudo -u $(who | awk '{print $1}') mkdir -p data
 sudo -u $(who | awk '{print $1}') mkdir -p data/01_oai
 sudo -u $(who | awk '{print $1}') mkdir -p data/02_transformed
+sudo -u $(who | awk '{print $1}') mkdir -p data/03_combined
 sudo -u $(who | awk '{print $1}') mkdir -p data/solr
 sudo -u $(who | awk '{print $1}') mkdir -p log
 sudo -u $(who | awk '{print $1}') mkdir -p opt

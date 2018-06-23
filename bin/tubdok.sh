@@ -57,7 +57,7 @@ while getopts $options opt; do
 done
 shift $((OPTIND - 1))
 
-# get sysenv
+# get environment variables
 if [ -n "$HOSSOLRUSER" ]; then solr_credentials="-u $HOSSOLRUSER:$HOSSOLRPASS"; fi
 
 # declare additional variables
@@ -96,6 +96,7 @@ echo "OpenRefine heap space:   $ram"
 echo "OpenRefine port:         $port"
 echo "Solr core URL:           $solr_url"
 echo "OpenRefine service URL:  $openrefine_url"
+echo "Logfile:                 ${codename}_${date}.log"
 echo ""
 
 # Download data via OAI with metha
@@ -197,9 +198,9 @@ if [ -n "$solr_url" ]; then
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
   # delete existing data
-  curl $solr_credentials --silent "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>source:${codename}</query></delete>" 1>/dev/null
+  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>source:${codename}</query></delete>" 1>/dev/null
   # load new data
-  curl $solr_credentials "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv 1>/dev/null
+  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv
   echo ""
 fi
 
