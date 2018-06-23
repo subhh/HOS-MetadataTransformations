@@ -3,14 +3,26 @@ graph LR
 run.sh -. -p 3334 .-> bin/ediss.sh
 bin/ediss.sh -.- oai
 run.sh -. -p 3335 .-> bin/tubdok.sh
+bin/tubdok.sh --> 02transformed_tubdok(data/02_transformed/ediss_$date.tsv)
 run.sh -. -p 3336 .-> bin/...
+bin/... --> 02transformed_...(data/02_transformed/..._$date.tsv)
 
-subgraph bin/ediss.sh
+subgraph load and transform each data source
 oai((OAI)) --> metha
 metha --> 01oai(data/01_oai/ediss_$date.xml)
-01oai -. openrefine-client .-> openrefine-container[OpenRefine<br>port 3334]
-config(cfg/ediss/transformation.json) --> openrefine-container
-openrefine-container --> 02transformed(data/02_transformed/ediss_$date.tsv)
-02transformed -- curl --> solr((Solr core<br>local/external))
-02transformed -- openrefine-client --> openrefine-service((OpenRefine<br>port 3333))
+01oai -- openrefine-client --> openrefine-container1[OpenRefine<br>port 3334]
+config1(cfg/ediss/*.json) -.-> openrefine-container1
 end
+openrefine-container1 --> 02transformed_ediss(data/02_transformed/ediss_$date.tsv)
+
+02transformed_ediss -- zip --> tmp.zip
+02transformed_tubdok -- zip --> tmp.zip
+02transformed_... -- zip --> tmp.zip
+tmp.zip -- openrefine-client --> openrefine-container2[OpenRefine<br>port 3334]
+
+subgraph deduplication
+config2(cfg/all/*.json) -.-> openrefine-container2
+openrefine-container2 --> 03combined(data/03_combined/all_$date.tsv)
+end
+03combined -- curl --> solr((Solr core<br>local/external))
+03combined -- openrefine-client --> openrefine-service((OpenRefine<br>port 3333))
