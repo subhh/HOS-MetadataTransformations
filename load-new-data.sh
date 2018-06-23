@@ -14,11 +14,11 @@ data_dir="$(readlink -f data)"
 # help screen
 function usage () {
     cat <<EOF
-Usage: ./load-new-data.sh [-c collection] [-i OAIURL] [-s OAISET] [-f OAIFORMAT] [-r RECORDPATH] [-d OPENREFINEURL]
+Usage: ./load-new-data.sh [-c CODENAME] [-i OAIURL] [-s OAISET] [-f OAIFORMAT] [-r RECORDPATH] [-d OPENREFINEURL]
 
 == options ==
-    -c COLLECTION    name of new data collection
-    -i OAIURL        url to the oai endpoint of the new data collection
+    -c CODENAME      code name of the new data source
+    -i OAIURL        url to the oai endpoint of the new data source
     -s OAISET        setSpec of the oai endpoint
     -f OAIFORMAT     metadataFormat of the oai endpoint
     -r RECORDPATH    filter data by additional xml node(s), e.g. "-r metadata" selects /Records/Record/metadata (ignoring /Records/Record/header)
@@ -44,7 +44,7 @@ fi
 options="c:i:s:f:r:d:h"
 while getopts $options opt; do
    case $opt in
-   c )  collection=${OPTARG} ;;
+   c )  codename=${OPTARG} ;;
    i )  oai_url=${OPTARG} ;;
    s )  oai_set=${OPTARG} ;;
    f )  oai_format=${OPTARG} ;;
@@ -59,7 +59,7 @@ done
 shift $((OPTIND - 1))
 
 # check for mandatory options
-if [ -z "$collection" ]; then
+if [ -z "$codename" ]; then
     echo 1>&2 "please provide a name for the new data source"
     echo 1>&2 "example: ./load-new-data.sh -c ediss-test -i http://ediss.sub.uni-hamburg.de/oai2/oai2.php"
     exit 1
@@ -80,7 +80,7 @@ external_host=${external%:*}
 external_port=${external##*:}
 
 # print variables
-echo "collection name:         $collection"
+echo "Code name:               $codename"
 echo "OAI server:              $oai_url"
 echo "OAI set:                 $oai_set"
 echo "OAI metadata format:     $oai_format"
@@ -97,9 +97,9 @@ echo ""
 echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
 $metha_sync $(if [ -n "$oai_set" ]; then echo "-set $oai_set"; fi) $(if [ -n "$oai_format" ]; then echo "-format $oai_format"; fi) "$oai_url"
-$metha_cat $(if [ -n "$oai_set" ]; then echo "-set $oai_set"; fi) $(if [ -n "$oai_format" ]; then echo "-format $oai_format"; fi) "$oai_url" > "${data_dir}/01_oai/${collection}_${date}.xml"
-records_metha=$(grep -c '<Record>' "${data_dir}/01_oai/${collection}_${date}.xml")
-echo "saved $records_metha records in ${data_dir}/01_oai/${collection}_${date}.xml"
+$metha_cat $(if [ -n "$oai_set" ]; then echo "-set $oai_set"; fi) $(if [ -n "$oai_format" ]; then echo "-format $oai_format"; fi) "$oai_url" > "${data_dir}/01_oai/${codename}_${date}.xml"
+records_metha=$(grep -c '<Record>' "${data_dir}/01_oai/${codename}_${date}.xml")
+echo "saved $records_metha records in ${data_dir}/01_oai/${codename}_${date}.xml"
 echo ""
 
 # Ingest data into OpenRefine
@@ -111,8 +111,8 @@ if [ -n "$openrefine_url" ]; then
   echo ""
   echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
   echo ""
-  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${collection}_new" &>/dev/null
-  ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/01_oai/${collection}_${date}.xml" $(for i in ${recordpath[@]}; do echo "--recordPath=$i "; done) --projectName=${collection}_new
+  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${codename}_new" &>/dev/null
+  ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/01_oai/${codename}_${date}.xml" $(for i in ${recordpath[@]}; do echo "--recordPath=$i "; done) --projectName=${codename}_new
   echo ""
 fi
 

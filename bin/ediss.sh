@@ -14,19 +14,19 @@ data_dir="$(readlink -f ../data)"
 log_dir="$(readlink -f ../log)"
 
 # config
-collection="ediss" # name of OpenRefine project and value for Solr field "collection"
+codename="ediss" # used for filename, name of OpenRefine project and value for Solr field "source"
 oai_url="http://ediss.sub.uni-hamburg.de/oai2/oai2.php" # base url of OAI-PMH endpoint
 oai_set="" # optional: OAI-PMH set spec (e.g. institution)
 oai_format="" # optional: OAI-PMH metadata format (e.g. datacite)
 ram="2048M" # highest OpenRefine memory load is below 2048M
 recordpath+=() # select /Records/Record/ (including /Records/Record/header)
 separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
-config_dir="$(readlink -f ../cfg/${collection})" # location of OpenRefine transformation rules in json format
+config_dir="$(readlink -f ../cfg/${codename})" # location of OpenRefine transformation rules in json format
 
 # help screen
 function usage () {
     cat <<EOF
-Usage: ./${collection}.sh [-p PORT] [-s SOLRURL] [-d OPENREFINEURL]
+Usage: ./${codename}.sh [-p PORT] [-s SOLRURL] [-d OPENREFINEURL]
 
 == options ==
     -p PORT          PORT on which OpenRefine should run (default: 3334)
@@ -34,7 +34,7 @@ Usage: ./${collection}.sh [-p PORT] [-s SOLRURL] [-d OPENREFINEURL]
     -d OPENREFINEURL ingest data to external OpenRefine service
 
 == example ==
-./${collection}.sh -p 3334 -s http://localhost:8983/solr/hos -d http://localhost:3333
+./${codename}.sh -p 3334 -s http://localhost:8983/solr/hos -d http://localhost:3333
 EOF
    exit 1
 }
@@ -84,10 +84,10 @@ cleanup()
 trap "cleanup;exit" SIGHUP SIGINT SIGQUIT SIGTERM
 
 # Simple Logging
-exec &> >(tee -a "${log_dir}/${collection}_${date}.log")
+exec &> >(tee -a "${log_dir}/${codename}_${date}.log")
 
 # print variables
-echo "collection name:         $collection"
+echo "Code name:               $codename"
 echo "OAI server:              $oai_url"
 echo "OAI set:                 $oai_set"
 echo "OAI metadata format:     $oai_format"
@@ -107,9 +107,9 @@ echo ""
 echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
 $metha_sync $(if [ -n "$oai_set" ]; then echo "-set $oai_set"; fi) $(if [ -n "$oai_format" ]; then echo "-format $oai_format"; fi) "$oai_url"
-$metha_cat $(if [ -n "$oai_set" ]; then echo "-set $oai_set"; fi) $(if [ -n "$oai_format" ]; then echo "-format $oai_format"; fi) "$oai_url" > "${data_dir}/01_oai/${collection}_${date}.xml"
-records_metha=$(grep -c '<Record>' "${data_dir}/01_oai/${collection}_${date}.xml")
-echo "saved $records_metha records in ${data_dir}/01_oai/${collection}_${date}.xml"
+$metha_cat $(if [ -n "$oai_set" ]; then echo "-set $oai_set"; fi) $(if [ -n "$oai_format" ]; then echo "-format $oai_format"; fi) "$oai_url" > "${data_dir}/01_oai/${codename}_${date}.xml"
+records_metha=$(grep -c '<Record>' "${data_dir}/01_oai/${codename}_${date}.xml")
+echo "saved $records_metha records in ${data_dir}/01_oai/${codename}_${date}.xml"
 echo ""
 
 # Launch OpenRefine server
@@ -133,7 +133,7 @@ echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
 echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
-$openrefine_client -P ${port} --create "${data_dir}/01_oai/${collection}_${date}.xml" $(for i in ${recordpath[@]}; do echo "--recordPath=$i "; done)
+$openrefine_client -P ${port} --create "${data_dir}/01_oai/${codename}_${date}.xml" $(for i in ${recordpath[@]}; do echo "--recordPath=$i "; done)
 echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid}))
@@ -149,7 +149,7 @@ echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
 for f in "${jsonfiles[@]}" ; do
     echo "transform ${f}..."
-    $openrefine_client -P ${port} --apply "${config_dir}/${f}" "${collection}_${date}"
+    $openrefine_client -P ${port} --apply "${config_dir}/${f}" "${codename}_${date}"
     ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
     memoryload+=($(ps --no-headers -o rss -p ${pid}))
     echo ""
@@ -164,7 +164,7 @@ echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
 echo ""
 echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
-$openrefine_client -P ${port} --export --output="${data_dir}/02_transformed/${collection}_${date}.tsv" "${collection}_${date}"
+$openrefine_client -P ${port} --export --output="${data_dir}/02_transformed/${codename}_${date}.tsv" "${codename}_${date}"
 echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid}))
@@ -191,15 +191,15 @@ if [ -n "$solr_url" ]; then
   echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
   echo ""
   # read header from tsv
-  readarray multivalue_fields < <(head -n 1 "${data_dir}/02_transformed/${collection}_${date}.tsv" | sed 's/\t/\n/g')
+  readarray multivalue_fields < <(head -n 1 "${data_dir}/02_transformed/${codename}_${date}.tsv" | sed 's/\t/\n/g')
   for i in ${multivalue_fields[@]}; do
       multivalue_config+=(\&f.$i.separator=$separator)
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
   # delete existing data
-  curl $solr_credentials --silent "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>collection:${collection}</query></delete>" 1>/dev/null
+  curl $solr_credentials --silent "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>source:${codename}</query></delete>" 1>/dev/null
   # load new data
-  curl $solr_credentials "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.collection=${collection}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${collection}_${date}.tsv 1>/dev/null
+  curl $solr_credentials "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv 1>/dev/null
   echo ""
 fi
 
@@ -212,8 +212,8 @@ if [ -n "$openrefine_url" ]; then
   echo ""
   echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
   echo ""
-  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${collection}_live" &>/dev/null
-  ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/02_transformed/${collection}_${date}.tsv" --encoding=UTF-8 --projectName=${collection}_live
+  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${codename}_live" &>/dev/null
+  ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/02_transformed/${codename}_${date}.tsv" --encoding=UTF-8 --projectName=${codename}_live
   echo ""
 fi
 

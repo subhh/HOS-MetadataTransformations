@@ -210,6 +210,12 @@
       "stored":true
     },
     {
+      "name":"source",
+      "type":"string",
+      "indexed":true,
+      "stored":false
+    },
+    {
       "name":"subject",
       "type":"string",
       "multiValued":true,

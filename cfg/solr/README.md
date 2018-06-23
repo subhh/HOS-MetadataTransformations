@@ -19,7 +19,7 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | alternateIdentifierType | string | x | | |
 | alternativeTitle | text_general      | x | | |
 | alternativeTitleLang | string | x | | |
-| collection | string | | |  describes the source of the metadata |
+| collection | string | | - | describes the source of the metadata |
 | contributorName | string | x | |  |
 | contributorType | string | x | |  |
 | creatorName | string | x | | |
@@ -49,6 +49,7 @@ The column "DataCite Field" describes the corresponding DataCite Metadata Scheme
 | subject_ddc | string | x | subject with subjectScheme "DDC" and subjectURI pointing to the classification | Dewey |
 | subtitle | text_general | x | | |
 | subtitleLang | string | x | | |
+| source | string | | - | code name of the technical source of the metadata |
 | tableOfContents | text_general | | description with type "TableOfContents" | |
 | technicalInfo | text_general | x | description with type "TechnicalInfo" | |
 | title | text_general | | | |

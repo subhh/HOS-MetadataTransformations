@@ -94,7 +94,7 @@ export HOSSOLRPASS=""
 
 * Step 3: [Extract the OpenRefine project history in json format](http://kb.refinepro.com/2012/06/google-refine-json-and-my-notepad-or.html) and save it in a subdirectory of cfg/, e.g. `cfg/yourdatasource/transformation.json`.
 
-* Step 4: Copy an existing bash shell script (e.g. [bin/ediss.sh](bin/ediss.sh) to `bin/yourdatasource.sh` and edit line 17 (name of the source, e.g. `yourdatasource`) and line 18 (url to OAI-PMH endpoint, e.g. `http://ediss.sub.uni-hamburg.de/oai2/oai2.php`). If you load a big dataset you may need to allocate more memory to OpenRefine (line 19).
+* Step 4: Copy an existing bash shell script (e.g. [bin/ediss.sh](bin/ediss.sh) to `bin/yourdatasource.sh` and edit line 17 (codename of the source, e.g. `yourdatasource`) and line 18 (url to OAI-PMH endpoint, e.g. `http://ediss.sub.uni-hamburg.de/oai2/oai2.php`). If you load a big dataset you may need to allocate more memory to OpenRefine (line 19).
 
 ```
 cp -a bin/ediss.sh bin/yourdatasource.sh
@@ -107,4 +107,4 @@ gedit bin/yourdatasource.sh
 bin/yourdatasource.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
 ```
 
-* Step 6: Check results in OpenRefine at <http://localhost:3333> (project `yourdatasource_live`) and Solr (query: [collection:yourdatasource](http://localhost:8983/solr/hos/browse?q=collection%3Ayourdatasource))
+* Step 6: Check results in OpenRefine at <http://localhost:3333> (project `yourdatasource_live`) and Solr (query: [source:yourdatasource](http://localhost:8983/solr/hos/browse?q=source%3Ayourdatasource))
