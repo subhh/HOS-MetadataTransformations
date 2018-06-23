@@ -25,7 +25,8 @@ Usage: ./load-new-data.sh [-c CODENAME] [-i OAIURL] [-s OAISET] [-f OAIFORMAT] [
     -d OPENREFINEURL ingest data to external OpenRefine service (default: http://localhost:3333)
 
 == examples ==
-./load-new-data.sh -c ediss-test -i http://ediss.sub.uni-hamburg.de/oai2/oai2.php -r metadata -d http://localhost:3333
+./load-new-data.sh -c ediss -i http://ediss.sub.uni-hamburg.de/oai2/oai2.php -d http://localhost:3333
+./load-new-data.sh -c tubdok -i http://tubdok.tub.tuhh.de/oai/request -r metadata -d http://localhost:3333
 ./load-new-data.sh -c fdm_TUHH -i https://zenodo.org/oai2d -s user-tuhh -f datacite -d http://localhost:3333
 EOF
    exit 1
