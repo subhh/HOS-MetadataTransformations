@@ -8,6 +8,7 @@ collection,string,-,x,x,15.01,-,describes the source of the metadata
 contributorName,string,x,x,x,03.01,,
 contributorType,string,x,x,x,03.02,,
 creatorName,string,x,x,x,01.01,,
+creatorNameURI,string,x,x,x,01.02,,
 date,string,x,x,x,06.02,,
 dateType,string,x,x,x,06.03,,
 format,string,-,x,x,12.01,,

@@ -14,12 +14,12 @@ data_dir="$(readlink -f ../data)"
 log_dir="$(readlink -f ../log)"
 
 # config
-codename="tubdok" # used for filename, name of OpenRefine project and value for Solr field "source"
-oai_url="http://tubdok.tub.tuhh.de/oai/request" # base url of OAI-PMH endpoint
-oai_set="" # optional: OAI-PMH set spec (e.g. institution)
-oai_format="" # optional: OAI-PMH metadata format (e.g. datacite)
+codename="zenodo-tuhh" # used for filename, name of OpenRefine project and value for Solr field "source"
+oai_url="https://zenodo.org/oai2d" # base url of OAI-PMH endpoint
+oai_set="user-tuhh" # optional: OAI-PMH set spec (e.g. institution)
+oai_format="datacite" # optional: OAI-PMH metadata format (e.g. datacite)
 ram="2048M" # highest OpenRefine memory load is below 2048M
-recordpath+=(metadata) # select /Records/Record/metadata (ignoring /Records/Record/header)
+recordpath+=(metadata resource) # select /Records/Record/metadata (ignoring /Records/Record/header)
 separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
 config_dir="$(readlink -f ../cfg/${codename})" # location of OpenRefine transformation rules in json format
 

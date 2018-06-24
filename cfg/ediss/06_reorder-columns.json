@@ -5,6 +5,7 @@
     "columnNames": [
       "id",
       "creatorName",
+      "creatorNameURI",
       "title",
       "titleLang",
       "subtitle",

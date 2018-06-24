@@ -1,0 +1,35 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPoint at index 1 based on column id using expression grel:\"53.4635384,9.9674,17\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "geoLocationPoint",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"53.4635384,9.9674,17\"",
+    "onError": "set-to-blank"
+  }
+]

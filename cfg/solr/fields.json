@@ -82,6 +82,13 @@
       "stored":true
     },
     {
+      "name":"creatorNameURI",
+      "type":"string",
+      "multiValued":true,
+      "indexed":true,
+      "stored":true
+    },
+    {
       "name":"date",
       "type":"string",
       "multiValued":true,
