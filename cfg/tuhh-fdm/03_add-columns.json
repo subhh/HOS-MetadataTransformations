@@ -70,7 +70,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column rightsOA at index 6 based on column rights using expression grel:if(row.record.cells[columnName].value.join(\"\").contains(\"Open\"),\"Open Access\",\"Restricted Access\")",
+    "description": "Create column rightsOA at index 6 based on column rights using expression grel:if(row.record.cells[columnName].value.join(\"\").contains(\"Open\"),\"Open Access\",\"zugriffsbeschränkt\")",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -98,7 +98,7 @@
     "newColumnName": "rightsOA",
     "columnInsertIndex": 6,
     "baseColumnName": "rights",
-    "expression": "grel:if(row.record.cells[columnName].value.join(\"\").contains(\"Open\"),\"Open Access\",\"Restricted Access\")",
+    "expression": "grel:if(row.record.cells[columnName].value.join(\"\").contains(\"Open\"),\"Open Access\",\"zugriffsbeschränkt\")",
     "onError": "set-to-blank"
   },
   {
