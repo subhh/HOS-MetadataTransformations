@@ -285,7 +285,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column collection at index 1 based on column id using expression grel:\"Zenodo TU Hamburg\"",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Forschungsdaten TU Hamburg\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [

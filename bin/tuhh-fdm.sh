@@ -14,7 +14,7 @@ data_dir="$(readlink -f ../data)"
 log_dir="$(readlink -f ../log)"
 
 # config
-codename="zenodo-tuhh" # used for filename, name of OpenRefine project and value for Solr field "source"
+codename="tuhh-fdm" # used for filename, name of OpenRefine project and value for Solr field "source"
 oai_url="https://zenodo.org/oai2d" # base url of OAI-PMH endpoint
 oai_set="user-tuhh" # optional: OAI-PMH set spec (e.g. institution)
 oai_format="datacite" # optional: OAI-PMH metadata format (e.g. datacite)
