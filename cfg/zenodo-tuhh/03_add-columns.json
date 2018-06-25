@@ -13,13 +13,13 @@
   },
   {
     "op": "core/text-transform",
-    "description": "Text transform on cells in column creatorNameURI using expression grel:forNonBlank(value,v,\"https://doi.org\"+v,\"\")",
+    "description": "Text transform on cells in column creatorNameURI using expression grel:forNonBlank(value,v,\"https://orcid.org/\"+v,\"\")",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
     "columnName": "creatorNameURI",
-    "expression": "grel:forNonBlank(value,v,\"https://doi.org\"+v,\"\")",
+    "expression": "grel:forNonBlank(value,v,\"https://orcid.org/\"+v,\"\")",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
@@ -195,7 +195,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column url at index 16 based on column identifier using expression grel:forNonBlank(value,v,\"https://doi.org\"+v,\"\")",
+    "description": "Create column url at index 16 based on column identifier using expression grel:forNonBlank(value,v,\"https://doi.org/\"+v,\"\")",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -223,7 +223,7 @@
     "newColumnName": "url",
     "columnInsertIndex": 16,
     "baseColumnName": "identifier",
-    "expression": "grel:forNonBlank(value,v,\"https://doi.org\"+v,\"\")",
+    "expression": "grel:forNonBlank(value,v,\"https://doi.org/\"+v,\"\")",
     "onError": "set-to-blank"
   },
   {
