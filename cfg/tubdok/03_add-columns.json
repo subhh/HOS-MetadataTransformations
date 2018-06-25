@@ -930,7 +930,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column collection at index 1 based on column id using expression grel:\"Tubdok\"",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Publikationen TU Hamburg\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
