@@ -991,7 +991,7 @@
     "newColumnName": "collection",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Tubdok\"",
+    "expression": "grel:\"Publikationen TU Hamburg\"",
     "onError": "set-to-blank"
   }
 ]

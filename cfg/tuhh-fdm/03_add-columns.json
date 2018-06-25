@@ -346,7 +346,7 @@
     "newColumnName": "collection",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Zenodo TU Hamburg\"",
+    "expression": "grel:\"Forschungsdaten TU Hamburg\"",
     "onError": "set-to-blank"
   },
   {
