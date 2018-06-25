@@ -7,7 +7,7 @@
       "facets": [
         {
           "omitError": false,
-          "expression": "isBlank(value)",
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
           "selectBlank": false,
           "selection": [
             {

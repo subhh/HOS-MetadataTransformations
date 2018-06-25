@@ -238,5 +238,18 @@
         "to": "Präsident der Technischen Universität Hamburg-Harburg"
       }
     ]
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rightsURI using expression grel:value.replace(/\\/$/,\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "rightsURI",
+    "expression": "grel:value.replace(/\\/$/,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
   }
 ]

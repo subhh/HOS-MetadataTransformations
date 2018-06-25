@@ -354,11 +354,17 @@
     "columnName": "resourceType"
   },
   {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column resourceType",
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column resourceType",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
     "columnName": "resourceType",
-    "keyColumnName": "id",
-    "separator": ", "
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\", \"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
   },
   {
     "op": "core/text-transform",
@@ -819,11 +825,17 @@
     "onError": "set-to-blank"
   },
   {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column seriesInformation",
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column seriesInformation",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
     "columnName": "seriesInformation",
-    "keyColumnName": "id",
-    "separator": "; "
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"; \"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
   },
   {
     "op": "core/column-addition",

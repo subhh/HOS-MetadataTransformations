@@ -10,34 +10,6 @@
     "columnName": "metadata - oai_dc:dc"
   },
   {
-    "op": "core/row-removal",
-    "description": "Remove rows",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": [
-        {
-          "omitError": false,
-          "expression": "isBlank(value)",
-          "selectBlank": false,
-          "selection": [
-            {
-              "v": {
-                "v": false,
-                "l": "false"
-              }
-            }
-          ],
-          "selectError": false,
-          "invert": true,
-          "name": "metadata - oai_dc:dc - xsi:schemaLocation",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "metadata - oai_dc:dc - xsi:schemaLocation"
-        }
-      ]
-    }
-  },
-  {
     "op": "core/column-rename",
     "description": "Rename column metadata - oai_dc:dc - dc:subject to dc:subject",
     "oldColumnName": "metadata - oai_dc:dc - dc:subject",
@@ -114,5 +86,33 @@
     "description": "Rename column metadata - oai_dc:dc - dc:source to dc:source",
     "oldColumnName": "metadata - oai_dc:dc - dc:source",
     "newColumnName": "dc:source"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "metadata - oai_dc:dc - xsi:schemaLocation",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "metadata - oai_dc:dc - xsi:schemaLocation"
+        }
+      ]
+    }
   }
 ]

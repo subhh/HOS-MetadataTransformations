@@ -68,22 +68,22 @@
     "op": "core/row-removal",
     "description": "Remove rows",
     "engineConfig": {
-      "mode": "record-based",
+      "mode": "row-based",
       "facets": [
         {
           "omitError": false,
-          "expression": "isBlank(value)",
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
           "selectBlank": false,
           "selection": [
             {
               "v": {
-                "v": false,
-                "l": "false"
+                "v": true,
+                "l": "true"
               }
             }
           ],
           "selectError": false,
-          "invert": true,
+          "invert": false,
           "name": "resource - xsi:schemaLocation",
           "omitBlank": false,
           "type": "list",

@@ -176,11 +176,17 @@
     "onError": "set-to-blank"
   },
   {
-    "op": "core/multivalued-cell-join",
-    "description": "Join multi-valued cells in column title",
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column title",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
     "columnName": "title",
-    "keyColumnName": "id",
-    "separator": "␟"
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
   },
   {
     "op": "core/column-split",

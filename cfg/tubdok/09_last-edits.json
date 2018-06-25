@@ -1,0 +1,41 @@
+[
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rights using expression grel:value.replace(\"CC  \",\"CC \")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "grel:value.replace(\"CC  \",\"CC \")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rightsURI using expression grel:value.split(\"␟\").uniques()[0]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "rightsURI",
+    "expression": "grel:value.split(\"␟\").uniques()[0]",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rights using expression grel:value.split(\"␟\").uniques()[0]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "grel:value.split(\"␟\").uniques()[0]",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
