@@ -1,5 +1,5 @@
 Field,Type,Multivalued,Indexed,Stored,Sorting,DataCite Field,Description
-abstract,text_general,x,x,x,08.01,description with descriptionType abstract,
+abstract,text_general,x,x,x,09.01,description with descriptionType abstract,
 alternateIdentifier,string,x,x,x,11.03,,
 alternateIdentifierType,string,x,x,x,11.04,,
 alternativeTitle,text_general,x,x,x,02.07,,
@@ -12,35 +12,35 @@ creatorNameURI,string,x,x,x,01.02,,
 date,string,x,x,x,06.02,,
 dateType,string,x,x,x,06.03,,
 format,string,-,x,x,12.01,,
-geoLocationPoint,string,-,x,x,09.04,geoLocationPoint with longitude/latitude subfields,"e.g. 53.590312,9.978455"
+geoLocationPoint,string,-,x,x,07.04,geoLocationPoint with longitude/latitude subfields,"e.g. 53.590312,9.978455"
 id,string,-,x,x,00.01,-,copy of identifier (without slashes)
 identifier,string,-,x,x,11.01,,
 identifierType,string,-,x,x,11.02,,
-institute,string,x,x,x,09.03,,
+institute,string,x,x,x,07.03,,
 language,string,-,x,x,04.01,,
-methods,text_general,-,x,x,08.02,description with descriptionType methods,
-otherDescription,text_general,x,x,x,08.03,"description with descriptionType ""Other""",
+methods,text_general,-,x,x,09.02,description with descriptionType methods,
+otherDescription,text_general,x,x,x,09.03,"description with descriptionType ""Other""",
 otherTitle,text_general,x,x,x,02.09,,
 otherTitleLang,string,x,x,x,02.10,,
 publicationYear,string,-,x,x,06.01,,
-publisher,string,-,x,x,09.01,,
+publisher,string,-,x,x,07.01,,
 resourceType,string,-,x,x,05.01,,
 resourceTypeGeneral,string,-,x,x,05.02,,
 rights,text_general,-,x,x,13.01,,single valued despite DataCite Scheme
 rightsURI,string,-,x,x,13.02,,single valued despite DataCite Scheme
 seriesInformation,text_general,x,x,x,10.01,"description with type ""SeriesInformation""",
 source,string,-,-,x,15.02,-,code name of the technical source of the metadata
-subject,string,x,x,x,07.01,,
-subject_acm,string,x,x,x,07.04,"subject with subjectScheme ""ACM""",ACM classifiation
-subject_bk,string,x,x,x,07.03,"subject with subjectScheme ""BK"" and subjectURI pointing to the classification",Basisklassification (a german classification )
-subject_ddc,string,x,x,x,07.02,"subject with subjectScheme ""DDC"" and subjectURI pointing to the classification",Dewey
+subject,string,x,x,x,08.01,,
+subject_acm,string,x,x,x,08.04,"subject with subjectScheme ""ACM""",ACM classifiation
+subject_bk,string,x,x,x,08.03,"subject with subjectScheme ""BK"" and subjectURI pointing to the classification",Basisklassification (a german classification )
+subject_ddc,string,x,x,x,08.02,"subject with subjectScheme ""DDC"" and subjectURI pointing to the classification",Dewey
 subtitle,text_general,x,x,x,02.03,,
 subtitleLang,string,x,x,x,02.04,,
-tableOfContents,text_general,-,x,x,08.04,"description with type ""TableOfContents""",
-technicalInfo,text_general,x,x,x,08.05,"description with type ""TechnicalInfo""",
+tableOfContents,text_general,-,x,x,09.04,"description with type ""TableOfContents""",
+technicalInfo,text_general,x,x,x,09.05,"description with type ""TechnicalInfo""",
 title,text_general,-,x,x,02.01,,
 titleLang,string,-,x,x,02.02,,
 translatedTitle,text_general,x,x,x,02.05,,
 translatedTitleLang,string,x,x,x,02.06,,
-university,string,-,x,x,09.02,-,
+university,string,-,x,x,07.02,-,
 url,string,x,x,x,14.01,,
