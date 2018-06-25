@@ -386,6 +386,39 @@
   },
   {
     "op": "core/column-addition",
+    "description": "Create column rightsOA at index 17 based on column dc:rights using expression grel:\"Open Access\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "rightsOA",
+    "columnInsertIndex": 19,
+    "baseColumnName": "dc:rights",
+    "expression": "grel:\"Open Access\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
     "description": "Create column rights at index 17 based on column dc:rights using expression grel:if(isNotNull(value),\"individuelle Lizenz\",\"\")",
     "engineConfig": {
       "mode": "record-based",

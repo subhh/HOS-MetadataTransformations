@@ -27,7 +27,8 @@ publisher,string,-,x,x,07.01,,
 resourceType,string,-,x,x,05.01,,
 resourceTypeGeneral,string,-,x,x,05.02,,
 rights,text_general,-,x,x,13.01,,single valued despite DataCite Scheme
-rightsURI,string,-,x,x,13.02,,single valued despite DataCite Scheme
+rightsOA,string,-,x,x,13.02,-,"values ""Open Access"" or ""zugriffsbeschränkt"""
+rightsURI,string,-,x,x,13.03,,single valued despite DataCite Scheme
 seriesInformation,text_general,x,x,x,10.01,"description with type ""SeriesInformation""",
 source,string,-,-,x,15.02,-,code name of the technical source of the metadata
 subject,string,x,x,x,08.01,,

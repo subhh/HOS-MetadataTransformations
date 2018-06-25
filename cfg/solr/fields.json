@@ -204,6 +204,12 @@
       "stored":true
     },
     {
+      "name":"rightsOA",
+      "type":"string",
+      "indexed":true,
+      "stored":true
+    },
+    {
       "name":"rightsURI",
       "type":"string",
       "indexed":true,
