@@ -57,7 +57,7 @@ while getopts $options opt; do
 done
 shift $((OPTIND - 1))
 
-# get environment variables
+# get environmental variables
 if [ -n "$HOSSOLRUSER" ]; then solr_credentials="-u $HOSSOLRUSER:$HOSSOLRPASS"; fi
 
 # declare additional variables
@@ -77,7 +77,7 @@ if [ -n "${config_dir// }" ] ; then jsonfiles=($(find -L "${config_dir}"/*.json 
 cleanup()
 {
   echo "cleanup..."
-  kill -9 ${pid}
+  kill -9 ${pid} &>/dev/null
   rm -rf /tmp/openrefine_${date}
   wait
 }
@@ -182,6 +182,14 @@ echo ""
 cleanup
 echo ""
 
+# Grep log for exceptions
+exceptions=$(grep -i exception "${log_dir}/${codename}_${date}.log")
+if [ -n "$exceptions" ]; then
+    echo 1>&2 "$exceptions"
+    echo 1>&2 "Konfiguration scheint fehlerhaft zu sein! Bitte manuell prüfen."
+    exit 2
+fi
+
 # Ingest data into Solr
 if [ -n "$solr_url" ]; then
   checkpoints=${#checkpointdate[@]}
@@ -197,10 +205,11 @@ if [ -n "$solr_url" ]; then
       multivalue_config+=(\&f.$i.separator=$separator)
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
-  # delete existing data
-  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary "<delete><query>source:${codename}</query></delete>" 1>/dev/null
-  # load new data
-  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv
+  echo "delete existing data..."
+  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: application/json" --data-binary "{ \"delete\": { \"query\": \"source:${codename}\" } }" | jq .responseHeader
+  echo ""
+  echo "load new data..."
+  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv | jq .responseHeader
   echo ""
 fi
 
@@ -213,7 +222,10 @@ if [ -n "$openrefine_url" ]; then
   echo ""
   echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
   echo ""
-  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${codename}_live" &>/dev/null
+  echo "delete existing project ${codename}_live..."
+  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "${codename}_live"
+  echo ""
+  echo "create new project ${codename}_live..."
   ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/02_transformed/${codename}_${date}.tsv" --encoding=UTF-8 --projectName=${codename}_live
   echo ""
 fi

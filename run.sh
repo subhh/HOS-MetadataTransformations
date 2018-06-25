@@ -11,6 +11,7 @@ data_dir="$(readlink -f data)"
 log_dir="$(readlink -f log)"
 
 # config
+ram="2048M" # highest OpenRefine memory load is below 2048M
 separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
 config_dir="$(readlink -f cfg/all)" # location of OpenRefine transformation rules in json format
 
@@ -25,6 +26,7 @@ Usage: ./run.sh [-s SOLRURL] [-d OPENREFINEURL]
 
 == example ==
 ./run.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
+./run.sh -s https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS
 EOF
    exit 1
 }
@@ -70,9 +72,9 @@ cleanup()
 {
   echo "cleanup..."
   for i in ${pid[@]}; do
-    kill $i &
+    kill $i &>/dev/null &
   done
-  kill -9 ${pid_openrefine}
+  kill -9 ${pid_openrefine} &>/dev/null
   rm -rf /tmp/openrefine_${date}
   wait
 }
@@ -114,10 +116,16 @@ until [[ "$count" -eq "0" ]]; do
 done
 echo ""
 echo ""
-echo "print stats from logs..."
+echo "print stats and exceptions from logs..."
 for f in "${path_bin}"/*.sh; do
   stats=$(tail -n 3 "${path_log}/$(basename -s .sh ${f})_${date}"*.log |  sed 's/total run time://' | sed 's/highest memory load://' | sed 's/number of records://')
+  exceptions=$(grep -i exception "${path_log}/$(basename -s .sh ${f})_${date}"*.log)
   echo $(basename ${f}): $stats
+  if [ -n "$exceptions" ]; then
+    echo 1>&2 "$exceptions"
+    echo 1>&2 "Konfiguration für ${f} scheint fehlerhaft zu sein! Bitte manuell prüfen."
+    exit 2
+  fi
 done
 echo ""
 
@@ -134,13 +142,12 @@ mkdir -p "${openrefine_tmp}"
 zip ${openrefine_tmp}/tmp.zip "${data_dir}/02_transformed/"*"_${date}"*".tsv"
 echo ""
 echo "launch OpenRefine server..."
-$openrefine_server -p ${port} -d "$openrefine_tmp" -m ${ram} 1>/dev/null &
+$openrefine_server -p ${port} -d "$openrefine_tmp" -m ${ram} -v error &
 pid_openrefine=$!
 until wget -q -O - http://localhost:${port} | cat | grep -q -o "OpenRefine" ; do sleep 1; done
 echo ""
 echo "load data..."
 $openrefine_client -P ${port} --create "${openrefine_tmp}/tmp.zip" --format=tsv --includeFileSources=false --projectName=all
-echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid_openrefine} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid_openrefine}))
 echo ""
@@ -153,7 +160,6 @@ for f in "${jsonfiles[@]}" ; do
 done
 echo "export data..."
 $openrefine_client -P ${port} --export --output="${data_dir}/03_combined/all_${date}.tsv" "all"
-echo ""
 ps -o start,etime,%mem,%cpu,rss -p ${pid_openrefine} --sort=start
 memoryload+=($(ps --no-headers -o rss -p ${pid_openrefine}))
 echo ""
@@ -175,10 +181,11 @@ if [ -n "$solr_url" ]; then
       multivalue_config+=(\&f.$i.separator=$separator)
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
-  # delete existing data
-  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: text/xml" --data-binary '<delete><query>*:*</query></delete>' 1>/dev/null
-  # load new data
-  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${all}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/03_combined/all_${date}.tsv
+  echo "delete existing data..."
+  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
+  echo ""
+  echo "load new data..."
+  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=all&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/03_combined/all_${date}.tsv | jq .responseHeader
   echo ""
 fi
 
@@ -191,7 +198,10 @@ if [ -n "$openrefine_url" ]; then
   echo ""
   echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
   echo ""
-  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "all_live" &>/dev/null
+  echo "delete existing project all_live..."
+  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "all_live"
+  echo ""
+  echo "create new project all_live..."
   ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/03_combined/all_${date}.tsv" --encoding=UTF-8 --projectName=all_live
   echo ""
 fi
