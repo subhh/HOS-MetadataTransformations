@@ -28,6 +28,7 @@ Usage: ./load-new-data.sh [-c CODENAME] [-i OAIURL] [-s OAISET] [-f OAIFORMAT] [
 ./load-new-data.sh -c ediss -i http://ediss.sub.uni-hamburg.de/oai2/oai2.php -d http://localhost:3333
 ./load-new-data.sh -c tubdok -i http://tubdok.tub.tuhh.de/oai/request -r metadata -d http://localhost:3333
 ./load-new-data.sh -c tuhh-fdm -i https://zenodo.org/oai2d -s user-tuhh -f datacite -r metadata -r resource -d http://localhost:3333
+./load-new-data.sh -c uhh-fis -i https://fis-www-test.rrz.uni-hamburg.de/ws/oai -s publications:all -d http://localhost:3333
 EOF
    exit 1
 }

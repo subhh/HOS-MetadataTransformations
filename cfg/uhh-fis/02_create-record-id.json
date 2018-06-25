@@ -1,0 +1,21 @@
+[
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - header - identifier to id",
+    "oldColumnName": "Record - header - identifier",
+    "newColumnName": "id"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column id using expression grel:value.replace(\"oai:fis-www-test.rrz.uni-hamburg.de:publications/\",\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "id",
+    "expression": "grel:value.replace(\"oai:fis-www-test.rrz.uni-hamburg.de:publications/\",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
