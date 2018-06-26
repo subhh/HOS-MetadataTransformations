@@ -82,6 +82,14 @@
       "stored":true
     },
     {
+      "name":"creatorName_facet",
+      "type":"string",
+      "multiValued":true,
+      "indexed":true,
+      "stored":true
+    },
+ 
+    {
       "name":"creatorNameURI",
       "type":"string",
       "multiValued":true,
@@ -181,6 +189,12 @@
     },
     {
       "name":"publisher",
+      "type":"text_general",
+      "indexed":true,
+      "stored":true
+    },    
+    {
+      "name":"publisher_facet",
       "type":"string",
       "indexed":true,
       "stored":true

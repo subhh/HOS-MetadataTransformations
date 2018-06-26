@@ -2,5 +2,9 @@
     {
       "source":"*",
       "dest":"_text_"
+    },
+    {
+      "source":"creatorName",
+      "dest":"creatorName_facet"
     }
 ]
