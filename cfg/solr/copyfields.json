@@ -6,5 +6,9 @@
     {
       "source":"creatorName",
       "dest":"creatorName_facet"
+    },
+    {
+      "source":"publisher",
+      "dest":"publisher_facet"
     }
 ]
