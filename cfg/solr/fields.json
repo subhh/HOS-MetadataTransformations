@@ -111,6 +111,12 @@
       "stored":true
     },
     {
+      "name":"fulltext",
+      "type":"text_general",
+      "indexed":true,
+      "stored":false
+    },
+    {
       "name":"format",
       "type":"string",
       "indexed":true,
