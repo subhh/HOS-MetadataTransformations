@@ -1,0 +1,30 @@
+[
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    }
+  }
+]
