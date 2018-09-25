@@ -1,0 +1,951 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - metadata",
+    "columnName": "Record - metadata"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - metadata - oai_dc:dc",
+    "columnName": "Record - metadata - oai_dc:dc"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:identifier to dc:identifier",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:identifier",
+    "newColumnName": "dc:identifier"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:title to dc:title",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:title",
+    "newColumnName": "dc:title"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:description to dc:description",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:description",
+    "newColumnName": "dc:description"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:creator to dc:creator",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:creator",
+    "newColumnName": "dc:creator"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:date to dc:date",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:date",
+    "newColumnName": "dc:date"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:type to dc:type",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:type",
+    "newColumnName": "dc:type"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:rights to dc:rights",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:rights",
+    "newColumnName": "dc:rights"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:language to dc:language",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:language",
+    "newColumnName": "dc:language"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:format to dc:format",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:format",
+    "newColumnName": "dc:format"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:source to dc:source",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:source",
+    "newColumnName": "dc:source"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - header - identifier",
+    "columnName": "Record - header - identifier"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Record - metadata - oai_dc:dc - xsi:schemaLocation",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Record - metadata - oai_dc:dc - xsi:schemaLocation"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column id at index 4 based on column dc:identifier using expression grel:if(startsWith(value, toString(10)),value,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "id",
+    "columnInsertIndex": 4,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:if(startsWith(value, toString(10)),value,\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column id using expression grel:value.replace(\"/\",\"-\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "id",
+    "expression": "grel:value.replace(\"/\",\"-\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column id using expression grel:value.replace(\".\",\"_\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "id",
+    "expression": "grel:value.replace(\".\",\"_\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column id to position 0",
+    "columnName": "id",
+    "index": 0
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - metadata - oai_dc:dc - xsi:schemaLocation",
+    "columnName": "Record - metadata - oai_dc:dc - xsi:schemaLocation"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column subject_ddc at index 3 based on column Record - header - setSpec using expression grel:value.replace(\"ddc:\",\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "ddc:",
+          "name": "Record - header - setSpec",
+          "type": "text",
+          "columnName": "Record - header - setSpec"
+        },
+        {
+          "mode": "text",
+          "invert": true,
+          "caseSensitive": false,
+          "query": "no",
+          "name": "Record - header - setSpec",
+          "type": "text",
+          "columnName": "Record - header - setSpec"
+        }
+      ]
+    },
+    "newColumnName": "subject_ddc",
+    "columnInsertIndex": 3,
+    "baseColumnName": "Record - header - setSpec",
+    "expression": "grel:value.replace(\"ddc:\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column dc:publisher at index 1 based on column id using expression grel:value.replace(value, \"copernicus.org\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "dc:publisher",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:value.replace(value, \"copernicus.org\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column university at index 2 based on column dc:publisher using expression grel:value.replace(value, \"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "university",
+    "columnInsertIndex": 2,
+    "baseColumnName": "dc:publisher",
+    "expression": "grel:value.replace(value, \"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column dc:subject at index 6 based on column subject_ddc using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "dc:subject",
+    "columnInsertIndex": 6,
+    "baseColumnName": "subject_ddc",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column institute at index 3 based on column university using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "institute",
+    "columnInsertIndex": 3,
+    "baseColumnName": "university",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column publisher at index 2 based on column dc:publisher using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "publisher",
+    "columnInsertIndex": 2,
+    "baseColumnName": "dc:publisher",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column url at index 10 based on column dc:identifier using expression grel:if(value.startsWith(toString(10)), \"https://doi.org/\" + value, value)",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "url",
+    "columnInsertIndex": 10,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:if(value.startsWith(toString(10)), \"https://doi.org/\" + value, value)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column abstract at index 8 based on column dc:description using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "abstract",
+    "columnInsertIndex": 8,
+    "baseColumnName": "dc:description",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column language at index 14 based on column dc:language using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "language",
+    "columnInsertIndex": 14,
+    "baseColumnName": "dc:language",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPoint at index 6 based on column publisher using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "geoLocationPoint",
+    "columnInsertIndex": 6,
+    "baseColumnName": "publisher",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column title at index 8 based on column dc:title using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "title",
+    "columnInsertIndex": 8,
+    "baseColumnName": "dc:title",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column title using expression grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "title",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-split",
+    "description": "Split column title by separator",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "title",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "separator",
+    "separator": "␟",
+    "regex": false,
+    "maxColumns": 0
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column title 1 to title",
+    "oldColumnName": "title 1",
+    "newColumnName": "title"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column translatedTitle at index 9 based on column title using expression grel:value.replace(value, \"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "translatedTitle",
+    "columnInsertIndex": 9,
+    "baseColumnName": "title",
+    "expression": "grel:value.replace(value, \"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column titleLang at index 18 based on column dc:language using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "titleLang",
+    "columnInsertIndex": 18,
+    "baseColumnName": "dc:language",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column format at index 21 based on column dc:format using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "format",
+    "columnInsertIndex": 21,
+    "baseColumnName": "dc:format",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column resourceType at index 16 based on column dc:type using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "resourceType",
+    "columnInsertIndex": 16,
+    "baseColumnName": "dc:type",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column resourceTypeGeneral at index 17 based on column resourceType using expression grel:if(isNotNull(value),\"Text\",\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "resourceTypeGeneral",
+    "columnInsertIndex": 17,
+    "baseColumnName": "resourceType",
+    "expression": "grel:if(isNotNull(value),\"Text\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column subject at index 2 based on column dc:subject using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "subject",
+    "columnInsertIndex": 2,
+    "baseColumnName": "dc:subject",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column identifier at index 15 based on column dc:identifier using expression grel:if(value.startsWith(toString(10)),value,\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "identifier",
+    "columnInsertIndex": 15,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:if(value.startsWith(toString(10)),value,\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column identifierType at index 16 based on column identifier using expression grel:if(value.startsWith(toString(10)),\"DOI\",\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "identifierType",
+    "columnInsertIndex": 16,
+    "baseColumnName": "identifier",
+    "expression": "grel:if(value.startsWith(toString(10)),\"DOI\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column creatorName at index 17 based on column dc:creator using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "creatorName",
+    "columnInsertIndex": 17,
+    "baseColumnName": "dc:creator",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column publicationYear at index 19 based on column dc:date using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "publicationYear",
+    "columnInsertIndex": 19,
+    "baseColumnName": "dc:date",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column date at index 33 based on column Record - header - datestamp using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "date",
+    "columnInsertIndex": 33,
+    "baseColumnName": "Record - header - datestamp",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column dateType at index 37 based on column Record - header - datestamp using expression grel:if(isNotNull(value),\"Issued\",\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "dateType",
+    "columnInsertIndex": 37,
+    "baseColumnName": "Record - header - datestamp",
+    "expression": "grel:if(isNotNull(value),\"Issued\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column seriesInformation at index 20 based on column dc:source using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "seriesInformation",
+    "columnInsertIndex": 20,
+    "baseColumnName": "dc:source",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rightsURI at index 17 based on column dc:rights using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "rightsURI",
+    "columnInsertIndex": 17,
+    "baseColumnName": "dc:rights",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rightsOA at index 19 based on column dc:rights using expression grel:\"Open Access\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "rightsOA",
+    "columnInsertIndex": 19,
+    "baseColumnName": "dc:rights",
+    "expression": "grel:\"Open Access\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rights at index 17 based on column dc:rights using expression grel:if(isNotNull(value),\"individuelle Lizenz\",\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "rights",
+    "columnInsertIndex": 17,
+    "baseColumnName": "dc:rights",
+    "expression": "grel:if(isNotNull(value),\"individuelle Lizenz\",\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column collection at index 1 based on column id using expression grel:value.replace(value, \"copernicus.org\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "collection",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:value.replace(value, \"copernicus.org\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column language",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "language",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "eng"
+        ],
+        "to": "en"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column titleLang",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "titleLang",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "eng"
+        ],
+        "to": "en"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
+    "description": "Mass edit cells in column geoLocationPoint",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "copernicus.org"
+        ],
+        "to": ""
+      }
+    ]
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column abstract using expression grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "abstract",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column creatorName using expression grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "creatorName",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column institute using expression grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "institute",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column seriesInformation using expression grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "seriesInformation",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column url using expression grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "url",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-reorder",
+    "description": "Reorder columns",
+    "columnNames": [
+      "id",
+      "creatorName",
+      "creatorNameURI",
+      "title",
+      "titleLang",
+      "subtitle",
+      "subtitleLang",
+      "translatedTitle",
+      "translatedTitleLang",
+      "alternativeTitle",
+      "alternativeTitleLang",
+      "otherTitle",
+      "otherTitleLang",
+      "contributorName",
+      "contributorType",
+      "language",
+      "resourceType",
+      "resourceTypeGeneral",
+      "publicationYear",
+      "date",
+      "dateType",
+      "publisher",
+      "university",
+      "institute",
+      "geoLocationPoint",
+      "subject",
+      "subject_ddc",
+      "subject_bk",
+      "subject_acm",
+      "abstract",
+      "methods",
+      "otherDescription",
+      "tableOfContents",
+      "technicalInfo",
+      "seriesInformation",
+      "identifier",
+      "identifierType",
+      "alternateIdentifier",
+      "alternateIdentifierType",
+      "format",
+      "rights",
+      "rightsOA",
+      "rightsURI",
+      "url",
+      "collection",
+      "source"
+    ]
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column hamburgFilter at index 20 based on column identifier using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "hamburgFilter",
+    "columnInsertIndex": 20,
+    "baseColumnName": "identifier",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column hamburgFilter using expression grel:value.replace(\"10.5194/hess-2016-557\" , \"Hamburg\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "hamburgFilter",
+    "expression": "grel:value.replace(\"10.5194/hess-2016-557\" , \"Hamburg\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column hamburgFilter using expression grel:value.replace(\"10.5194/esd-8-129-2017\" , \"Hamburg\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "hamburgFilter",
+    "expression": "grel:value.replace(\"10.5194/esd-8-129-2017\" , \"Hamburg\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column hamburgFilter using expression grel:value.replace(\"10.5194/nhess-18-1517-2018\" , \"Hamburg\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "hamburgFilter",
+    "expression": "grel:value.replace(\"10.5194/nhess-18-1517-2018\" , \"Hamburg\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column hamburgFilter using expression grel:value.replace(\"10.5194/cp-13-1791-2017\" , \"Hamburg\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "hamburgFilter",
+    "expression": "grel:value.replace(\"10.5194/cp-13-1791-2017\" , \"Hamburg\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column hamburgFilter using expression grel:value.replace(\"10.5194/bg-7-483-2010\" , \"Hamburg\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "hamburgFilter",
+    "expression": "grel:value.replace(\"10.5194/bg-7-483-2010\" , \"Hamburg\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": true,
+          "caseSensitive": false,
+          "query": "Hamburg",
+          "name": "hamburgFilter",
+          "type": "text",
+          "columnName": "hamburgFilter"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column hamburgFilter",
+    "columnName": "hamburgFilter"
+  }
+]
