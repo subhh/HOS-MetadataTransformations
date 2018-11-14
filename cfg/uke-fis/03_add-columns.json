@@ -53,15 +53,15 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column subject_ddc at index 4 based on column subject using expression grel:value",
+    "description": "Create column subject_ddc at index 2 based on column dc:identifier using expression grel:\"\"",
     "engineConfig": {
       "mode": "record-based",
       "facets": []
     },
     "newColumnName": "subject_ddc",
-    "columnInsertIndex": 4,
-    "baseColumnName": "subject",
-    "expression": "grel:value",
+    "columnInsertIndex": 2,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:\"\"",
     "onError": "set-to-blank"
   },
   {
