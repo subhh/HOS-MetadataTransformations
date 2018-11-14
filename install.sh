@@ -60,7 +60,7 @@ if [ ! -d "opt/openrefine" ]; then
     tar -xzf "$(basename $openrefine_server_URL)" -C opt/openrefine --strip 1 --totals
     rm "$(basename $openrefine_server_URL)"
     sed -i '$ a JAVA_OPTIONS=-Drefine.headless=true' opt/openrefine/refine.ini
-    sed -i 's/#REFINE_AUTOSAVE_PERIOD=60/REFINE_AUTOSAVE_PERIOD=1440/' opt/openrefine/refine.ini
+    sed -i 's/#REFINE_AUTOSAVE_PERIOD=60/REFINE_AUTOSAVE_PERIOD=1500/' opt/openrefine/refine.ini
     sed -i 's/-Xms$REFINE_MIN_MEMORY/-Xms$REFINE_MEMORY/' opt/openrefine/refine
     echo ""
 fi
@@ -74,6 +74,8 @@ Group=${user}
 Description=OpenRefine
 [Service]
 ExecStart=${path_openrefine}/refine -i 0.0.0.0
+TimeoutStopSec=3600s
+Restart=always
 [Install]
 WantedBy=default.target
 " > /etc/systemd/system/openrefine.service

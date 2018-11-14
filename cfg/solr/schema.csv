@@ -8,10 +8,11 @@ collection,string,-,x,x,15.01,-,describes the source of the metadata
 contributorName,string,x,x,x,03.01,,
 contributorType,string,x,x,x,03.02,,
 creatorName,text_general,x,x,x,01.01,,
-creatorName_facet,string,x,x,x,01.01,,"copyfield"
+creatorName_facet,string,x,x,x,01.01,,copyfield
 creatorNameURI,string,x,x,x,01.02,,
 date,string,x,x,x,06.02,,
 dateType,string,x,x,x,06.03,,
+fulltext,text_general,-,x,-,-,,
 format,string,-,x,x,12.01,,
 fulltext,text_general,-,x,x,-,,SOLR field for textual content of documents
 geoLocationPoint,string,-,x,x,07.04,geoLocationPoint with longitude/latitude subfields,"e.g. 53.590312,9.978455"
@@ -26,7 +27,7 @@ otherTitle,text_general,x,x,x,02.09,,
 otherTitleLang,string,x,x,x,02.10,,
 publicationYear,string,-,x,x,06.01,,
 publisher,text_general,-,x,x,07.01,,
-publisher_facet,string,-,x,x,,,"copyfield"
+publisher_facet,string,-,x,x,,,copyfield
 resourceType,string,-,x,x,05.01,,
 resourceTypeGeneral,string,-,x,x,05.02,,
 rights,text_general,-,x,x,13.01,,single valued despite DataCite Scheme
