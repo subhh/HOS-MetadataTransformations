@@ -1,0 +1,188 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - metadata",
+    "columnName": "Record - metadata"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - metadata - oai_dc:dc",
+    "columnName": "Record - metadata - oai_dc:dc"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Record - metadata - oai_dc:dc - creator",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Record - metadata - oai_dc:dc - creator"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column Record - header - identifier to position 0",
+    "columnName": "Record - header - identifier",
+    "index": 0
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - creator to dc:creator",
+    "oldColumnName": "Record - metadata - oai_dc:dc - creator",
+    "newColumnName": "dc:creator"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - subject to dc:subject",
+    "oldColumnName": "Record - metadata - oai_dc:dc - subject",
+    "newColumnName": "dc:subject"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - identifier to dc:identifier",
+    "oldColumnName": "Record - metadata - oai_dc:dc - identifier",
+    "newColumnName": "dc:identifier"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - title to dc:title",
+    "oldColumnName": "Record - metadata - oai_dc:dc - title",
+    "newColumnName": "dc:title"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - title - xml:lang to dc:title-lang",
+    "oldColumnName": "Record - metadata - oai_dc:dc - title - xml:lang",
+    "newColumnName": "dc:title-lang"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - date to dc:date",
+    "oldColumnName": "Record - metadata - oai_dc:dc - date",
+    "newColumnName": "dc:date"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - type to dc:type",
+    "oldColumnName": "Record - metadata - oai_dc:dc - type",
+    "newColumnName": "dc:type"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - source to dc:source",
+    "oldColumnName": "Record - metadata - oai_dc:dc - source",
+    "newColumnName": "dc:source"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - rights to dc:rights",
+    "oldColumnName": "Record - metadata - oai_dc:dc - rights",
+    "newColumnName": "dc:rights"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - language to dc:language",
+    "oldColumnName": "Record - metadata - oai_dc:dc - language",
+    "newColumnName": "dc:language"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - contributor to dc:contributor",
+    "oldColumnName": "Record - metadata - oai_dc:dc - contributor",
+    "newColumnName": "dc:contributor"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - publisher to dc:publisher",
+    "oldColumnName": "Record - metadata - oai_dc:dc - publisher",
+    "newColumnName": "dc:publisher"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - ns2:isPartOf to dc:isPartOf",
+    "oldColumnName": "Record - metadata - oai_dc:dc - ns2:isPartOf",
+    "newColumnName": "dc:isPartOf"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - description to dc:description",
+    "oldColumnName": "Record - metadata - oai_dc:dc - description",
+    "newColumnName": "dc:description"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - description - xml:lang to dc:description-lang",
+    "oldColumnName": "Record - metadata - oai_dc:dc - description - xml:lang",
+    "newColumnName": "dc:description-lang"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - format to dc:format",
+    "oldColumnName": "Record - metadata - oai_dc:dc - format",
+    "newColumnName": "dc:format"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - header - setSpec",
+    "columnName": "Record - header - setSpec"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - header - datestamp",
+    "columnName": "Record - header - datestamp"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "http://ediss",
+          "name": "dc:identifier",
+          "type": "text",
+          "columnName": "dc:identifier"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "persons",
+          "name": "Record - header - identifier",
+          "type": "text",
+          "columnName": "Record - header - identifier"
+        }
+      ]
+    }
+  }
+]

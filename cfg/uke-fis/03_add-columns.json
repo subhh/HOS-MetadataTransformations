@@ -1,0 +1,359 @@
+[
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:creator to creatorName",
+    "oldColumnName": "dc:creator",
+    "newColumnName": "creatorName"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column subject at index 3 based on column dc:subject using expression grel:value.replace(/^\\*/,\"\").replace(/^\\%/,\"\").replace(/^\\|/,\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": true,
+          "caseSensitive": false,
+          "query": "^\"|^„|^\\(|^\\/|^BD|^\\d\\d\\d ",
+          "name": "dc:subject",
+          "type": "text",
+          "columnName": "dc:subject"
+        }
+      ]
+    },
+    "newColumnName": "subject",
+    "columnInsertIndex": 3,
+    "baseColumnName": "dc:subject",
+    "expression": "grel:value.replace(/^\\*/,\"\").replace(/^\\%/,\"\").replace(/^\\|/,\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column url at index 5 based on column dc:identifier using expression grel:value.replace(\"http://dx.\",\"https://\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": true,
+          "caseSensitive": false,
+          "query": "fis-www-test",
+          "name": "dc:identifier",
+          "type": "text",
+          "columnName": "dc:identifier"
+        }
+      ]
+    },
+    "newColumnName": "url",
+    "columnInsertIndex": 5,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:value.replace(\"http://dx.\",\"https://\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column subject_ddc at index 4 based on column subject using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "subject_ddc",
+    "columnInsertIndex": 4,
+    "baseColumnName": "subject",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column subject_ddc to position 3",
+    "columnName": "subject_ddc",
+    "index": 3
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column title at index 8 based on column dc:title using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "title",
+    "columnInsertIndex": 8,
+    "baseColumnName": "dc:title",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column translatedTitle at index 8 based on column dc:title using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "translatedTitle",
+    "columnInsertIndex": 8,
+    "baseColumnName": "dc:title",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column titleLang at index 11 based on column dc:title-lang using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "titleLang",
+    "columnInsertIndex": 11,
+    "baseColumnName": "dc:title-lang",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column translatedTitleLang at index 11 based on column dc:title-lang using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "translatedTitleLang",
+    "columnInsertIndex": 11,
+    "baseColumnName": "dc:title-lang",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column publicationYear at index 14 based on column dc:date using expression grel:value[0,4]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "publicationYear",
+    "columnInsertIndex": 14,
+    "baseColumnName": "dc:date",
+    "expression": "grel:value[0,4]",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:date to date",
+    "oldColumnName": "dc:date",
+    "newColumnName": "date"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:type to resourceType",
+    "oldColumnName": "dc:type",
+    "newColumnName": "resourceType"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column seriesInformation at index 17 based on column dc:source using expression grel:forNonBlank(cells[\"dc:isPartOf\"].value,v,v.replace(\"urn:\",\"\")+value.split(\"'\").slice(2).join(\"\"),value.split(\"'\").slice(2).join(\"\"))",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "seriesInformation",
+    "columnInsertIndex": 17,
+    "baseColumnName": "dc:source",
+    "expression": "grel:forNonBlank(cells[\"dc:isPartOf\"].value,v,v.replace(\"urn:\",\"\")+ value.split(\"'\").slice(2).join(\"\"),value.split(\"'\").slice(2).join(\"\"))",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rights at index 19 based on column dc:rights using expression grel:value",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "rights",
+    "columnInsertIndex": 19,
+    "baseColumnName": "dc:rights",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rightsOA at index 19 based on column dc:rights using expression grel:if(row.record.cells[columnName].value.join(\"\").contains(\"open\"),\"Open Access\",\"zugriffsbeschränkt\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "rightsOA",
+    "columnInsertIndex": 19,
+    "baseColumnName": "dc:rights",
+    "expression": "grel:if(row.record.cells[columnName].value.join(\"\").contains(\"open\"),\"Open Access\",\"zugriffsbeschränkt\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:language to language",
+    "oldColumnName": "dc:language",
+    "newColumnName": "language"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:contributor to contributorName",
+    "oldColumnName": "dc:contributor",
+    "newColumnName": "contributorName"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:publisher to publisher",
+    "oldColumnName": "dc:publisher",
+    "newColumnName": "publisher"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column abstract at index 26 based on column dc:description using expression grel:value.parseHtml().htmlText()",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "abstract",
+    "columnInsertIndex": 26,
+    "baseColumnName": "dc:description",
+    "expression": "grel:value.parseHtml().htmlText()",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column dc:format to format",
+    "oldColumnName": "dc:format",
+    "newColumnName": "format"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Publikationen Uni Hamburg\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "collection",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"Publikationen UKE Hamburg\"",
+    "onError": "set-to-blank"
+  }
+]
