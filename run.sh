@@ -185,7 +185,7 @@ if [ -n "$solr_url" ]; then
   curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
   echo ""
   echo "load new data..."
-  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=all&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/03_combined/all_${date}.tsv | jq .responseHeader
+  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=hos&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/03_combined/all_${date}.tsv | jq .responseHeader
   echo ""
 fi
 
@@ -198,11 +198,11 @@ if [ -n "$openrefine_url" ]; then
   echo ""
   echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
   echo ""
-  echo "delete existing project all_live..."
-  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "all_live"
+  echo "delete existing project hos_live..."
+  ${openrefine_client} -H ${external_host} -P ${external_port} --delete "hos_live"
   echo ""
-  echo "create new project all_live..."
-  ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/03_combined/all_${date}.tsv" --encoding=UTF-8 --projectName=all_live
+  echo "create new project hos_live..."
+  ${openrefine_client} -H ${external_host} -P ${external_port} --create "${data_dir}/03_combined/all_${date}.tsv" --encoding=UTF-8 --projectName=hos_live
   echo ""
 fi
 
