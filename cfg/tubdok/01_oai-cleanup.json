@@ -1,11 +1,6 @@
 [
   {
     "op": "core/column-removal",
-    "description": "Remove column metadata",
-    "columnName": "metadata"
-  },
-  {
-    "op": "core/column-removal",
     "description": "Remove column metadata - oai_dc:dc",
     "columnName": "metadata - oai_dc:dc"
   },
