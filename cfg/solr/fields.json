@@ -123,12 +123,6 @@
       "stored":true
     },
     {
-      "name":"fulltext",
-      "type":"text_general",
-      "indexed":true,
-      "stored":true
-    },
-    {
       "name":"geoLocationPoint",
       "type":"string",
       "indexed":true,

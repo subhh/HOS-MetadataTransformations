@@ -14,7 +14,6 @@ date,string,x,x,x,06.02,,
 dateType,string,x,x,x,06.03,,
 fulltext,text_general,-,x,-,-,,
 format,string,-,x,x,12.01,,
-fulltext,text_general,-,x,x,-,,SOLR field for textual content of documents
 geoLocationPoint,string,-,x,x,07.04,geoLocationPoint with longitude/latitude subfields,"e.g. 53.590312,9.978455"
 id,string,-,x,x,00.01,-,copy of identifier (without slashes)
 identifier,string,-,x,x,11.01,,
