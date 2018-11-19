@@ -1,5 +1,28 @@
 [
   {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column resourceType using expression grel:value.split(\", \")[0]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": ",",
+          "name": "resourceType",
+          "type": "text",
+          "columnName": "resourceType"
+        }
+      ]
+    },
+    "columnName": "resourceType",
+    "expression": "grel:value.split(\", \")[0]",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
     "op": "core/mass-edit",
     "description": "Mass edit cells in column resourceType",
     "engineConfig": {
