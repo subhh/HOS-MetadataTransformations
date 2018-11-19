@@ -14,12 +14,12 @@ data_dir="$(readlink -f ../data)"
 log_dir="$(readlink -f ../log)"
 
 # config
-codename="tuhh-fdm" # used for filename, name of OpenRefine project and value for Solr field "source"
+codename="tuhh-fdm" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
 oai_url="https://zenodo.org/oai2d" # base url of OAI-PMH endpoint
 oai_set="user-tuhh" # optional: OAI-PMH set spec (e.g. institution)
 oai_format="datacite" # optional: OAI-PMH metadata format (e.g. datacite)
 ram="2048M" # highest OpenRefine memory load is below 2048M
-recordpath+=(metadata resource) # select /Records/Record/metadata/resource (ignoring /Records/Record/header)
+recordpath+=(metadata recollectionId) # select /Records/Record/metadata/recollectionId (ignoring /Records/Record/header)
 separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
 config_dir="$(readlink -f ../cfg/${codename})" # location of OpenRefine transformation rules in json format
 
@@ -206,10 +206,10 @@ if [ -n "$solr_url" ]; then
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
   echo "delete existing data..."
-  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: application/json" --data-binary "{ \"delete\": { \"source\": \"${codename}\" } }" | jq .responseHeader
+  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: application/json" --data-binary "{ \"delete\": { \"collectionId\": \"${codename}\" } }" | jq .responseHeader
   echo ""
   echo "load new data..."
-  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.source=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv | jq .responseHeader
+  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv | jq .responseHeader
   echo ""
 fi
 

@@ -61,6 +61,12 @@
       "stored":true
     },
     {
+      "name":"collectionId",
+      "type":"string",
+      "indexed":true,
+      "stored":false
+    },
+    {
       "name":"contributorName",
       "type":"text_general",
       "multiValued":true,
@@ -241,12 +247,6 @@
       "multiValued":true,
       "indexed":true,
       "stored":true
-    },
-    {
-      "name":"source",
-      "type":"string",
-      "indexed":true,
-      "stored":false
     },
     {
       "name":"subject",
