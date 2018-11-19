@@ -11,7 +11,7 @@ data_dir="$(readlink -f data)"
 log_dir="$(readlink -f log)"
 
 # config
-ram="2048M" # highest OpenRefine memory load is below 2048M
+ram="4096M" # highest OpenRefine memory load is below 4096M
 separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
 config_dir="$(readlink -f cfg/all)" # location of OpenRefine transformation rules in json format
 
