@@ -100,6 +100,12 @@ echo "OpenRefine service URL:  $openrefine_url"
 echo "Logfile:                 ${codename}_${date}.log"
 echo ""
 
+# Check connection to OAI endpoint
+if [[ $(curl -sL -w "%{http_code}" "${oai_url}" -o /dev/null --connect-timeout 15) -ne "200" ]]; then
+    echo 1>&2 "no connection to OAI endpoint ${oai_url}"
+    exit 2
+fi
+
 # Download data via OAI with metha
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
