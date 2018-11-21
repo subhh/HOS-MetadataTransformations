@@ -15,7 +15,7 @@ log_dir="$(readlink -f ../log)"
 
 # config
 codename="uhh-fis" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
-oai_url="https://fis-www-test.rrz.uni-hamburg.de/ws/oai" # base url of OAI-PMH endpoint
+oai_url="https://www.edit.fis.uni-hamburg.de/ws/oai" # base url of OAI-PMH endpoint
 oai_set="publications:all" # optional: OAI-PMH set spec (e.g. institution)
 oai_format="" # optional: OAI-PMH metadata format (e.g. datacite)
 ram="4096M" # highest OpenRefine memory load is below 4096M
