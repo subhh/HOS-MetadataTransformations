@@ -89,6 +89,22 @@ echo "OpenRefine service URL:  $openrefine_url"
 echo "Logfile:                 all_${date}.log"
 echo ""
 
+# delete old files
+checkpoints=${#checkpointdate[@]}
+checkpointdate[$((checkpoints + 1))]=$(date +%s)
+checkpointname[$((checkpoints + 1))]="Delete old files"
+echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
+echo ""
+echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+echo ""
+echo "delete files older than 7 days..."
+for f in "data/01_oai" "data/02_transformed" "data/03_combined"; do
+  if [ -d "$f" ]; then
+      find "$f" -mtime +7 -type f -print -delete
+  fi
+done
+echo ""
+
 # run jobs in parallel
 checkpoints=${#checkpointdate[@]}
 checkpointdate[$((checkpoints + 1))]=$(date +%s)
