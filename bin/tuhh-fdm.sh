@@ -19,7 +19,7 @@ oai_url="https://zenodo.org/oai2d" # base url of OAI-PMH endpoint
 oai_set="user-tuhh" # optional: OAI-PMH set spec (e.g. institution)
 oai_format="datacite" # optional: OAI-PMH metadata format (e.g. datacite)
 ram="2048M" # highest OpenRefine memory load is below 2048M
-recordpath+=(metadata recollectionId) # select /Records/Record/metadata/recollectionId (ignoring /Records/Record/header)
+recordpath+=(metadata resource) # select /Records/Record/metadata/resource (ignoring /Records/Record/header)
 separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
 config_dir="$(readlink -f ../cfg/${codename})" # location of OpenRefine transformation rules in json format
 
