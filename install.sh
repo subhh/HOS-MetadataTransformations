@@ -31,6 +31,12 @@ if [ -z "$JAVA" ] ; then
     apt-get -qq update && apt-get -qq --yes install openjdk-8-jre-headless
 fi
 
+# install zip
+zip="$(which zip 2> /dev/null)"
+if [ -z "$zip" ] ; then
+    apt-get -qq update && apt-get -qq --yes install zip
+fi
+
 # install curl
 curl="$(which curl 2> /dev/null)"
 if [ -z "$curl" ] ; then
