@@ -3,8 +3,8 @@
 
 # run as root? if not, exit
 if [ "$EUID" -ne 0 ]
-  then echo "Please run installation as root"
-  exit
+  then echo 1>&2 "Please run installation as root"
+  exit 2
 fi
 
 # get user name
@@ -119,3 +119,13 @@ sudo /etc/init.d/solr status
 # create Solr core
 echo "create Solr core hos..."
 sudo -u solr $(grep SOLR_INSTALL_DIR= /etc/init.d/solr | sed 's/\"//g' | sed 's/SOLR_INSTALL_DIR=//')/bin/solr create -c hos
+
+# check UTF-8 environment
+if ! (locale | grep -e 'utf8' -e 'UTF-8') >/dev/null 2>&1; then
+  echo 1>&2 "WARNING:"
+  echo 1>&2 "# we need an UTF-8 environment for data processing"
+  echo 1>&2 "# please update your locale to UTF-8"
+  echo 1>&2 "sudo dpkg-reconfigure locales"
+  echo 1>&2 ". /etc/default/locale"
+  exit 2
+fi
