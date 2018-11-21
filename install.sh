@@ -78,7 +78,7 @@ if [ ! -f "/etc/systemd/system/openrefine.service" ]; then
 Description=OpenRefine
 [Service]
 User=${user}
-ExecStart=${path_openrefine}/refine -i 0.0.0.0
+ExecStart=${path_openrefine}/refine -i 0.0.0.0 -m 2048M
 TimeoutStopSec=3600s
 Restart=always
 [Install]
