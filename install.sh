@@ -75,10 +75,9 @@ fi
 if [ ! -f "/etc/systemd/system/openrefine.service" ]; then
   path_openrefine=$(readlink -f opt/openrefine)
   echo "[Unit]
-User=${user}
-Group=${user}
 Description=OpenRefine
 [Service]
+User=${user}
 ExecStart=${path_openrefine}/refine -i 0.0.0.0
 TimeoutStopSec=3600s
 Restart=always
