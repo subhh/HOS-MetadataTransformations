@@ -134,12 +134,6 @@
     "newColumnName": "dc:description-lang"
   },
   {
-    "op": "core/column-rename",
-    "description": "Rename column Record - metadata - oai_dc:dc - format to dc:format",
-    "oldColumnName": "Record - metadata - oai_dc:dc - format",
-    "newColumnName": "dc:format"
-  },
-  {
     "op": "core/column-removal",
     "description": "Remove column Record - header - setSpec",
     "columnName": "Record - header - setSpec"

@@ -322,12 +322,6 @@
     "onError": "set-to-blank"
   },
   {
-    "op": "core/column-rename",
-    "description": "Rename column dc:format to format",
-    "oldColumnName": "dc:format",
-    "newColumnName": "format"
-  },
-  {
     "op": "core/column-addition",
     "description": "Create column collection at index 1 based on column id using expression grel:\"Publikationen Uni Hamburg\"",
     "engineConfig": {
