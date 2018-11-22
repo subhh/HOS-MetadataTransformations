@@ -160,23 +160,5 @@
         }
       ]
     }
-  },
-  {
-    "op": "core/row-removal",
-    "description": "Remove rows",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": [
-        {
-          "mode": "text",
-          "invert": false,
-          "caseSensitive": false,
-          "query": "persons",
-          "name": "Record - header - identifier",
-          "type": "text",
-          "columnName": "Record - header - identifier"
-        }
-      ]
-    }
   }
 ]
