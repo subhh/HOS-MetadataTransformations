@@ -253,9 +253,9 @@
         "fromBlank": false,
         "fromError": false,
         "from": [
-          "Research Paper"
+          "ResearchPaper"
         ],
-        "to": "Article"
+        "to": "Research Paper"
       }
     ]
   },
@@ -293,7 +293,7 @@
         "fromBlank": false,
         "fromError": false,
         "from": [
-          "Tech Report"
+          "TechReport"
         ],
         "to": "Technical Report"
       }
