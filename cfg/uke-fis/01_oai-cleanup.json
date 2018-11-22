@@ -148,41 +148,5 @@
     "op": "core/column-removal",
     "description": "Remove column Record - header - datestamp",
     "columnName": "Record - header - datestamp"
-  },
-  {
-    "op": "core/row-removal",
-    "description": "Remove rows",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": [
-        {
-          "mode": "text",
-          "invert": false,
-          "caseSensitive": false,
-          "query": "http://ediss",
-          "name": "dc:identifier",
-          "type": "text",
-          "columnName": "dc:identifier"
-        }
-      ]
-    }
-  },
-  {
-    "op": "core/row-removal",
-    "description": "Remove rows",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": [
-        {
-          "mode": "text",
-          "invert": false,
-          "caseSensitive": false,
-          "query": "persons",
-          "name": "Record - header - identifier",
-          "type": "text",
-          "columnName": "Record - header - identifier"
-        }
-      ]
-    }
   }
 ]

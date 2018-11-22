@@ -53,25 +53,6 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column subject_ddc at index 2 based on column dc:identifier using expression grel:\"\"",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "newColumnName": "subject_ddc",
-    "columnInsertIndex": 2,
-    "baseColumnName": "dc:identifier",
-    "expression": "grel:\"\"",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-move",
-    "description": "Move column subject_ddc to position 3",
-    "columnName": "subject_ddc",
-    "index": 3
-  },
-  {
-    "op": "core/column-addition",
     "description": "Create column title at index 8 based on column dc:title using expression grel:value",
     "engineConfig": {
       "mode": "row-based",
@@ -204,22 +185,49 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column publicationYear at index 14 based on column dc:date using expression grel:value[0,4]",
+    "description": "Create column publicationYear at index 16 based on column dc:date using expression grel:value[0,4]",
     "engineConfig": {
       "mode": "row-based",
-      "facets": []
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "^\\d",
+          "name": "dc:date",
+          "type": "text",
+          "columnName": "dc:date"
+        }
+      ]
     },
     "newColumnName": "publicationYear",
-    "columnInsertIndex": 14,
+    "columnInsertIndex": 16,
     "baseColumnName": "dc:date",
     "expression": "grel:value[0,4]",
     "onError": "set-to-blank"
   },
   {
-    "op": "core/column-rename",
-    "description": "Rename column dc:date to date",
-    "oldColumnName": "dc:date",
-    "newColumnName": "date"
+    "op": "core/column-addition",
+    "description": "Create column date at index 16 based on column dc:date using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "^\\d",
+          "name": "dc:date",
+          "type": "text",
+          "columnName": "dc:date"
+        }
+      ]
+    },
+    "newColumnName": "date",
+    "columnInsertIndex": 16,
+    "baseColumnName": "dc:date",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
   },
   {
     "op": "core/column-rename",

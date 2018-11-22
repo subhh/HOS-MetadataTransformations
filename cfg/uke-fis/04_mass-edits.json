@@ -321,6 +321,26 @@
   },
   {
     "op": "core/mass-edit",
+    "description": "Mass edit cells in column resourceType",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "resourceType",
+    "expression": "value",
+    "edits": [
+      {
+        "fromBlank": false,
+        "fromError": false,
+        "from": [
+          "contributionToPeriodical"
+        ],
+        "to": "Article"
+      }
+    ]
+  },
+  {
+    "op": "core/mass-edit",
     "description": "Mass edit cells in column titleLang",
     "engineConfig": {
       "mode": "record-based",
