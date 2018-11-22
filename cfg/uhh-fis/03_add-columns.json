@@ -208,22 +208,49 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column publicationYear at index 14 based on column dc:date using expression grel:value[0,4]",
+    "description": "Create column publicationYear at index 16 based on column dc:date using expression grel:value[0,4]",
     "engineConfig": {
       "mode": "row-based",
-      "facets": []
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "^\\d",
+          "name": "dc:date",
+          "type": "text",
+          "columnName": "dc:date"
+        }
+      ]
     },
     "newColumnName": "publicationYear",
-    "columnInsertIndex": 14,
+    "columnInsertIndex": 16,
     "baseColumnName": "dc:date",
     "expression": "grel:value[0,4]",
     "onError": "set-to-blank"
   },
   {
-    "op": "core/column-rename",
-    "description": "Rename column dc:date to date",
-    "oldColumnName": "dc:date",
-    "newColumnName": "date"
+    "op": "core/column-addition",
+    "description": "Create column date at index 16 based on column dc:date using expression grel:value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "^\\d",
+          "name": "dc:date",
+          "type": "text",
+          "columnName": "dc:date"
+        }
+      ]
+    },
+    "newColumnName": "date",
+    "columnInsertIndex": 16,
+    "baseColumnName": "dc:date",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
   },
   {
     "op": "core/column-rename",
