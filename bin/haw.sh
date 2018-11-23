@@ -122,7 +122,7 @@ echo ""
 # Workaround for encoding issue in OAI endpoint
 echo "convert encoding to ISO-8859-1 (workaround for issue in OAI endpoint)" 
 iconv -f UTF-8 -t ISO-8859-1 "${data_dir}/01_oai/${codename}_${date}.xml" > "${data_dir}/01_oai/${codename}_${date}_converted.xml"
-mv -f "${data_dir}/01_oai/${codename}_${date}_converted.xml" > "${data_dir}/01_oai/${codename}_${date}.xml"
+mv -f "${data_dir}/01_oai/${codename}_${date}_converted.xml" "${data_dir}/01_oai/${codename}_${date}.xml"
 echo ""
 
 # Launch OpenRefine server
