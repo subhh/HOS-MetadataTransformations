@@ -1,0 +1,123 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - metadata",
+    "columnName": "Record - metadata"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - metadata - oai_dc:dc",
+    "columnName": "Record - metadata - oai_dc:dc"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:subject to dc:subject",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:subject",
+    "newColumnName": "dc:subject"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:identifier to dc:identifier",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:identifier",
+    "newColumnName": "dc:identifier"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:publisher to dc:publisher",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:publisher",
+    "newColumnName": "dc:publisher"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:title to dc:title",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:title",
+    "newColumnName": "dc:title"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:description to dc:description",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:description",
+    "newColumnName": "dc:description"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:creator to dc:creator",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:creator",
+    "newColumnName": "dc:creator"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:date to dc:date",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:date",
+    "newColumnName": "dc:date"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:type to dc:type",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:type",
+    "newColumnName": "dc:type"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:rights to dc:rights",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:rights",
+    "newColumnName": "dc:rights"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:language to dc:language",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:language",
+    "newColumnName": "dc:language"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:format to dc:format",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:format",
+    "newColumnName": "dc:format"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:source to dc:source",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:source",
+    "newColumnName": "dc:source"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Record - metadata - oai_dc:dc - dc:contributor to dc:contributor",
+    "oldColumnName": "Record - metadata - oai_dc:dc - dc:contributor",
+    "newColumnName": "dc:contributor"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - header - identifier",
+    "columnName": "Record - header - identifier"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Record - metadata - oai_dc:dc - xsi:schemaLocation",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Record - metadata - oai_dc:dc - xsi:schemaLocation"
+        }
+      ]
+    }
+  }
+]
