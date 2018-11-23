@@ -1,0 +1,59 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column id at index 4 based on column dc:identifier using expression grel:if(startsWith(value,\"urn\"),value,\"hcu_\"+value.get(45,52).replace(\"/\",\"_\"))",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "Record - metadata - oai_dc:dc - xsi:schemaLocation",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "Record - metadata - oai_dc:dc - xsi:schemaLocation"
+        }
+      ]
+    },
+    "newColumnName": "id",
+    "columnInsertIndex": 4,
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:if(startsWith(value,\"urn\"),value,\"hcu_\"+value.slice(45,-1).replace(\"/\",\"_\"))",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column id using expression grel:value.replace(\":\",\"_\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "id",
+    "expression": "grel:value.replace(\":\",\"_\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column id to position 0",
+    "columnName": "id",
+    "index": 0
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Record - metadata - oai_dc:dc - xsi:schemaLocation",
+    "columnName": "Record - metadata - oai_dc:dc - xsi:schemaLocation"
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column geoLocationPoint using expression grel:\"53.540253,10.004717\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "columnName": "geoLocationPoint",
+    "expression": "grel:\"53.540253,10.004717\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
