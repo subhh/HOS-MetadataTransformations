@@ -89,18 +89,5 @@
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column rightsURI",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "rightsURI",
-    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
   }
 ]

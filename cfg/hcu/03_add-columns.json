@@ -403,15 +403,35 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column rightsURI at index 17 based on column dc:rights using expression grel:value",
+    "description": "Create column rightsURI at index 11 based on column dc:rights using expression grel:if(row.record.cells[\"dc:rights\"].value.join(\"\").contains(\"nur innerhalb\"),\"Volltextzugriff nur innerhalb Universitäts-Campus\",value)",
     "engineConfig": {
-      "mode": "record-based",
-      "facets": []
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
     },
     "newColumnName": "rightsURI",
-    "columnInsertIndex": 17,
+    "columnInsertIndex": 11,
     "baseColumnName": "dc:rights",
-    "expression": "grel:value.replace(\"UniversitÃ¤ts\",\"Universitäts\")",
+    "expression": "grel:if(row.record.cells[\"dc:rights\"].value.join(\"\").contains(\"nur innerhalb\"),\"Volltextzugriff nur innerhalb Universitäts-Campus\",value)",
     "onError": "set-to-blank"
   },
   {
