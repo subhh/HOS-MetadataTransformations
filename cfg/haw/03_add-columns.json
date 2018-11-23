@@ -371,6 +371,29 @@
     "onError": "set-to-blank"
   },
   {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column publicationYear using expression grel:\"\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "regex",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "^\\d{3}$",
+          "name": "publicationYear",
+          "type": "text",
+          "columnName": "publicationYear"
+        }
+      ]
+    },
+    "columnName": "publicationYear",
+    "expression": "grel:\"\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
     "op": "core/column-addition",
     "description": "Create column date at index 33 based on column Record - header - datestamp using expression grel:value",
     "engineConfig": {
