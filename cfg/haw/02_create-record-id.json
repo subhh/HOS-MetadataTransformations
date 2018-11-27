@@ -1,5 +1,25 @@
 [
   {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column dc:identifier using expression grel:if(startsWith(value,\"urn\"),\"\",value)",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "dc:identifier",
+    "expression": "grel:if(startsWith(value,\"urn\"),\"\",value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column dc:identifier",
+    "columnName": "dc:identifier",
+    "keyColumnName": "Record - metadata - oai_dc:dc - xsi:schemaLocation",
+    "separator": ""
+  },
+  {
     "op": "core/column-addition",
     "description": "Create column id at index 4 based on column dc:identifier using expression grel:if(startsWith(value,\"urn\"),value,\"haw_\"+value.get(45,52).replace(\"/\",\"_\"))",
     "engineConfig": {
