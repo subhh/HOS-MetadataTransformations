@@ -89,21 +89,13 @@ nano cfg/solr/credentials
 chmod 400 cfg/solr/credentials
 ```
 
-### Cronjobs
-
-Example for daily cronjob at 00:05 AM to restart local OpenRefine service (to free up memory)
-
-```
-command="systemctl restart openrefine"
-job="5 0 * * * $command"
-cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
-```
+### Cronjob
 
 Example for daily cronjob at 00:35 AM to run workflow with all data sources, load data into external Solr core (-s) and external OpenRefine service (-d) and delete files older than 7 days (-x)
 
 ```
 command="$(readlink -f run.sh) -s https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS -d http://openrefine.sub.uni-hamburg.de:80 -x 7"
-job="5 0 * * * $command"
+job="35 0 * * * $command"
 cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
 ```
 
