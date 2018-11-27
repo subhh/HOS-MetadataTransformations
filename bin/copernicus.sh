@@ -59,7 +59,7 @@ done
 shift $((OPTIND - 1))
 
 # load solr credentials from file
-if [ -n "../cfg/solr/credentials" ]; then source "../cfg/solr/credentials"; fi
+if [ -f "../cfg/solr/credentials" ]; then source "../cfg/solr/credentials"; fi
 
 # declare additional variables
 date=$(date +%Y%m%d_%H%M%S)
@@ -96,6 +96,7 @@ echo "Transformation rules:    ${jsonfiles[*]}"
 echo "OpenRefine heap space:   $ram"
 echo "OpenRefine port:         $port"
 echo "Solr core URL(s):        ${solr_url[*]}"
+echo "Solr credentials:        $(if [ -n "$solr_user" ]; then echo "yes"; fi)"
 echo "OpenRefine service URL:  $openrefine_url"
 echo "Logfile:                 ${codename}_${date}.log"
 echo ""

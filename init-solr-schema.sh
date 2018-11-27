@@ -33,7 +33,7 @@ done
 shift $((OPTIND - 1))
 
 # load solr credentials from file
-if [ -n "../cfg/solr/credentials" ]; then source "../cfg/solr/credentials"; fi
+if [ -f "../cfg/solr/credentials" ]; then source "../cfg/solr/credentials"; fi
 
 # declare additional variables
 config_dir=$(readlink -f cfg/solr)
