@@ -47,7 +47,7 @@ options="p:s:d:h"
 while getopts $options opt; do
    case $opt in
    p )  port=${OPTARG} ;;
-   s )  solr_url=${OPTARG%/} ;;
+   s )  solr_url+=("${OPTARG%/}") ;;
    d )  openrefine_url=${OPTARG%/} ;;
    h )  usage ;;
    \? ) echo 1>&2 "Unknown option: -$OPTARG"; usage; exit 1;;
@@ -94,7 +94,7 @@ echo "OAI metadata format:     $oai_format"
 echo "Transformation rules:    ${jsonfiles[*]}"
 echo "OpenRefine heap space:   $ram"
 echo "OpenRefine port:         $port"
-echo "Solr core URL:           $solr_url"
+echo "Solr core URL(s):        ${solr_url[*]}"
 echo "OpenRefine service URL:  $openrefine_url"
 echo "Logfile:                 ${codename}_${date}.log"
 echo ""
@@ -211,12 +211,14 @@ if [ -n "$solr_url" ]; then
       multivalue_config+=(\&f.$i.separator=$separator)
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
-  echo "delete existing data..."
-  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: application/json" --data-binary "{ \"delete\": { \"collectionId\": \"${codename}\" } }" | jq .responseHeader
-  echo ""
-  echo "load new data..."
-  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv | jq .responseHeader
-  echo ""
+  for i in ${solr_url[@]}; do
+      echo "delete existing data in ${i}"
+      curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${i}/update?commit=true" -H "Content-Type: application/json" --data-binary "{ \"delete\": { \"query\": \"collectionId:${codename}\" } }" | jq .responseHeader
+      echo ""
+      echo "load new data in ${i}"
+      curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) --progress-bar "${i}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv | jq .responseHeader
+      echo ""
+  done
 fi
 
 # Ingest data into OpenRefine

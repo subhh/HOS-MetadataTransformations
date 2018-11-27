@@ -73,10 +73,10 @@ Run workflow with all data sources in parallel and load data into local Solr (-s
 ./run.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
 ```
 
--Run workflow with all data sources in parallel and load data into external Solr core (optional: credentials will be sourced from [cfg/solr/credentials](cfg/solr/credentials))
+-Run workflow with all data sources and load data into external Solr core (optional: credentials will be sourced from [cfg/solr/credentials](cfg/solr/credentials))
 
 ```
-./run.sh -s "https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS"
+./run.sh -s https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS -s https://openscience.hamburg.de/solrAdmin/HOS -d http://openrefine.sub.uni-hamburg.de:80
 
 ```
 

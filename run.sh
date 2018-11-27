@@ -23,10 +23,11 @@ Usage: ./run.sh [-s SOLRURL] [-d OPENREFINEURL]
 == options ==
     -s SOLRURL       ingest data to specified Solr core
     -d OPENREFINEURL ingest data to external OpenRefine service
+    -x DAYS          delete files in folder data older than ... days
 
-== example ==
+== examples ==
 ./run.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
-./run.sh -s https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS
+./run.sh -s https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS -s https://openscience.hamburg.de/solrAdmin/HOS -d http://openrefine.sub.uni-hamburg.de:80 -x 7
 EOF
    exit 1
 }
@@ -35,11 +36,12 @@ EOF
 port="3334"
 
 # get user input
-options="s:d:h"
+options="s:d:x:h"
 while getopts $options opt; do
    case $opt in
-   s )  solr_url=${OPTARG%/} ;;
+   s )  solr_url+=("${OPTARG%/}") ;;
    d )  openrefine_url=${OPTARG%/} ;;
+   x )  delete_days=${OPTARG} ;;
    h )  usage ;;
    \? ) echo 1>&2 "Unknown option: -$OPTARG"; usage; exit 1;;
    :  ) echo 1>&2 "Missing option argument for -$OPTARG"; usage; exit 1;;
@@ -49,7 +51,7 @@ done
 shift $((OPTIND - 1))
 
 # load solr credentials from file
-if [ -n "../cfg/solr/credentials" ]; then source "../cfg/solr/credentials"; fi
+if [ -n "cfg/solr/credentials" ]; then source "cfg/solr/credentials"; fi
 
 # declare additional variables
 pid=()
@@ -84,27 +86,30 @@ trap "cleanup;exit" SIGHUP SIGINT SIGQUIT SIGTERM
 exec &> >(tee -a "${log_dir}/all_${date}.log")
 
 # print variables
-echo "Solr core URL:           $solr_url"
+echo "Solr core URL(s):        ${solr_url[*]}"
 echo "Solr credentials:        $(if [ -n "$solr_user" ]; then echo "yes"; fi)"
 echo "OpenRefine service URL:  $openrefine_url"
+echo "delete files:            $(if [ -n "$delete_days" ]; then echo "older than $delete_days days"; fi)"
 echo "Logfile:                 all_${date}.log"
 echo ""
 
-# delete old files
-checkpoints=${#checkpointdate[@]}
-checkpointdate[$((checkpoints + 1))]=$(date +%s)
-checkpointname[$((checkpoints + 1))]="Delete old files"
-echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
-echo ""
-echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
-echo ""
-echo "delete files older than 7 days..."
-for f in "data/01_oai" "data/02_transformed" "data/03_combined"; do
-  if [ -d "$f" ]; then
-      find "$f" -mtime +7 -type f -print -delete
-  fi
-done
-echo ""
+if [ -n "$delete_days" ]; then
+  # delete old files
+  checkpoints=${#checkpointdate[@]}
+  checkpointdate[$((checkpoints + 1))]=$(date +%s)
+  checkpointname[$((checkpoints + 1))]="Delete old files"
+  echo "=== $checkpoints. ${checkpointname[$((checkpoints + 1))]} ==="
+  echo ""
+  echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
+  echo ""
+  echo "delete files older than ${delete_days} days..."
+  for f in "data/01_oai" "data/02_transformed" "data/03_combined"; do
+    if [ -d "$f" ]; then
+        find "$f" -mtime +${delete_days} -type f -print -delete
+    fi
+  done
+  echo ""
+fi
 
 # run jobs in parallel
 checkpoints=${#checkpointdate[@]}
@@ -198,12 +203,14 @@ if [ -n "$solr_url" ]; then
       multivalue_config+=(\&f.$i.separator=$separator)
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
-  echo "delete existing data..."
-  curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${solr_url}/update?commit=true" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
-  echo ""
-  echo "load new data..."
-  curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=hos&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/03_combined/all_${date}.tsv | jq .responseHeader
-  echo ""
+  for i in ${solr_url[@]}; do
+      echo "delete existing data in ${i}"
+      curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${i}/update?commit=true" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
+      echo ""
+      echo "load new data in ${i}"
+      curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) --progress-bar "${i}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=hos&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/03_combined/all_${date}.tsv | jq .responseHeader
+      echo ""
+  done
 fi
 
 # Ingest data into OpenRefine
