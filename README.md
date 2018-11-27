@@ -86,6 +86,7 @@ If your external Solr is secured with username/password (Basic Authentication Pl
 ```
 cp cfg/solr/credentials.example cfg/solr/credentials
 nano cfg/solr/credentials
+chmod 400 cfg/solr/credentials
 ```
 
 ### Cronjobs
