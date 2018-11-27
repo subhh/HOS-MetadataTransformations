@@ -57,8 +57,8 @@ while getopts $options opt; do
 done
 shift $((OPTIND - 1))
 
-# get environmental variables
-if [ -n "$HOSSOLRUSER" ]; then solr_credentials="-u $HOSSOLRUSER:$HOSSOLRPASS"; fi
+# load solr credentials from file
+if [ -n "../cfg/solr/credentials" ]; then source "../cfg/solr/credentials"; fi
 
 # declare additional variables
 date=$(date +%Y%m%d_%H%M%S)

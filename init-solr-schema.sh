@@ -32,8 +32,8 @@ while getopts $options opt; do
 done
 shift $((OPTIND - 1))
 
-# get environmental variables
-if [ -n "$HOSSOLRUSER" ]; then solr_credentials="-u $HOSSOLRUSER:$HOSSOLRPASS"; fi
+# load solr credentials from file
+if [ -n "../cfg/solr/credentials" ]; then source "../cfg/solr/credentials"; fi
 
 # declare additional variables
 config_dir=$(readlink -f cfg/solr)
@@ -43,6 +43,7 @@ if [ -n "${config_dir// }" ] ; then jsonfiles=($(find -L "${config_dir}"/*.json 
 
 # print variables
 echo "Solr core URL:           $solr_url"
+echo "Solr credentials:        $(if [ -n "$solr_user" ]; then echo "yes"; fi)"
 echo "Solr base URL:           $solr_base"
 echo "Solr core name:          $solr_core"
 echo "Solr config files:       ${jsonfiles[*]}"
@@ -50,15 +51,15 @@ echo ""
 
 # delete existing data
 echo "delete existing data..."
-curl $solr_credentials -sS "${solr_base}/${solr_core}/update?commit=true" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
+curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${solr_base}/${solr_core}/update?commit=true" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
 
 # delete fields and copy fields
 echo "delete fields, reload core and delete copy fields..."
-curl $solr_credentials -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"delete-copy-field\" : $(curl $solr_credentials --silent "${solr_base}/${solr_core}/schema/copyfields" | jq '[.copyFields[] | {source: .source, dest: .dest}]') }" ${solr_base}/${solr_core}/schema  | jq .responseHeader
-curl $solr_credentials -sS "${solr_base}/admin/cores?action=RELOAD&core=${solr_core}" | jq .responseHeader
-curl $solr_credentials -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"delete-field\" : $(curl $solr_credentials --silent "${solr_base}/${solr_core}/schema/fields" | jq '[ .fields[] | {name: .name } ]') }" ${solr_base}/${solr_core}/schema | jq .responseHeader
+curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"delete-copy-field\" : $(curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) --silent "${solr_base}/${solr_core}/schema/copyfields" | jq '[.copyFields[] | {source: .source, dest: .dest}]') }" ${solr_base}/${solr_core}/schema  | jq .responseHeader
+curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${solr_base}/admin/cores?action=RELOAD&core=${solr_core}" | jq .responseHeader
+curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"delete-field\" : $(curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) --silent "${solr_base}/${solr_core}/schema/fields" | jq '[ .fields[] | {name: .name } ]') }" ${solr_base}/${solr_core}/schema | jq .responseHeader
 
 # add fields and copy fields
 echo "add fields and copy fields..."
-curl $solr_credentials -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"add-field\" : $(< ${config_dir}/fields.json) }" ${solr_base}/${solr_core}/schema | jq .responseHeader
-curl $solr_credentials -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"add-copy-field\" : $(< ${config_dir}/copyfields.json) }" ${solr_base}/${solr_core}/schema | jq .responseHeader
+curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"add-field\" : $(< ${config_dir}/fields.json) }" ${solr_base}/${solr_core}/schema | jq .responseHeader
+curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS -X POST -H 'Content-type:application/json' --data-binary "{ \"add-copy-field\" : $(< ${config_dir}/copyfields.json) }" ${solr_base}/${solr_core}/schema | jq .responseHeader

@@ -57,8 +57,8 @@ while getopts $options opt; do
 done
 shift $((OPTIND - 1))
 
-# get environmental variables
-if [ -n "$HOSSOLRUSER" ]; then solr_credentials="-u $HOSSOLRUSER:$HOSSOLRPASS"; fi
+# load solr credentials from file
+if [ -n "../cfg/solr/credentials" ]; then source "../cfg/solr/credentials"; fi
 
 # declare additional variables
 date=$(date +%Y%m%d_%H%M%S)
@@ -95,6 +95,7 @@ echo "Transformation rules:    ${jsonfiles[*]}"
 echo "OpenRefine heap space:   $ram"
 echo "OpenRefine port:         $port"
 echo "Solr core URL:           $solr_url"
+echo "Solr credentials:        $(if [ -n "$solr_user" ]; then echo "yes"; fi)"
 echo "OpenRefine service URL:  $openrefine_url"
 echo "Logfile:                 ${codename}_${date}.log"
 echo ""
@@ -212,10 +213,10 @@ if [ -n "$solr_url" ]; then
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
   echo "delete existing data..."
-  curl $solr_credentials -sS "${solr_url}/update?commit=true" -H "Content-Type: application/json" --data-binary "{ \"delete\": { \"query\": \"collectionId:${codename}\" } }" | jq .responseHeader
+  curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${solr_url}/update?commit=true" -H "Content-Type: application/json" --data-binary "{ \"delete\": { \"query\": \"collectionId:${codename}\" } }" | jq .responseHeader
   echo ""
   echo "load new data..."
-  curl $solr_credentials --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv | jq .responseHeader
+  curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) --progress-bar "${solr_url}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv | jq .responseHeader
   echo ""
 fi
 
