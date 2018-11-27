@@ -73,13 +73,38 @@ Run workflow with all data sources in parallel and load data into local Solr (-s
 ./run.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
 ```
 
-Run workflow with all data sources and load data into two external Solr cores
+Run workflow with all data sources and load data into two external Solr cores (-s) and external OpenRefine service (-d)
 
 ```
 ./run.sh -s https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS -s https://openscience.hamburg.de/solrAdmin/HOS -d http://openrefine.sub.uni-hamburg.de:80
 ```
 
-Optional: If your external Solr is secured with username/password (Basic Authentication Plugin), you may provide the credentials by copying [cfg/solr/credentials.example](cfg/solr/credentials.example) to `cfg/solr/credentials` and fill in username and password.
+### Solr authentication
+
+If your external Solr is secured with username/password (Basic Authentication Plugin), you may provide the credentials by copying [cfg/solr/credentials.example](cfg/solr/credentials.example) to `cfg/solr/credentials` and fill in username and password.
+
+```
+cp cfg/solr/credentials.example cfg/solr/credentials
+nano cfg/solr/credentials
+```
+
+### Cronjobs
+
+Example for daily cronjob at 00:05 AM to restart local OpenRefine service (to free up memory)
+
+```
+command="systemctl restart openrefine"
+job="5 0 * * * $command"
+cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
+```
+
+Example for daily cronjob at 00:35 AM to run workflow with all data sources, load data into external Solr core (-s) and external OpenRefine service (-d) and delete files older than 7 days (-x)
+
+```
+command="$(readlink -f run.sh) -s https://hosdev.sub.uni-hamburg.de/solrAdmin/HOS -d http://openrefine.sub.uni-hamburg.de:80 -x 7"
+job="5 0 * * * $command"
+cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
+```
 
 ## Add a data source
 
