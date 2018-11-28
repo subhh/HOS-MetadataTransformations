@@ -215,7 +215,7 @@ if [ -n "$solr_url" ]; then
   multivalue_config=$(printf %s "${multivalue_config[@]}")
   for i in ${solr_url[@]}; do
       echo "delete existing data in ${i}"
-      curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${i}/update?commit=true" -H "Content-Type: application/json" --data-binary "{ \"delete\": { \"query\": \"collectionId:${codename}\" } }" | jq .responseHeader
+      curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${i}/update" -H "Content-Type: application/json" --data-binary "{ \"delete\": { \"query\": \"collectionId:${codename}\" } }" | jq .responseHeader
       echo ""
       echo "load new data in ${i}"
       curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) --progress-bar "${i}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=${codename}&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/02_transformed/${codename}_${date}.tsv | jq .responseHeader
