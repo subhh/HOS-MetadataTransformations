@@ -5,8 +5,8 @@
 cd $(dirname $0)
 
 # pathnames
-metha_sync="$(which metha-sync)"
-metha_cat="$(which metha-cat)"
+metha_sync="/usr/sbin/metha-sync"
+metha_cat="/usr/sbin/metha-cat"
 recordpath=(Records Record) # metha-cat default xml path to harvested records
 openrefine_client="$(readlink -f opt/openrefine-client)"
 data_dir="$(readlink -f data)"

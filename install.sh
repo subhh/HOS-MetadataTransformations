@@ -28,7 +28,7 @@ sudo -u $(who | awk '{print $1}') mkdir -p opt
 # install JRE
 JAVA="$(which java 2> /dev/null)"
 if [ -z "$JAVA" ] ; then
-    apt-get -qq update && apt-get -qq --yes install openjdk-8-jre-headless
+    add-apt-repository -y universe && apt-get -qq update && apt-get -qq --yes install openjdk-8-jre-headless
 fi
 
 # install zip
