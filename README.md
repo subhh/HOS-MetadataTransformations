@@ -24,6 +24,11 @@ Source: [flowchart.mmd](flowchart.mmd) (try [mermaid live editor](https://mermai
 * Results are made available in preinstalled local or in external Solr core. You can set (and reset) the [Solr schema](cfg/solr) via [bash script](init-solr-schema.sh).
 * Data is stored in the filesystem in common formats (xml, tsv) so you can extend the workflow with [command line tools](http://jorol.de/2016-ELAG-Bootcamp/slides/) to further manipulate the data.
 
+## System requirements
+
+* minimum: 2GB RAM
+* recommended: 8GB RAM (to [run all scripts in parallel](run.sh))
+
 ## Installation
 
 tested with [Ubuntu 16.04 LTS](http://releases.ubuntu.com/16.04/) and [Ubuntu 18.04 LTS](http://releases.ubuntu.com/18.04/)
