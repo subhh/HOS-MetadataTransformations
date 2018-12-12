@@ -1,0 +1,25 @@
+[
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column dc:identifier using expression grel:\"\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "edit.fis.uni-hamburg.de/portal",
+          "name": "dc:identifier",
+          "type": "text",
+          "columnName": "dc:identifier"
+        }
+      ]
+    },
+    "columnName": "dc:identifier",
+    "expression": "grel:\"\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
