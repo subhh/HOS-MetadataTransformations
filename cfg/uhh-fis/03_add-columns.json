@@ -38,7 +38,7 @@
           "mode": "text",
           "invert": true,
           "caseSensitive": false,
-          "query": "fis-www-test",
+          "query": "urn:ISBN",
           "name": "dc:identifier",
           "type": "text",
           "columnName": "dc:identifier"
