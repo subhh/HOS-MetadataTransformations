@@ -1,0 +1,25 @@
+[
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Record - metadata - oai_dc:dc - identifier using expression grel:\"\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "mode": "text",
+          "invert": false,
+          "caseSensitive": false,
+          "query": "edit.uni-hamburg.de/custom-portal",
+          "name": "Record - metadata - oai_dc:dc - identifier",
+          "type": "text",
+          "columnName": "Record - metadata - oai_dc:dc - identifier"
+        }
+      ]
+    },
+    "columnName": "Record - metadata - oai_dc:dc - identifier",
+    "expression": "grel:\"\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
