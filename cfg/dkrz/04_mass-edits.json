@@ -1,0 +1,28 @@
+[
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject using expression grel:value.replace(\",\",\"␟\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:value.replace(\",\",\"␟\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+    {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column creatorName using expression value.replace(/,\\s*/,\", \")",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "creatorName",
+    "expression": "value.replace(/,\\s*/,\", \")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]

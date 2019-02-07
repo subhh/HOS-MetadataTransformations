@@ -1,0 +1,15 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPoint at index 1 based on column id using expression grel:if(isBlank(value),\n\"\",\n\"53.567047,9.976418\")",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "newColumnName": "geoLocationPoint",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:if(isBlank(value),\n\"\",\n\"53.567047,9.976418\")",
+    "onError": "set-to-blank"
+  }
+]
