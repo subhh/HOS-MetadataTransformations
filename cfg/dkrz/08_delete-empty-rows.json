@@ -1,49 +1,5 @@
 [
   {
-    "op": "core/column-addition",
-    "description": "Create column isBlank at index 1 based on column id using expression grel:if(isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0]),\"delme\",\"keep\")",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "isBlank",
-    "columnInsertIndex": 1,
-    "baseColumnName": "id",
-    "expression": "grel:if(isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0]),\"delme\",\"keep\")",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/row-removal",
-    "description": "Remove rows",
-    "engineConfig": {
-      "facets": [
-        {
-          "type": "list",
-          "name": "isBlank",
-          "expression": "value",
-          "columnName": "isBlank",
-          "invert": false,
-          "selection": [
-            {
-              "v": {
-                "v": "delme",
-                "l": "delme"
-              }
-            }
-          ],
-          "selectNumber": false,
-          "selectDateTime": false,
-          "selectBoolean": false,
-          "omitBlank": false,
-          "selectBlank": false,
-          "omitError": false,
-          "selectError": false
-        }
-      ],
-      "mode": "row-based"
-    }
-  },
-  {
     "op": "core/column-removal",
     "description": "Remove column isBlank",
     "columnName": "isBlank"
@@ -56,7 +12,7 @@
       "facets": [
         {
           "omitError": false,
-          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0]).toString()",
           "selectBlank": false,
           "selection": [
             {
