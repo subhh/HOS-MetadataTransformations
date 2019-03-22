@@ -190,7 +190,7 @@ cleanup
 echo ""
 
 # Grep log for exceptions
-exceptions=$(grep -i exception "${log_dir}/${codename}_${date}.log")
+exceptions=$(grep -i exception "${log_dir}/${codename}_${date}.log" | grep -v "workspace")
 if [ -n "$exceptions" ]; then
     echo 1>&2 "$exceptions"
     echo 1>&2 "Konfiguration scheint fehlerhaft zu sein! Bitte manuell prüfen."

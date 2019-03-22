@@ -141,7 +141,7 @@ echo ""
 echo "print stats and exceptions from logs..."
 for f in "${path_bin}"/*.sh; do
   stats=$(tail -n 3 "${path_log}/$(basename -s .sh ${f})_${date}"*.log |  sed 's/total run time://' | sed 's/highest memory load://' | sed 's/number of records://')
-  exceptions=$(grep -i exception "${path_log}/$(basename -s .sh ${f})_${date}"*.log)
+  exceptions=$(grep -i exception "${path_log}/$(basename -s .sh ${f})_${date}"*.log | grep -v "workspace")
   echo $(basename ${f}): $stats
   if [ -n "$exceptions" ]; then
     echo 1>&2 "$exceptions"

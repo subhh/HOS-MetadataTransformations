@@ -46,7 +46,7 @@ git clone https://github.com/subhh/HOS-MetadataTransformations.git
 cd HOS-MetadataTransformations
 ```
 
-install [openjdk-8-jre-headless](https://packages.ubuntu.com/search?keywords=openjdk-8-jre-headless), [zip](https://packages.ubuntu.com/search?keywords=zip), [curl](https://curl.haxx.se/), [jq](https://stedolan.github.io/jq/), [metha 1.29](https://github.com/miku/metha), [OpenRefine 2.8](http://openrefine.org/), [openrefine-client 0.3.4](https://github.com/opencultureconsulting/openrefine-client) and [Solr 7.3.1](http://lucene.apache.org/solr/):
+install [openjdk-8-jre-headless](https://packages.ubuntu.com/search?keywords=openjdk-8-jre-headless), [zip](https://packages.ubuntu.com/search?keywords=zip), [curl](https://curl.haxx.se/), [jq](https://stedolan.github.io/jq/), [metha 1.29](https://github.com/miku/metha), [OpenRefine 3.2 beta](http://openrefine.org/), [openrefine-client 0.3.4](https://github.com/opencultureconsulting/openrefine-client) and [Solr 7.3.1](http://lucene.apache.org/solr/):
 
 ```
 sudo ./install.sh
