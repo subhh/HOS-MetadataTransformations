@@ -1,10 +1,5 @@
 [
   {
-    "op": "core/column-removal",
-    "description": "Remove column isBlank",
-    "columnName": "isBlank"
-  },
-  {
     "op": "core/row-removal",
     "description": "Remove rows",
     "engineConfig": {
@@ -12,7 +7,7 @@
       "facets": [
         {
           "omitError": false,
-          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0]).toString()",
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
           "selectBlank": false,
           "selection": [
             {
