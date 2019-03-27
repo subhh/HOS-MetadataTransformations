@@ -292,7 +292,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column collection at index 1 based on column id using expression grel:\"Forschungsdaten TU Hamburg\"",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Deutsches Klimarechenzentrum\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -320,12 +320,12 @@
     "newColumnName": "collection",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Forschungsdaten TU Hamburg\"",
+    "expression": "grel:\"Deutsches Klimarechenzentrum\"",
     "onError": "set-to-blank"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column university at index 1 based on column id using expression grel:\"Technische Universität Hamburg\"",
+    "description": "Create column university at index 1 based on column id using expression grel:\"\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -353,7 +353,7 @@
     "newColumnName": "university",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Technische Universität Hamburg\"",
+    "expression": "grel:\"\"",
     "onError": "set-to-blank"
   }
 ]
