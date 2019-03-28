@@ -2,7 +2,7 @@
 # https://github.com/subhh/HOS-MetadataTransformations
 
 # change directory to location of shell script
-#exit
+exit
 cd $(dirname $0)
 
 # pathnames
