@@ -16,6 +16,10 @@ Automated workflow for harvesting, transforming and indexing of metadata using [
 
 Source: [flowchart.mmd](flowchart.mmd) (try [mermaid live editor](https://mermaidjs.github.io/mermaid-live-editor/))
 
+## Preview
+
+![preview](preview.gif)
+
 ## Features
 
 * Simple automated cronjob-ready workflow: [one bash script for each data source](bin) and [an additional script to run all scripts in parallel](run.sh)
