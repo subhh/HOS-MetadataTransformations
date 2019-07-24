@@ -292,7 +292,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column collection at index 1 based on column id using expression grel:\"Deutsches Klimarechenzentrum\"",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Forschungsdaten DKRZ\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -320,7 +320,7 @@
     "newColumnName": "collection",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Deutsches Klimarechenzentrum\"",
+    "expression": "grel:\"Forschungsdaten DKRZ\"",
     "onError": "set-to-blank"
   },
   {

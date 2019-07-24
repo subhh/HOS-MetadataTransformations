@@ -506,7 +506,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column collection at index 1 based on column id using expression grel:\"E-Dissertationen Uni Hamburg\"",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Hochschulschriftenserver der HAW Hamburg\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -534,7 +534,7 @@
     "newColumnName": "collection",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Publikationen HAW Hamburg\"",
+    "expression": "grel:\"Hochschulschriftenserver der HAW Hamburg\"",
     "onError": "set-to-blank"
   }
 ]

@@ -333,7 +333,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column collection at index 1 based on column id using expression grel:\"Publikationen Uni Hamburg\"",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Forschungsinformationssystem UKE\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -361,7 +361,7 @@
     "newColumnName": "collection",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Publikationen UKE Hamburg\"",
+    "expression": "grel:\"Forschungsinformationssystem UKE\"",
     "onError": "set-to-blank"
   }
 ]

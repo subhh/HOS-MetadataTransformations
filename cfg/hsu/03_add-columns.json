@@ -432,7 +432,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column collection at index 1 based on column id using expression grel:\"Publikationen HSU\"",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Volltextserver der HSU\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -460,7 +460,7 @@
     "newColumnName": "collection",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Publikationen HSU\"",
+    "expression": "grel:\"Volltestserver der HSU\"",
     "onError": "set-to-blank"
   }
 ]
