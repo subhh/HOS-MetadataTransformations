@@ -151,19 +151,6 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column geoLocationPoint at index 6 based on column publisher using expression grel:value",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "newColumnName": "geoLocationPoint",
-    "columnInsertIndex": 6,
-    "baseColumnName": "publisher",
-    "expression": "grel:value",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-addition",
     "description": "Create column title at index 8 based on column dc:title using expression grel:value",
     "engineConfig": {
       "mode": "record-based",
