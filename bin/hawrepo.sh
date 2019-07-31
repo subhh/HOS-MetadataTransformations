@@ -14,7 +14,7 @@ data_dir="$(readlink -f ../data)"
 log_dir="$(readlink -f ../log)"
 
 # config
-codename="haw" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
+codename="hawrepo" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
 oai_url="http://edoc.sub.uni-hamburg.de/haw/oai2/oai2.php" # base url of OAI-PMH endpoint
 oai_set="" # optional: OAI-PMH set spec (e.g. institution)
 oai_format="" # optional: OAI-PMH metadata format (e.g. datacite)

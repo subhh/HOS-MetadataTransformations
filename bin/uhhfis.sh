@@ -14,12 +14,12 @@ data_dir="$(readlink -f ../data)"
 log_dir="$(readlink -f ../log)"
 
 # config
-codename="dkrz" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
-oai_url="http://c3grid1.dkrz.de:8080/oai/provider" # base url of OAI-PMH endpoint
-oai_set="" # optional: OAI-PMH set spec (e.g. institution)
-oai_format="oai_datacite" # optional: OAI-PMH metadata format (e.g. datacite)
-ram="2048M" # highest OpenRefine memory load is below 2048M
-recordpath+=(metadata resource) # select /Records/Record/metadata/resource (ignoring /Records/Record/header)
+codename="uhhfis" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
+oai_url="https://www.edit.fis.uni-hamburg.de/ws/oai" # base url of OAI-PMH endpoint
+oai_set="publications:all" # optional: OAI-PMH set spec (e.g. institution)
+oai_format="" # optional: OAI-PMH metadata format (e.g. datacite)
+ram="4096M" # highest OpenRefine memory load is below 4096M
+recordpath+=() # select /Records/Record/ (including /Records/Record/header)
 separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
 config_dir="$(readlink -f ../cfg/${codename})" # location of OpenRefine transformation rules in json format
 
@@ -101,7 +101,7 @@ echo "Logfile:                 ${codename}_${date}.log"
 echo ""
 
 # Check connection to OAI endpoint
-if [[ $(curl -skL -w "%{http_code}" "${oai_url}?verb=ListMetadataFormats" -o /dev/null --connect-timeout 15) -ne "200" ]]; then
+if [[ $(curl -skL -w "%{http_code}" "${oai_url}?verb=Identify" -o /dev/null --connect-timeout 15) -ne "200" ]]; then
     echo 1>&2 "no connection to OAI endpoint ${oai_url}"
     exit 2
 fi

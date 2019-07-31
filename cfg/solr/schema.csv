@@ -5,7 +5,7 @@ alternateIdentifierType,string,x,x,x,11.04,,
 alternativeTitle,text_general,x,x,x,02.07,,
 alternativeTitleLang,string,x,x,x,,02.08,
 collection,string,-,x,x,15.01,-,describes the source of the metadata
-collectionId,string,-,-,x,15.02,-,code name of the technical source of the metadata
+collectionId,string,-,x,x,15.02,-,ID of the source of the metadata
 contributorName,string,x,x,x,03.01,,
 contributorType,string,x,x,x,03.02,,
 creatorName,text_general,x,x,x,01.01,,
@@ -15,11 +15,14 @@ date,string,x,x,x,06.02,,
 dateType,string,x,x,x,06.03,,
 format,string,-,x,x,12.01,,
 fulltext,text_general,-,x,-,-,,
-geoLocationPoint,string,-,x,x,07.04,geoLocationPoint with longitude/latitude subfields,"e.g. 53.590312,9.978455"
+geoLocationPoint,location,-,x,x,07.04,geoLocationPoint with longitude/latitude subfields,"e.g. 53.590312,9.978455"
 id,string,-,x,x,00.01,-,copy of identifier (without slashes)
 identifier,string,-,x,x,11.01,,
 identifierType,string,-,x,x,11.02,,
 institute,string,x,x,x,07.03,,
+internal_geoLocation,location,-,x,x,16.02,,
+internal_institution,string,-,x,x,16.03,,
+internal_institution_id,string,-,x,x,16.04,,
 language,string,-,x,x,04.01,,
 methods,text_general,-,x,x,09.02,description with descriptionType methods,
 otherDescription,text_general,x,x,x,09.03,"description with descriptionType ""Other""",

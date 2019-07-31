@@ -14,8 +14,8 @@ data_dir="$(readlink -f ../data)"
 log_dir="$(readlink -f ../log)"
 
 # config
-codename="hsu" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
-oai_url="http://edoc.sub.uni-hamburg.de/hsu/oai2/oai2.php" # base url of OAI-PMH endpoint
+codename="uhhediss" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
+oai_url="http://ediss.sub.uni-hamburg.de/oai2/oai2.php" # base url of OAI-PMH endpoint
 oai_set="" # optional: OAI-PMH set spec (e.g. institution)
 oai_format="" # optional: OAI-PMH metadata format (e.g. datacite)
 ram="2048M" # highest OpenRefine memory load is below 2048M

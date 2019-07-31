@@ -64,7 +64,7 @@
       "name":"collectionId",
       "type":"string",
       "indexed":true,
-      "stored":false
+      "stored":true
     },
     {
       "name":"contributorName",
@@ -130,7 +130,7 @@
     },
     {
       "name":"geoLocationPoint",
-      "type":"string",
+      "type":"location",
       "indexed":true,
       "stored":true
     },
@@ -161,20 +161,20 @@
       "stored":true
     },
     {
-      "name":"internal_collection_id",
-      "type":"string",
-      "indexed":true,
-      "stored":true
-    },
-    {
       "name":"internal_institution",
       "type":"string",
       "indexed":true,
       "stored":true
     },
     {
-      "name":"internal_geoLocation",
+      "name":"internal_institution_id",
       "type":"string",
+      "indexed":true,
+      "stored":true
+    },
+    {
+      "name":"internal_geoLocation",
+      "type":"location",
       "indexed":true,
       "stored":true
     },

@@ -14,11 +14,11 @@ data_dir="$(readlink -f ../data)"
 log_dir="$(readlink -f ../log)"
 
 # config
-codename="hcu" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
-oai_url="http://edoc.sub.uni-hamburg.de/hcu/oai2/oai2.php" # base url of OAI-PMH endpoint
-oai_set="" # optional: OAI-PMH set spec (e.g. institution)
+codename="ukefis" # used for filename, name of OpenRefine project and value for Solr field "collectionId"
+oai_url="https://fis-uke.de/ws/oai" # base url of OAI-PMH endpoint
+oai_set="publications:all" # optional: OAI-PMH set spec (e.g. institution)
 oai_format="" # optional: OAI-PMH metadata format (e.g. datacite)
-ram="2048M" # highest OpenRefine memory load is below 2048M
+ram="4096M" # highest OpenRefine memory load is below 4096M
 recordpath+=() # select /Records/Record/ (including /Records/Record/header)
 separator="%E2%90%9F" # multiple values are separated by unicode character unit separator (U+241F)
 config_dir="$(readlink -f ../cfg/${codename})" # location of OpenRefine transformation rules in json format
@@ -30,8 +30,8 @@ Usage: ./${codename}.sh [-p PORT] [-s SOLRURL] [-d OPENREFINEURL]
 
 == options ==
     -p PORT          PORT on which OpenRefine should run (default: 3334)
-    -s SOLRURL       ingest data to specified Solr core
-    -d OPENREFINEURL ingest data to external OpenRefine service
+    -s SOLRURL       ingest data to specified Solr core (default: http://localhost:8983/solr/hos)
+    -d OPENREFINEURL ingest data to external OpenRefine service (default: http://localhost:3333)
 
 == example ==
 ./${codename}.sh -p 3334 -s http://localhost:8983/solr/hos -d http://localhost:3333
