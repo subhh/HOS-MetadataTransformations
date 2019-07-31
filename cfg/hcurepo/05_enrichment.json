@@ -1,35 +1,15 @@
 [
   {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column geoLocationPoint using expression grel:\"53.540253,10.004717\"",
+    "op": "core/column-addition",
+    "description": "Create column internal_geoLocation at index 1 based on column id using expression grel:if(isBlank(value),\n\"\",\n\"53.540253,10.004717\")",
     "engineConfig": {
-      "mode": "row-based",
-      "facets": [
-        {
-          "omitError": false,
-          "expression": "isBlank(value)",
-          "selectBlank": false,
-          "selection": [
-            {
-              "v": {
-                "v": false,
-                "l": "false"
-              }
-            }
-          ],
-          "selectError": false,
-          "invert": false,
-          "name": "id",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "id"
-        }
-      ]
+      "facets": [],
+      "mode": "record-based"
     },
-    "columnName": "geoLocationPoint",
-    "expression": "grel:\"53.540253,10.004717\"",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
+    "newColumnName": "internal_geoLocation",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:if(isBlank(value),\n\"\",\n\"53.540253,10.004717\")",
+    "onError": "set-to-blank"
   }
 ]

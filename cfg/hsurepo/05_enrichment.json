@@ -1,142 +1,15 @@
 [
   {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column geoLocationPoint",
+    "op": "core/column-addition",
+    "description": "Create column internal_geoLocation at index 1 based on column id using expression grel:if(isBlank(value),\n\"\",\n\"53.568590,10.110153\")",
     "engineConfig": {
-      "mode": "record-based",
-      "facets": []
+      "facets": [],
+      "mode": "record-based"
     },
-    "columnName": "geoLocationPoint",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Helmut-Schmidt-Universität, Universität der Bundeswehr"
-        ],
-        "to": "53.568590,10.110153"
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column geoLocationPoint",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "geoLocationPoint",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Helmut-Schmidt-Universität, Universität der Bundeswehr, Einrichtungen der HSU"
-        ],
-        "to": "53.568590,10.110153"
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column geoLocationPoint",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "geoLocationPoint",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Helmut-Schmidt-Universität, Universität der Bundeswehr, Fakultät Elektrotechnik"
-        ],
-        "to": "53.568590,10.110153"
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column geoLocationPoint",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "geoLocationPoint",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Helmut-Schmidt-Universität, Universität der Bundeswehr, Fakultät Geistes- und Sozialwissenschaften"
-        ],
-        "to": "53.568590,10.110153"
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column geoLocationPoint",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "geoLocationPoint",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Helmut-Schmidt-Universität, Universität der Bundeswehr, Fakultät Maschinenbau"
-        ],
-        "to": "53.569108,10.108642"
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column geoLocationPoint",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "geoLocationPoint",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Helmut-Schmidt-Universität, Universität der Bundeswehr, Fakultät Wirtschafts- und Sozialwissenschaften"
-        ],
-        "to": "53.568590,10.110153"
-      }
-    ]
-  },
-  {
-    "op": "core/mass-edit",
-    "description": "Mass edit cells in column geoLocationPoint",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "columnName": "geoLocationPoint",
-    "expression": "value",
-    "edits": [
-      {
-        "fromBlank": false,
-        "fromError": false,
-        "from": [
-          "Universität XYZ"
-        ],
-        "to": ""
-      }
-    ]
+    "newColumnName": "internal_geoLocation",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:if(isBlank(value),\n\"\",\n\"53.568590,10.110153\")",
+    "onError": "set-to-blank"
   }
 ]

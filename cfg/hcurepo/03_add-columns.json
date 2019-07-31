@@ -161,19 +161,6 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column geoLocationPoint at index 6 based on column publisher using expression grel:value",
-    "engineConfig": {
-      "mode": "record-based",
-      "facets": []
-    },
-    "newColumnName": "geoLocationPoint",
-    "columnInsertIndex": 6,
-    "baseColumnName": "publisher",
-    "expression": "grel:value",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-addition",
     "description": "Create column title at index 8 based on column dc:title using expression grel:value",
     "engineConfig": {
       "mode": "row-based",
@@ -544,6 +531,85 @@
     "columnInsertIndex": 1,
     "baseColumnName": "id",
     "expression": "grel:\"Volltextserver der HCU\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column internal_institution at index 1 based on column id using expression grel:\"HafenCity Universität\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "internal_institution",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"HafenCity Universität\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column internal_institution_id at index 1 based on column id using expression grel:\"hcu\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "internal_institution_id",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"hcu\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPoint at index 1 based on column id using expression grel:if(isBlank(value),\n\"\",\n\"\")",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "newColumnName": "geoLocationPoint",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:if(isBlank(value),\n\"\",\n\"\")",
     "onError": "set-to-blank"
   }
 ]
