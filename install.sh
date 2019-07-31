@@ -11,7 +11,7 @@ fi
 user="$(who | head -n1 | awk '{print $1;}')"
 
 # declare download URLs
-openrefine_server_URL="https://github.com/OpenRefine/OpenRefine/releases/download/3.2-beta/openrefine-linux-3.2-beta.tar.gz"
+openrefine_server_URL="https://github.com/OpenRefine/OpenRefine/releases/download/3.2/openrefine-linux-3.2.tar.gz"
 openrefine_client_URL="https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.4/openrefine-client_0-3-4_linux-64bit"
 metha_URL="https://github.com/miku/metha/releases/download/v0.1.29/metha_0.1.29_amd64.deb"
 solr_URL="https://archive.apache.org/dist/lucene/solr/7.3.1/solr-7.3.1.tgz"
