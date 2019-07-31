@@ -161,6 +161,24 @@
       "stored":true
     },
     {
+      "name":"internal_collection_id",
+      "type":"string",
+      "indexed":true,
+      "stored":true
+    },
+    {
+      "name":"internal_institution",
+      "type":"string",
+      "indexed":true,
+      "stored":true
+    },
+    {
+      "name":"internal_geoLocation",
+      "type":"string",
+      "indexed":true,
+      "stored":true
+    },
+    {
       "name":"language",
       "type":"string",
       "indexed":true,
