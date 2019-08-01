@@ -363,5 +363,84 @@
     "baseColumnName": "id",
     "expression": "grel:\"Forschungsinformationssystem UKE\"",
     "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column internal_institution at index 1 based on column id using expression grel:\"Universität Hamburg\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "internal_institution",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"Universität Hamburg\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column internal_institution_id at index 1 based on column id using expression grel:\"uhh\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "internal_institution_id",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"uhh\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPoint at index 1 based on column id using expression grel:if(isBlank(value),\n\"\",\n\"\")",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "newColumnName": "geoLocationPoint",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:if(isBlank(value),\n\"\",\n\"\")",
+    "onError": "set-to-blank"
   }
 ]
