@@ -418,5 +418,44 @@
         "to": ""
       }
     ]
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "subject",
+          "columnName": "subject",
+          "query": "dk/atira/pure",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "subject",
+    "expression": "grel:\"\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column subject using expression grel:\"\""
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "subject",
+    "keyColumnName": "id",
+    "separator": "%%%%%zzz",
+    "description": "Join multi-valued cells in column subject"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "subject",
+    "keyColumnName": "id",
+    "mode": "separator",
+    "separator": "%%%%%zzz",
+    "regex": false,
+    "description": "Split multi-valued cells in column subject"
   }
 ]
