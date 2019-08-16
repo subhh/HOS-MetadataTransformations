@@ -10,5 +10,9 @@
     {
       "source":"publisher",
       "dest":"publisher_facet"
+    },
+    {
+      "source":"internal_geoLocation",
+      "dest":"internal_geoLocation_facet"
     }
 ]
