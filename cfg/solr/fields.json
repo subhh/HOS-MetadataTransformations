@@ -179,6 +179,12 @@
       "stored":true
     },
     {
+      "name":"internal_geoLocation_facet",
+      "type":"string",
+      "indexed":true,
+      "stored":true
+    },
+    {
       "name":"language",
       "type":"string",
       "indexed":true,
