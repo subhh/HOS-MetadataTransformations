@@ -14,5 +14,9 @@
     {
       "source":"internal_geoLocation",
       "dest":"internal_geoLocation_facet"
+    },
+    {
+      "source":"subject",
+      "dest":"internal_subjectText"
     }
 ]
