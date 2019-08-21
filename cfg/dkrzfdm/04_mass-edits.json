@@ -24,5 +24,18 @@
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "subject",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column subject using expression value.trim()"
   }
 ]
