@@ -1,0 +1,26 @@
+[
+ {
+    "op": "core/column-addition",
+    "description": "Create column id at index 18 based on column resource - identifier using expression grel:value.replace(\"/\",\"_\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "newColumnName": "id",
+    "columnInsertIndex": 18,
+    "baseColumnName": "resource - identifier",
+    "expression": "grel:value.replace(\"/\",\"_\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column id to position 0",
+    "columnName": "id",
+    "index": 0
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - xsi:schemaLocation",
+    "columnName": "resource - xsi:schemaLocation"
+  }
+]

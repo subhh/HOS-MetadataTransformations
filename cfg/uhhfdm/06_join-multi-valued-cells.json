@@ -1,0 +1,54 @@
+[
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column creatorName",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "creatorName",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column creatorNameURI",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "creatorNameURI",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column subject",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "subject",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column otherDescription",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "otherDescription",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
