@@ -89,5 +89,19 @@
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "title",
+    "keyColumnName": "id",
+    "separator": "",
+    "description": "Join multi-valued cells in column title"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "titleLang",
+    "keyColumnName": "id",
+    "separator": "",
+    "description": "Join multi-valued cells in column titleLang"
   }
 ]
