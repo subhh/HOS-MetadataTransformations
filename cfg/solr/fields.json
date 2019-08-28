@@ -185,6 +185,12 @@
       "stored":true
     },
     {
+      "name":"internal_subjectText",
+      "type":"text_general",
+      "indexed":true,
+      "stored":true
+    },
+    {
       "name":"language",
       "type":"string",
       "indexed":true,

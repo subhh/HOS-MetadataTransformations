@@ -52,136 +52,165 @@
     "onError": "set-to-blank"
   },
   {
-    "op": "core/column-addition",
-    "description": "Create column title at index 8 based on column dc:title using expression grel:value",
+    "op": "core/fill-down",
     "engineConfig": {
-      "mode": "row-based",
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "dc:language",
+    "description": "Fill down cells in column dc:language"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc:title-lang",
+    "expression": "grel:if (startsWith(value,cells[\"dc:language\"].value),\"hier\",\"\")",
+    "onError": "set-to-blank",
+    "newColumnName": "title_lang_comparison",
+    "columnInsertIndex": 10,
+    "description": "Create column title_lang_comparison at index 10 based on column dc:title-lang using expression grel:if (startsWith(value,cells[\"dc:language\"].value),\"hier\",\"\")"
+  },
+  {
+    "op": "core/blank-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "dc:language",
+    "description": "Blank down cells in column dc:language"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
       "facets": [
         {
-          "omitError": false,
-          "expression": "isBlank(value)",
-          "selectBlank": false,
-          "selection": [
-            {
-              "v": {
-                "v": false,
-                "l": "false"
-              }
-            }
-          ],
-          "selectError": false,
-          "invert": false,
-          "name": "id",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "id"
+          "type": "text",
+          "name": "title_lang_comparison",
+          "columnName": "title_lang_comparison",
+          "query": "hier",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
         }
-      ]
+      ],
+      "mode": "row-based"
     },
+    "baseColumnName": "dc:title",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
     "newColumnName": "title",
-    "columnInsertIndex": 8,
-    "baseColumnName": "dc:title",
-    "expression": "grel:value",
-    "onError": "set-to-blank"
+    "columnInsertIndex": 9,
+    "description": "Create column title at index 9 based on column dc:title using expression grel:value"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column translatedTitle at index 8 based on column dc:title using expression grel:value",
     "engineConfig": {
-      "mode": "row-based",
       "facets": [
         {
-          "omitError": false,
-          "expression": "isBlank(value)",
-          "selectBlank": false,
-          "selection": [
-            {
-              "v": {
-                "v": true,
-                "l": "true"
-              }
-            }
-          ],
-          "selectError": false,
-          "invert": false,
-          "name": "id",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "id"
+          "type": "text",
+          "name": "title_lang_comparison",
+          "columnName": "title_lang_comparison",
+          "query": "hier",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
         }
-      ]
+      ],
+      "mode": "row-based"
     },
-    "newColumnName": "translatedTitle",
-    "columnInsertIndex": 8,
-    "baseColumnName": "dc:title",
+    "baseColumnName": "dc:title-lang",
     "expression": "grel:value",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column titleLang at index 11 based on column dc:title-lang using expression grel:value",
-    "engineConfig": {
-      "mode": "row-based",
-      "facets": [
-        {
-          "omitError": false,
-          "expression": "isBlank(value)",
-          "selectBlank": false,
-          "selection": [
-            {
-              "v": {
-                "v": false,
-                "l": "false"
-              }
-            }
-          ],
-          "selectError": false,
-          "invert": false,
-          "name": "id",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "id"
-        }
-      ]
-    },
+    "onError": "set-to-blank",
     "newColumnName": "titleLang",
     "columnInsertIndex": 11,
-    "baseColumnName": "dc:title-lang",
-    "expression": "grel:value",
-    "onError": "set-to-blank"
+    "description": "Create column titleLang at index 11 based on column dc:title-lang using expression grel:value"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column translatedTitleLang at index 11 based on column dc:title-lang using expression grel:value",
     "engineConfig": {
-      "mode": "row-based",
       "facets": [
         {
-          "omitError": false,
+          "type": "text",
+          "name": "title_lang_comparison",
+          "columnName": "title_lang_comparison",
+          "query": "hier",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": true
+        },
+        {
+          "type": "list",
+          "name": "dc:title",
           "expression": "isBlank(value)",
-          "selectBlank": false,
+          "columnName": "dc:title",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
           "selection": [
             {
               "v": {
-                "v": true,
-                "l": "true"
+                "v": false,
+                "l": "false"
               }
             }
           ],
-          "selectError": false,
-          "invert": false,
-          "name": "id",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "id"
+          "selectBlank": false,
+          "selectError": false
         }
-      ]
+      ],
+      "mode": "row-based"
     },
-    "newColumnName": "translatedTitleLang",
-    "columnInsertIndex": 11,
+    "baseColumnName": "dc:title",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "translatedTitle",
+    "columnInsertIndex": 9,
+    "description": "Create column translatedTitle at index 9 based on column dc:title using expression grel:value"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "title_lang_comparison",
+          "columnName": "title_lang_comparison",
+          "query": "hier",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": true
+        },
+        {
+          "type": "list",
+          "name": "dc:title",
+          "expression": "isBlank(value)",
+          "columnName": "dc:title",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
     "baseColumnName": "dc:title-lang",
     "expression": "grel:value",
-    "onError": "set-to-blank"
+    "onError": "set-to-blank",
+    "newColumnName": "translatedTitleLang",
+    "columnInsertIndex": 12,
+    "description": "Create column translatedTitleLang at index 12 based on column dc:title-lang using expression grel:value"
   },
   {
     "op": "core/column-addition",
