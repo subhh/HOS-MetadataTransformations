@@ -312,7 +312,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column collection at index 1 based on column id using expression grel:\"TUHH @ Zenodo\"",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Forschungsdatenrepositorium der UHH\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -340,12 +340,12 @@
     "newColumnName": "collection",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"TUHH @ Zenodo\"",
+    "expression": "grel:\"Forschungsdatenrepositorium der UHH\"",
     "onError": "set-to-blank"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column university at index 1 based on column id using expression grel:\"Technische Universität Hamburg\"",
+    "description": "Create column university at index 1 based on column id using expression grel:\"Universität Hamburg\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -373,12 +373,12 @@
     "newColumnName": "university",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Technische Universität Hamburg\"",
+    "expression": "grel:\"Universität Hamburg\"",
     "onError": "set-to-blank"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column internal_institution at index 1 based on column id using expression grel:\"Technische Universität Hamburg\"",
+    "description": "Create column internal_institution at index 1 based on column id using expression grel:\"Universität Hamburg\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -406,12 +406,12 @@
     "newColumnName": "internal_institution",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Technische Universität Hamburg\"",
+    "expression": "grel:\"Universität Hamburg\"",
     "onError": "set-to-blank"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column internal_institution_id at index 1 based on column id using expression grel:\"tuhh\"",
+    "description": "Create column internal_institution_id at index 1 based on column id using expression grel:\"uhh\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -439,7 +439,7 @@
     "newColumnName": "internal_institution_id",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"tuhh\"",
+    "expression": "grel:\"uhh\"",
     "onError": "set-to-blank"
   },
   {
