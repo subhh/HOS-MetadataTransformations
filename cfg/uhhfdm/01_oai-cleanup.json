@@ -1,0 +1,85 @@
+[
+  {
+    "op": "core/column-removal",
+    "columnName": "resource",
+    "description": "Remove column resource"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - creators",
+    "description": "Remove column resource - creators"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - creators - creator",
+    "description": "Remove column resource - creators - creator"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - subjects",
+    "description": "Remove column resource - subjects"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - rightsList",
+    "description": "Remove column resource - rightsList"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - descriptions",
+    "description": "Remove column resource - descriptions"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - dates",
+    "description": "Remove column resource - dates"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - titles",
+    "description": "Remove column resource - titles"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - relatedIdentifiers",
+    "description": "Remove column resource - relatedIdentifiers"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - creators - creator - nameIdentifier - schemeURI",
+    "description": "Remove column resource - creators - creator - nameIdentifier - schemeURI"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "resource - creators - creator - nameIdentifier - nameIdentifierScheme",
+    "description": "Remove column resource - creators - creator - nameIdentifier - nameIdentifierScheme"
+  },
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "resource - xsi:schemaLocation",
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
+          "columnName": "resource - xsi:schemaLocation",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  }
+]

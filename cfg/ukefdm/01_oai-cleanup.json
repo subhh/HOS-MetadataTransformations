@@ -1,0 +1,95 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource",
+    "columnName": "resource"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - creators",
+    "columnName": "resource - creators"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - creators - creator",
+    "columnName": "resource - creators - creator"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - subjects",
+    "columnName": "resource - subjects"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - rightsList",
+    "columnName": "resource - rightsList"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - descriptions",
+    "columnName": "resource - descriptions"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - dates",
+    "columnName": "resource - dates"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - titles",
+    "columnName": "resource - titles"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - relatedIdentifiers",
+    "columnName": "resource - relatedIdentifiers"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - creators - creator - givenName",
+    "columnName": "resource - creators - creator - givenName"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - creators - creator - familyName",
+    "columnName": "resource - creators - creator - familyName"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - creators - creator - nameIdentifier - schemeURI",
+    "columnName": "resource - creators - creator - nameIdentifier - schemeURI"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - creators - creator - nameIdentifier - nameIdentifierScheme",
+    "columnName": "resource - creators - creator - nameIdentifier - nameIdentifierScheme"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "grel:isBlank(filter(row.columnNames,cn,isNonBlank(cells[cn].value))[0])",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "resource - xsi:schemaLocation",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "resource - xsi:schemaLocation"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,458 @@
+[
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - creators - creator - creatorName to creatorName",
+    "oldColumnName": "resource - creators - creator - creatorName",
+    "newColumnName": "creatorName"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - creators - creator - nameIdentifier to creatorNameURI",
+    "oldColumnName": "resource - creators - creator - nameIdentifier",
+    "newColumnName": "creatorNameURI"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column creatorNameURI using expression grel:forNonBlank(value,v,\"https://orcid.org/\"+v,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "creatorNameURI",
+    "expression": "grel:forNonBlank(value,v,\"https://orcid.org/\"+v,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - subjects - subject to subject",
+    "oldColumnName": "resource - subjects - subject",
+    "newColumnName": "subject"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column resource - rightsList - rights - rightsURI using expression grel:if(value.contains(\"creativecommons\"),value,\"\")",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "resource - rightsList - rights - rightsURI",
+    "expression": "grel:if(value.contains(\"creativecommons\"),value,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - rightsList - rights - rightsURI to rightsURI",
+    "oldColumnName": "resource - rightsList - rights - rightsURI",
+    "newColumnName": "rightsURI"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - rightsList - rights to rights",
+    "oldColumnName": "resource - rightsList - rights",
+    "newColumnName": "rights"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "description": "Join multi-valued cells in column rights",
+    "columnName": "rights",
+    "keyColumnName": "id",
+    "separator": "␟"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rightsOA at index 6 based on column rights using expression grel:if(row.record.cells[columnName].value.join(\"\").contains(\"Open\"),\"Open Access\",\"zugriffsbeschränkt\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "rightsOA",
+    "columnInsertIndex": 6,
+    "baseColumnName": "rights",
+    "expression": "grel:if(row.record.cells[columnName].value.join(\"\").contains(\"Open\"),\"Open Access\",\"zugriffsbeschränkt\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rights using expression grel:value.split(\"␟\")[0]",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "rights",
+    "expression": "grel:value.split(\"␟\")[0]",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column abstract at index 8 based on column resource - descriptions - description using expression grel:value.parseHtml().htmlText()",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Abstract",
+                "l": "Abstract"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "resource - descriptions - description - descriptionType",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "resource - descriptions - description - descriptionType"
+        }
+      ]
+    },
+    "newColumnName": "abstract",
+    "columnInsertIndex": 8,
+    "baseColumnName": "resource - descriptions - description",
+    "expression": "grel:value.parseHtml().htmlText()",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column otherDescription at index 8 based on column resource - descriptions - description using expression grel:value.parseJson().references.join(\"␟\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "value",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Other",
+                "l": "Other"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "resource - descriptions - description - descriptionType",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "resource - descriptions - description - descriptionType"
+        }
+      ]
+    },
+    "newColumnName": "otherDescription",
+    "columnInsertIndex": 8,
+    "baseColumnName": "resource - descriptions - description",
+    "expression": "grel:value.parseJson().references.join(\"␟\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - descriptions - description",
+    "columnName": "resource - descriptions - description"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column resource - descriptions - description - descriptionType",
+    "columnName": "resource - descriptions - description - descriptionType"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - dates - date to date",
+    "oldColumnName": "resource - dates - date",
+    "newColumnName": "date"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - dates - date - dateType to dateType",
+    "oldColumnName": "resource - dates - date - dateType",
+    "newColumnName": "dateType"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - titles - title to title",
+    "oldColumnName": "resource - titles - title",
+    "newColumnName": "title"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - publisher to publisher",
+    "oldColumnName": "resource - publisher",
+    "newColumnName": "publisher"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - identifier to identifier",
+    "oldColumnName": "resource - identifier",
+    "newColumnName": "identifier"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - identifier - identifierType to identifierType",
+    "oldColumnName": "resource - identifier - identifierType",
+    "newColumnName": "identifierType"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column url at index 16 based on column identifier using expression grel:forNonBlank(value,v,\"https://doi.org/\"+v,\"\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "url",
+    "columnInsertIndex": 16,
+    "baseColumnName": "identifier",
+    "expression": "grel:forNonBlank(value,v,\"https://doi.org/\"+v,\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - resourceType - resourceTypeGeneral to resourceTypeGeneral",
+    "oldColumnName": "resource - resourceType - resourceTypeGeneral",
+    "newColumnName": "resourceTypeGeneral"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - resourceType to resourceType",
+    "oldColumnName": "resource - resourceType",
+    "newColumnName": "resourceType"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column resourceType using expression grel:forNonBlank(value,v,v,cells[\"resourceTypeGeneral\"].value)",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "columnName": "resourceType",
+    "expression": "grel:forNonBlank(value,v,v,cells[\"resourceTypeGeneral\"].value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - publicationYear to publicationYear",
+    "oldColumnName": "resource - publicationYear",
+    "newColumnName": "publicationYear"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column resource - language to language",
+    "oldColumnName": "resource - language",
+    "newColumnName": "language"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"Forschungsdatenrepositorium der UHH\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "collection",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"Forschungsdatenrepositorium der UHH\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column university at index 1 based on column id using expression grel:\"Universität Hamburg\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "university",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"Universität Hamburg\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column internal_institution at index 1 based on column id using expression grel:\"Universität Hamburg\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "internal_institution",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"Universität Hamburg\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column internal_institution_id at index 1 based on column id using expression grel:\"uhh\"",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "id",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "id"
+        }
+      ]
+    },
+    "newColumnName": "internal_institution_id",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:\"uhh\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column geoLocationPoint at index 1 based on column id using expression grel:if(isBlank(value),\n\"\",\n\"\")",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "newColumnName": "geoLocationPoint",
+    "columnInsertIndex": 1,
+    "baseColumnName": "id",
+    "expression": "grel:if(isBlank(value),\n\"\",\n\"\")",
+    "onError": "set-to-blank"
+  }
+]
