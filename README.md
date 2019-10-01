@@ -70,10 +70,10 @@ Data will be available after first run at:
 * Solr browse: <http://localhost:8983/solr/hos/browse>
 * OpenRefine: <http://localhost:3333>
 
-Run workflow with data source "ediss" and load data into local Solr (-s) and local OpenRefine service (-d)
+Run workflow with data source "uhhediss" and load data into local Solr (-s) and local OpenRefine service (-d)
 
 ```
-bin/ediss.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
+bin/uhhediss.sh -s http://localhost:8983/solr/hos -d http://localhost:3333
 ```
 
 Run workflow with all data sources in parallel and load data into local Solr (-s) and local OpenRefine service (-d):
@@ -120,10 +120,10 @@ cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
 
 * Step 3: [Extract the OpenRefine project history in json format](http://kb.refinepro.com/2012/06/google-refine-json-and-my-notepad-or.html) and save it in a subdirectory of cfg/, e.g. `cfg/yourdatasource/transformation.json`.
 
-* Step 4: Copy an existing bash shell script (e.g. [bin/ediss.sh](bin/ediss.sh) to `bin/yourdatasource.sh` and edit line 17 (codename of the source, e.g. `yourdatasource`) and line 18 (url to OAI-PMH endpoint, e.g. `http://ediss.sub.uni-hamburg.de/oai2/oai2.php`). If you load a big dataset you may need to allocate more memory to OpenRefine (line 19).
+* Step 4: Copy an existing bash shell script (e.g. [bin/uhhediss.sh](bin/uhhediss.sh) to `bin/yourdatasource.sh` and edit line 17 (codename of the source, e.g. `yourdatasource`) and line 18 (url to OAI-PMH endpoint, e.g. `http://ediss.sub.uni-hamburg.de/oai2/oai2.php`). If you load a big dataset you may need to allocate more memory to OpenRefine (line 19).
 
 ```
-cp -a bin/ediss.sh bin/yourdatasource.sh
+cp -a bin/uhhediss.sh bin/yourdatasource.sh
 gedit bin/yourdatasource.sh
 ```
 
