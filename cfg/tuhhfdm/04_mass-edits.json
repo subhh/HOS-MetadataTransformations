@@ -44,5 +44,18 @@
     "repeat": false,
     "repeatCount": 10,
     "description": "Text transform on cells in column subject using expression value.trim()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "creatorNameURI",
+    "expression": "grel:if(isBlank(value),if(isBlank(cells[\"creatorName\"]),'','-'),value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column creatorNameURI using expression grel:if(isBlank(value),if(isBlank(cells[\"creatorName\"]),'','-'),value)"
   }
 ]
