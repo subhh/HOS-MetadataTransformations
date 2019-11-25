@@ -846,16 +846,36 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column seriesInformation at index 32 based on column dc:relation using expression grel:value",
     "engineConfig": {
-      "mode": "row-based",
-      "facets": []
+      "facets": [
+        {
+          "type": "list",
+          "name": "dc:relation",
+          "expression": "isBlank(value)",
+          "columnName": "dc:relation",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "record-based"
     },
-    "newColumnName": "seriesInformation",
-    "columnInsertIndex": 32,
     "baseColumnName": "dc:relation",
-    "expression": "grel:value",
-    "onError": "set-to-blank"
+    "expression": "grel:if (startsWith(toString(value),\"info:eu-repo\"),\"\",toString(value))",
+    "onError": "set-to-blank",
+    "newColumnName": "seriesInformation",
+    "columnInsertIndex": 28,
+    "description": "Create column seriesInformation at index 28 based on column dc:relation using expression grel:if (startsWith(toString(value),\"info:eu-repo\"),\"\",toString(value))"
   },
   {
     "op": "core/text-transform",
