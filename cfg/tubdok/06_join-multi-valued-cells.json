@@ -144,6 +144,19 @@
   },
   {
     "op": "core/text-transform",
+    "description": "Text transform on cells in column url",
+    "engineConfig": {
+      "mode": "record-based",
+      "facets": []
+    },
+    "columnName": "url",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"␟\"),null)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
     "description": "Text transform on cells in column translatedTitle",
     "engineConfig": {
       "mode": "record-based",

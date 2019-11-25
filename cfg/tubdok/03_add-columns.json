@@ -950,16 +950,16 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column url at index 9 based on column identifier using expression grel:\"https://doi.org/\" + value",
     "engineConfig": {
-      "mode": "row-based",
-      "facets": []
+      "facets": [],
+      "mode": "record-based"
     },
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:if(startsWith(value,\"http://\"),value,\"\") + if(startsWith(value,\"https://\"),value,\"\")\"",
+    "onError": "set-to-blank",
     "newColumnName": "url",
-    "columnInsertIndex": 9,
-    "baseColumnName": "identifier",
-    "expression": "grel:\"https://doi.org/\" + value",
-    "onError": "set-to-blank"
+    "columnInsertIndex": 12,
+    "description": "Create column url at index 12 based on column dc:identifier using expression grel:if(startsWith(value,\"http://\"),value,\"\") + if(startsWith(value,\"https://\"),value,\"\")\""
   },
   {
     "op": "core/column-addition",

@@ -1,46 +1,70 @@
 [
   {
     "op": "core/column-addition",
-    "description": "Create column id at index 3 based on column dc:identifier using expression grel:value.replace(\"http://dx.doi.org/\",\"\").replace(\"/\",\"_\")",
     "engineConfig": {
-      "mode": "row-based",
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "dc:identifier",
+    "expression": "grel:if(startsWith(value,\"http://dx.doi.org/\"),value.replace(\"http://dx.doi.org/\",\"\"),\"\") + if(startsWith(value,\"http://tubdok.tub.tuhh.de/handle/\"),value.replace(\"http://tubdok.tub.tuhh.de/handle/\",\"handle:\"),\"\") + if(startsWith(value,\"http://hdl.handle.net/\"),value.replace(\"http://hdl.handle.net/\",\"handle:\"),\"\") + if(startsWith(value,\"urn:nbn:de\"),value,\"\")",
+    "onError": "set-to-blank",
+    "newColumnName": "id",
+    "columnInsertIndex": 3,
+    "description": "Create column id at index 3 based on column dc:identifier using expression grel:if(startsWith(value,\"http://dx.doi.org/\"),value.replace(\"http://dx.doi.org/\",\"\"),\"\") + if(startsWith(value,\"http://tubdok.tub.tuhh.de/handle/\"),value.replace(\"http://tubdok.tub.tuhh.de/handle/\",\"handle:\"),\"\") + if(startsWith(value,\"http://hdl.handle.net/\"),value.replace(\"http://hdl.handle.net/\",\"handle:\"),\"\") + if(startsWith(value,\"urn:nbn:de\"),value,\"\")"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "id",
+    "keyColumnName": "metadata - oai_dc:dc - xsi:schemaLocation",
+    "separator": "##########",
+    "description": "Join multi-valued cells in column id"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "id",
+    "keyColumnName": "metadata - oai_dc:dc - xsi:schemaLocation",
+    "mode": "separator",
+    "separator": "##########",
+    "regex": false,
+    "description": "Split multi-valued cells in column id"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
       "facets": [
         {
-          "omitError": false,
+          "type": "list",
+          "name": "metadata - oai_dc:dc - xsi:schemaLocation",
           "expression": "isBlank(value)",
-          "selectBlank": false,
+          "columnName": "metadata - oai_dc:dc - xsi:schemaLocation",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
           "selection": [
             {
               "v": {
-                "v": false,
-                "l": "false"
+                "v": true,
+                "l": "true"
               }
             }
           ],
-          "selectError": false,
-          "invert": false,
-          "name": "metadata - oai_dc:dc - xsi:schemaLocation",
-          "omitBlank": false,
-          "type": "list",
-          "columnName": "metadata - oai_dc:dc - xsi:schemaLocation"
+          "selectBlank": false,
+          "selectError": false
         }
-      ]
+      ],
+      "mode": "row-based"
     },
-    "newColumnName": "id",
-    "columnInsertIndex": 3,
-    "baseColumnName": "dc:identifier",
-    "expression": "grel:value.replace(\"http://dx.doi.org/\",\"\").replace(\"/\",\"_\")",
-    "onError": "set-to-blank"
+    "columnName": "id",
+    "expression": "\"\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column id using expression \"\""
   },
   {
     "op": "core/column-move",
-    "description": "Move column id to position 0",
     "columnName": "id",
-    "index": 0
-  },
-  {
-    "op": "core/column-removal",
-    "description": "Remove column metadata - oai_dc:dc - xsi:schemaLocation",
-    "columnName": "metadata - oai_dc:dc - xsi:schemaLocation"
+    "index": 0,
+    "description": "Move column id to position 0"
   }
 ]
