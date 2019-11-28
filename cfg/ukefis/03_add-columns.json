@@ -395,7 +395,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column internal_institution at index 1 based on column id using expression grel:\"Universität Hamburg\"",
+    "description": "Create column internal_institution at index 1 based on column id using expression grel:\"Universitätsklinikum Hamburg-Eppendorf\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -423,12 +423,12 @@
     "newColumnName": "internal_institution",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Universität Hamburg\"",
+    "expression": "grel:\"Universitätsklinikum Hamburg-Eppendorf\"",
     "onError": "set-to-blank"
   },
   {
     "op": "core/column-addition",
-    "description": "Create column internal_institution_id at index 1 based on column id using expression grel:\"uhh\"",
+    "description": "Create column internal_institution_id at index 1 based on column id using expression grel:\"uke\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -456,7 +456,7 @@
     "newColumnName": "internal_institution_id",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"uhh\"",
+    "expression": "grel:\"uke\"",
     "onError": "set-to-blank"
   },
   {
