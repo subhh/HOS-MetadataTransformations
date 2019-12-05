@@ -1,7 +1,7 @@
 [
   {
     "op": "core/column-addition",
-    "description": "Create column internal_geoLocation at index 1 based on column id using expression grel:if(isBlank(value),\n\"\",\n\"53.566570,9.984491\")",
+    "description": "Create column internal_geoLocation at index 1 based on column id using expression grel:if(isBlank(value),\n\"\",\n\"53.5630101,9.9870572\")",
     "engineConfig": {
       "facets": [],
       "mode": "record-based"
@@ -9,7 +9,7 @@
     "newColumnName": "internal_geoLocation",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:if(isBlank(value),\n\"\",\n\"53.566570,9.984491\")",
+    "expression": "grel:if(isBlank(value),\n\"\",\n\"53.5630101,9.9870572\")",
     "onError": "set-to-blank"
   }
 ]
