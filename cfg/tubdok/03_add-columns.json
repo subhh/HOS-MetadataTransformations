@@ -983,7 +983,7 @@
   },
   {
     "op": "core/column-addition",
-    "description": "Create column collection at index 1 based on column id using expression grel:\"Open-Access-Publikationen TUHH\"",
+    "description": "Create column collection at index 1 based on column id using expression grel:\"TUHH Open Research\"",
     "engineConfig": {
       "mode": "row-based",
       "facets": [
@@ -1011,7 +1011,7 @@
     "newColumnName": "collection",
     "columnInsertIndex": 1,
     "baseColumnName": "id",
-    "expression": "grel:\"Open-Access-Publikationen TUHH\"",
+    "expression": "grel:\"TUHH Open Research\"",
     "onError": "set-to-blank"
   },
     {
