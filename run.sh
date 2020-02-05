@@ -204,9 +204,13 @@ if [ -n "$solr_url" ]; then
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
   for i in ${solr_url[@]}; do
-      echo "delete existing data in ${i}"
-      curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${i}/update" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
-      echo ""
+      #
+      # Just NO. The pipeline does not handle errors in the subpipelines. If a subpipeline fails then all records from
+      # the data source are silently (!) deleted from the index. This must not happen.
+      #
+      # echo "delete existing data in ${i}"
+      # curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${i}/update" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
+      # echo ""
       echo "load new data in ${i}"
       curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) --progress-bar "${i}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=hos&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/03_combined/all_${date}.tsv | jq .responseHeader
       echo ""
