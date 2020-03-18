@@ -885,7 +885,7 @@
       "facets": []
     },
     "columnName": "seriesInformation",
-    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\"; \"),null)",
+    "expression": "grel:if(row.record.fromRowIndex==row.index,row.record.cells[columnName].value.join(\" \"),null)",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10
