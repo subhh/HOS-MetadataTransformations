@@ -23,6 +23,7 @@ Usage: ./run.sh [-s SOLRURL] [-d OPENREFINEURL]
 == options ==
     -s SOLRURL       ingest data to specified Solr core
     -d OPENREFINEURL ingest data to external OpenRefine service
+    -e true          erase old index data before indexing
     -x DAYS          delete files in folder data older than ... days
 
 == examples ==
@@ -36,11 +37,12 @@ EOF
 port="3334"
 
 # get user input
-options="s:d:x:h"
+options="s:d:e:x:h"
 while getopts $options opt; do
    case $opt in
    s )  solr_url+=("${OPTARG%/}") ;;
    d )  openrefine_url=${OPTARG%/} ;;
+   e )  erase_data=${OPTARG%/} ;;
    x )  delete_days=${OPTARG} ;;
    h )  usage ;;
    \? ) echo 1>&2 "Unknown option: -$OPTARG"; usage; exit 1;;
@@ -52,6 +54,7 @@ shift $((OPTIND - 1))
 
 # load solr credentials from file
 if [ -f "cfg/solr/credentials" ]; then source "cfg/solr/credentials"; fi
+
 
 # declare additional variables
 pid=()
@@ -203,18 +206,19 @@ if [ -n "$solr_url" ]; then
       multivalue_config+=(\&f.$i.separator=$separator)
   done
   multivalue_config=$(printf %s "${multivalue_config[@]}")
-  for i in ${solr_url[@]}; do
-      #
-      # Just NO. The pipeline does not handle errors in the subpipelines. If a subpipeline fails then all records from
-      # the data source are silently (!) deleted from the index. This must not happen.
-      #
-      # echo "delete existing data in ${i}"
-      # curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${i}/update" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
-      # echo ""
+
+  # delete index data if -e true is set
+    for i in ${solr_url[@]}; do
+      if [ "$erase_data" == "true" ]
+      then 
+        echo "delete existing data in ${i}"
+        curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) -sS "${i}/update" -H "Content-Type: application/json" --data-binary '{ "delete": { "query": "*:*" } }' | jq .responseHeader
+        echo ""
+      fi
       echo "load new data in ${i}"
       curl $(if [ -n "$solr_user" ]; then echo "-u ${solr_user}:${solr_pass}"; fi) --progress-bar "${i}/update/csv?commit=true&optimize=true&separator=%09&literal.collectionId=hos&split=true${multivalue_config}" --data-binary @- -H 'Content-type:text/plain; charset=utf-8' < ${data_dir}/03_combined/all_${date}.tsv | jq .responseHeader
       echo ""
-  done
+    done
 fi
 
 # Ingest data into OpenRefine
