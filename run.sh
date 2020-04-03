@@ -121,7 +121,7 @@ echo "starting time: $(date --date=@${checkpointdate[$((checkpoints + 1))]})"
 echo ""
 echo "run scripts in parallel..."
 for f in "${path_bin}"/*.sh; do
-  "${f}" -p $port > /dev/null &
+  "${f}" -p $port -d $openrefine_url > /dev/null &
   pid+=("$!")
   echo -en "$(basename ${f}) (pid: $!)   "
   port=$((port + 1))
